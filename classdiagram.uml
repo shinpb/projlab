@@ -1450,7 +1450,7 @@
 <XPD:OBJ name="NameLabel" type="EdgeLabelView" guid="yyEgtEqP20in8fCPYyyRZgAA">
 <XPD:ATTR name="Alpha" type="real">1,60203515697313</XPD:ATTR>
 <XPD:ATTR name="Distance" type="real">96,0468635614927</XPD:ATTR>
-<XPD:ATTR name="Text" type="string">3 : checkExplodeTrigger(): void</XPD:ATTR>
+<XPD:ATTR name="Text" type="string">3 : coreSunEffectTrigger(): void</XPD:ATTR>
 <XPD:REF name="Model">JAMGA5wnlUCJ2rgqMcv6aAAA</XPD:REF>
 <XPD:REF name="HostEdge">QJxy/7x9+k+WzgfyzmnYmQAA</XPD:REF>
 </XPD:OBJ>
@@ -2246,7 +2246,7 @@
 <XPD:REF name="Context">KP8Dl8/7ikq32FUA+jM7cwAA</XPD:REF>
 <XPD:ATTR name="#OwnedDiagrams" type="integer">1</XPD:ATTR>
 <XPD:OBJ name="OwnedDiagrams[0]" type="UMLSequenceDiagram" guid="slqsIU0tvEGNQjK5UlFJqwAA">
-<XPD:ATTR name="Name" type="string">[isNearSun] &amp;&amp;</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">Deploy portal gate</XPD:ATTR>
 <XPD:ATTR name="MessageSignature" type="UMLMessageSignatureKind">mskNameAndType</XPD:ATTR>
 <XPD:REF name="DiagramOwner">PayMvBzstk2jBhmXTmVb0AAA</XPD:REF>
 <XPD:OBJ name="DiagramView" type="UMLSequenceDiagramView" guid="C7FTYgcj406Z5LJPvj3hagAA">
@@ -10472,7 +10472,7 @@
 <XPD:REF name="CallActions[1]">/KX7tnHDr0CTDagM2ya9qQAA</XPD:REF>
 </XPD:OBJ>
 <XPD:OBJ name="Operations[12]" type="UMLOperation" guid="vNtOun0jCUyp0seDa51d/QAA">
-<XPD:ATTR name="Name" type="string">checkExplodeTrigger</XPD:ATTR>
+<XPD:ATTR name="Name" type="string">coreSunEffectTrigger</XPD:ATTR>
 <XPD:ATTR name="Visibility" type="UMLVisibilityKind">vkPrivate</XPD:ATTR>
 <XPD:REF name="Owner">wkCl6AkWnUCebdbv8nOwXQAA</XPD:REF>
 <XPD:ATTR name="#CallActions" type="integer">4</XPD:ATTR>
@@ -10727,12 +10727,11 @@
 <XPD:REF name="Type_">C2l8Sro9b0uo7zY1inN+6AAA</XPD:REF>
 </XPD:OBJ>
 </XPD:OBJ>
-<XPD:ATTR name="#TypedParameters" type="integer">5</XPD:ATTR>
+<XPD:ATTR name="#TypedParameters" type="integer">4</XPD:ATTR>
 <XPD:REF name="TypedParameters[0]">7gdkS29gyE+84fe3NJi7LgAA</XPD:REF>
-<XPD:REF name="TypedParameters[1]" pathname="m">fPGLqUCpHEOrfAvzKRM4iwAA</XPD:REF>
-<XPD:REF name="TypedParameters[2]">Bby/1i0TNE2jS4fzpFhJZwAA</XPD:REF>
-<XPD:REF name="TypedParameters[3]">TO62jX1ea0uIF1ITjNIARQAA</XPD:REF>
-<XPD:REF name="TypedParameters[4]">M5iGfEeC10eiRO73B1t/QgAA</XPD:REF>
+<XPD:REF name="TypedParameters[1]">Bby/1i0TNE2jS4fzpFhJZwAA</XPD:REF>
+<XPD:REF name="TypedParameters[2]">TO62jX1ea0uIF1ITjNIARQAA</XPD:REF>
+<XPD:REF name="TypedParameters[3]">M5iGfEeC10eiRO73B1t/QgAA</XPD:REF>
 <XPD:ATTR name="#Associations" type="integer">4</XPD:ATTR>
 <XPD:REF name="Associations[0]">WUJGi7GrSEmWvLc5c22MtwAA</XPD:REF>
 <XPD:REF name="Associations[1]">QMig3QTpj0iqXPLHpQDjjQAA</XPD:REF>
