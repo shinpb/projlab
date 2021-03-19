@@ -1,0 +1,14 @@
+
+1 - Move with astronaut
+2 - Drill with astronaut
+3 - Mine with astrounaut
+4 - Move with robot
+5 - Drill with robot
+6 - Build a robot
+7 - Build a gate
+8 - Deploy gate
+9 - Let's watch the world burn
+ls - Get inventory
+
+type "help" for this
+type "exit" for exit
