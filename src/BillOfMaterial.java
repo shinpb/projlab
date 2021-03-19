@@ -1,16 +1,18 @@
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class BillOfMaterial {
 	private Collection<Material> current;
 	//modell change
 	private Collection<Material> originalList;
 	
-	public BillOfMaterial)(Collection<Material> l) {
+	public BillOfMaterial(Collection<Material> l) {
 		originalList=l;
 		reset();
 	}
 	
-	protected void isNeeded(Material m) {
+	//modell change
+	protected boolean isNeeded(Material m) {
 		for(Material a: current) {
 			if(m.isSameType(a)) {
 				current.remove(a);
