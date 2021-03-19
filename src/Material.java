@@ -14,7 +14,7 @@ public abstract class Material {
 		return (-1);
 	}
 	
-	public bool isSameType(Material m) {
+	public boolean isSameType(Material m) {
 		if(m.getID() == this.getID()) {return true;}
 		else {return false;}
 	}
