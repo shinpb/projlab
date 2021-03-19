@@ -1,5 +1,6 @@
 public class Iron extends Material {
-	private int getID() {
+	//modell change
+	protected int getID() {
 		return(440);
 	}
 }

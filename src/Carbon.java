@@ -1,5 +1,6 @@
 public class Carbon extends Material {
-	private int getID() {
+	//modell change
+	protected int getID() {
 		return(629);
 	}
 }

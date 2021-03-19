@@ -9,8 +9,9 @@ public class Uranium extends Material {
 	public void nearSunEffect() {
 		asteroid.explode();
 	}
-	
-	private int getID() {
+
+	//modell change
+	protected int getID() {
 		return(769);
 	}
 }
