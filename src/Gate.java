@@ -15,24 +15,39 @@
 public class Gate extends Place {
 	private boolean isActive;
 	private Asteroid position;
-	private Gate otherEnd: Gate;
-	private Asteroid position;
-	private Gate otherEnd: Gate;
+	private Gate otherEnd;
+	
+	public Gate() {}
+	
 	public void setPosition(Asteroid a) {
+		position = a;
 	}
 	
 	public void setOtherEnd(Gate g) {
+		otherEnd = g;
 	}
 	
 	public void explode() {
+		otherEnd.setPosition(null);
+		otherEnd.getPosition().removeGate(otherEnd);
+		otherEnd.setOtherEnd(null);
+		position.removeGate(this);
+		
+		//Ezek nincsenek a szekvencián
+		otherEnd.disable();
+		disable();
 	}
 	
+	//Kellenek ezek?
 	public void enable() {
+		isActive = true;
 	}
 	
 	public void disable() {
+		isActive = false;
 	}
 	
-	public Place getPosition() {
+	public Asteroid getPosition() {
+		return position;
 	}
 }
