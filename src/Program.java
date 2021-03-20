@@ -3,6 +3,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+
+
+
 public class Program{
 	
 	public static void chosen(String s) {
@@ -75,7 +78,7 @@ public class Program{
 		Astronaut astronaut = new Astronaut(asteroid1);
 		asteroid1.addNeighbour(asteroid2);
 		asteroid1.addEntity(astronaut);
-		//astronaut.move(asteroid2);
+		astronaut.move();
 	}
 	
 	public static void portal() {
@@ -114,14 +117,17 @@ public class Program{
 	
 	public static void main(String args[]) {
 		System.setIn(new UnClosableDecorator(System.in));
+		
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println("Welcome to the Szoftverprojektlaboratóriumprojekt!\nWanna try? (type yes/no) ");
 		String s = "";
 				
 		while(true){
+			
 			s = input.next();
 			chosen(s);
+			
 		}	
 
 	}

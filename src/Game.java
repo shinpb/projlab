@@ -25,7 +25,7 @@ public class Game {
 	// a következõ kettõ nem muszáj de szerintem hasznos
 	private Collection<Robot> robots;
 	private Collection<Astronaut> astronauts;
-	
+	/*
 	public void start() {
 		//segéd változók:
 		//aszteroidaöv mérete
@@ -88,7 +88,7 @@ public class Game {
 					}
 				}
 			}
-		}  		
+		}		
 		System.out.println("Az aszteroidak egymas szomszedai.");
 		System.out.println("Az aszteroidov elkeszult.");
 		
@@ -106,13 +106,20 @@ public class Game {
 	      }   		
 		System.out.println("Az asztronautak megerkeztek az aszteroidaovbe");
 	}
+	*/
 	
 	public void step() {
 		
 		//Minden astronautára meghivjuk a step()
 		for(Astronaut a : astronauts) {
-			a.step();
+			try{
+				a.step();
+			} catch(Exception ex) {
+				ex.printStackTrace();
+			}
 		}
+		
+		
 		System.out.println("Leptek a telepesek.");
 		
 		//Minden robotra meghivjuk a step()

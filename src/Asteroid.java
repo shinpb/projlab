@@ -110,7 +110,12 @@ public class Asteroid extends Place {
 	}
 	
 	public void addEntity(Entity e) {
-		entities.add(e);
-		e.setPosition(this);
+		try{
+			entities.add(e);
+			e.setPosition(this);
+		} catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
 	}
 }

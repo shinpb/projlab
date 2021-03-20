@@ -1,3 +1,5 @@
+import java.io.Console;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Scanner;
@@ -30,22 +32,26 @@ public class Astronaut extends Entity {
 	}
 	
 	public void move() {
-		Place[] neighbours = (Place[]) position.getNeighbours().toArray();
 		
-		System.out.println("\nJelenlegi pozicionak " + neighbours.length + " szomszedos helye van.");
-		System.out.println("Add meg a sorszamat az uticelodnak!" + " (1 - " + neighbours.length + ")");
+		ArrayList<Place> neighbours = new ArrayList<Place>(position.getNeighbours());
+		
+		
+		System.out.println("\nJelenlegi pozicionak " + neighbours.size() + " szomszedos helye van.");
+		System.out.println("Add meg a sorszamat az uticelodnak!" + " (1 - " + neighbours.size() + ")");
 		
 		Scanner input = new Scanner(System.in);
 		int destinationID = input.nextInt();
 		
-		while(destinationID < 1 || destinationID > neighbours.length) {
+		while(destinationID < 1 || destinationID > neighbours.size()) {
 			System.out.println("\nFiam annyi eszed van, mint egy furik majomnak!");
-			System.out.println("\nJelenlegi pozicionak " + neighbours.length + " szomszedos helye van.");
-			System.out.println("Add meg a sorszamat az uticelodnak!" + " (1 - " + neighbours.length + ")");
+			System.out.println("\nJelenlegi pozicionak " + neighbours.size() + " szomszedos helye van.");
+			System.out.println("Add meg a sorszamat az uticelodnak!" + " (1 - " + neighbours.size() + ")");
+			
+			destinationID = input.nextInt();
 		}
 		input.close();
 		
-		Place nextPosition = neighbours[destinationID - 1];
+		Place nextPosition = neighbours.get(destinationID - 1);
 		
 		position.removeEntity(this);
 		nextPosition.addEntity(this);
@@ -123,6 +129,8 @@ public class Astronaut extends Entity {
 			System.out.println("\nValassz egy muveletet es add meg a sorszamat!");
 			System.out.println("1 - mozgas\t2 - furas\t3 - banyaszas");
 			System.out.println("4 - nyersanyag lehelyezes\t5 - portal kapupar keszites\t6 - robot epites");
+			
+			selectedID = input.nextInt();
 		}
 		input.close();
 		
@@ -169,8 +177,10 @@ public class Astronaut extends Entity {
 			for(int i = 0; i < materials.length; i++) 
 				System.out.println("sorszam: " + i+1 + " nyersanyag: " +  materials[i].toString());
 			System.out.println("\nAdd meg a sorszamat a nyersanyagnak, amit le szeretnel helyezni!" + " (1 - " + materials.length + ")");
+			
+			selectedID = input.nextInt();
 		}
-		input.close();
+		
 		
 		if( !position.replaceCore(materials[selectedID - 1]) ) 
 			throw new Exception("Can not replace asteroid core. Core is not empty.");
