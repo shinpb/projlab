@@ -17,7 +17,9 @@ public class Gate extends Place {
 	private Asteroid position;
 	private Gate otherEnd;
 	
-	public Gate() {}
+	public Gate() {
+		isActive = false;
+	}
 	
 	public void setPosition(Asteroid a) {
 		position = a;
@@ -27,18 +29,22 @@ public class Gate extends Place {
 		otherEnd = g;
 	}
 	
+	public void addEntity(Entity e) {
+		if(isActive) {
+			otherEnd.getPosition().addEntity(e);
+		} else {
+			position.addEntity(e);
+		}
+	}
+	
 	public void explode() {
 		otherEnd.setPosition(null);
 		otherEnd.getPosition().removeGate(otherEnd);
 		otherEnd.setOtherEnd(null);
 		position.removeGate(this);
 		
-		//Ezek nincsenek a szekvencián
-		otherEnd.disable();
-		disable();
 	}
 	
-	//Kellenek ezek?
 	public void enable() {
 		isActive = true;
 	}
