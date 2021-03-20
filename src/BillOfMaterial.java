@@ -35,7 +35,7 @@ public class BillOfMaterial {
 			}
 		}
 		
-		if(current.isEmpty()) return null;
-		else return winv;
+		if(current.isEmpty()) return winv;
+		else return null;
 	}
 }
