@@ -108,4 +108,9 @@ public class Asteroid extends Place {
 	public boolean getNearSun() {
 		return isNearSun;
 	}
+	
+	public void addEntity(Entity e) {
+		entities.add(e);
+		e.setPosition(this);
+	}
 }

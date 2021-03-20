@@ -59,9 +59,9 @@ public class Program{
 
 	public static void bumm() {
 		Asteroid asteroid = new Asteroid();
-		Astronaut astronaut = new Astronaut();
+		Astronaut astronaut = new Astronaut(asteroid);
 		Uranium uranium = new Uranium();
-		Robot robot = new Robot();
+		Robot robot = new Robot(asteroid);
 		Gate gate = new Gate();
 		asteroid.setCore(uranium);
 		asteroid.addEntity(astronaut);
@@ -72,37 +72,40 @@ public class Program{
 	public static void moveAstronaut() {
 		Asteroid asteroid1 = new Asteroid();
 		Asteroid asteroid2 = new Asteroid();
-		Astronaut astronaut = new Astronaut();
+		Astronaut astronaut = new Astronaut(asteroid1);
 		asteroid1.addNeighbour(asteroid2);
 		asteroid1.addEntity(astronaut);
-		astronaut.move(asteroid2);
+		//astronaut.move(asteroid2);
 	}
 	
 	public static void portal() {
 		Asteroid asteroid = new Asteroid();
-		Astronaut astronaut = new Astronaut();
+		Astronaut astronaut = new Astronaut(asteroid);
 		asteroid.addEntity(astronaut);
-		astronaut.craftGate();
+		try{
+		astronaut.craftGate();}catch(Exception e){}
 	}
 	
 	public static void buildGate() {
 		Asteroid asteroid = new Asteroid();
-		Astronaut astronaut = new Astronaut();
+		Astronaut astronaut = new Astronaut(asteroid);
 		asteroid.addEntity(astronaut);
-		astronaut.craftGate();
-		astronaut.deployGate();
+		try{
+			astronaut.craftGate();}catch(Exception e){}
+		try{
+			astronaut.deployGate();}catch(Exception e){}
 	}
 	
 	public static void robot() {
 		Asteroid asteroid = new Asteroid();
-		Astronaut astronaut = new Astronaut();
+		Astronaut astronaut = new Astronaut(asteroid);
 		asteroid.addEntity(astronaut);
 		astronaut.craftRobot();
 	}
 	
 	public static void drill() {
 		Asteroid asteroid = new Asteroid();
-		Astronaut astronaut = new Astronaut();
+		Astronaut astronaut = new Astronaut(asteroid);
 		asteroid.addEntity(astronaut);
 		
 	}
