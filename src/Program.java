@@ -110,6 +110,7 @@ public class Program{
 	
 	
 	public static void main(String args[]) {
+		System.setIn(new UnClosableDecorator(System.in));
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println("Welcome to the Szoftverprojektlaboratóriumprojekt!\nWanna try? (type yes/no) ");
