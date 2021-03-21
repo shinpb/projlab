@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 
 public class Program{
-	
+
 	public static void chosen(String s) {
 		switch (s) {
 		case "exit":
@@ -251,7 +251,11 @@ public class Program{
 		System.out.println("Welcome to the Szoftverprojektlaboratóriumprojekt!\nWanna try? (type yes/no) ");
 		String s = "";
 		s = input.next();
+		Logger.clear();
+
 		chosen(s);
+
+		Logger.print();
 				
 		while(true){
 			

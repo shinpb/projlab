@@ -103,6 +103,8 @@ public class Asteroid extends Place {
 	
 	public void setCore(Material m) {
 		core = m;
+		if(core != null)
+			core.setAsteroid(this);
 	}
 	
 	public boolean getNearSun() {

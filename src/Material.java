@@ -2,6 +2,10 @@
 public abstract class Material {
 	//modell change
 	protected Asteroid asteroid;
+
+	public void setAsteroid(Asteroid a) {
+		asteroid =a;
+	}
 	
 	public void mined() {
 		asteroid.setCore(null);

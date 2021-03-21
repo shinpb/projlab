@@ -37,25 +37,28 @@ public class Astronaut extends Entity {
 		
 		
 		System.out.println("\nJelenlegi pozicionak " + neighbours.size() + " szomszedos helye van.");
-		System.out.println("Add meg a sorszamat az uticelodnak!" + " (1 - " + neighbours.size() + ")");
-		
-		Scanner input = new Scanner(System.in);
-		int destinationID = input.nextInt();
-		
-		while(destinationID < 1 || destinationID > neighbours.size()) {
-			System.out.println("\nFiam annyi eszed van, mint egy furik majomnak!");
-			System.out.println("\nJelenlegi pozicionak " + neighbours.size() + " szomszedos helye van.");
+
+		if(neighbours.size()>0) {
 			System.out.println("Add meg a sorszamat az uticelodnak!" + " (1 - " + neighbours.size() + ")");
 			
-			destinationID = input.nextInt();
+			Scanner input = new Scanner(System.in);
+			int destinationID = input.nextInt();
+			
+			while(destinationID < 1 || destinationID > neighbours.size()) {
+				System.out.println("\nFiam annyi eszed van, mint egy furik majomnak!");
+				System.out.println("\nJelenlegi pozicionak " + neighbours.size() + " szomszedos helye van.");
+				System.out.println("Add meg a sorszamat az uticelodnak!" + " (1 - " + neighbours.size() + ")");
+				
+				destinationID = input.nextInt();
+			}
+			input.close();
+			
+			Place nextPosition = neighbours.get(destinationID - 1);
+			
+			position.removeEntity(this);
+			nextPosition.addEntity(this);
+			//TODO beallitani a poziciot
 		}
-		input.close();
-		
-		Place nextPosition = neighbours.get(destinationID - 1);
-		
-		position.removeEntity(this);
-		nextPosition.addEntity(this);
-		//TODO beallitani a poziciot
 	}
 	
 	
@@ -161,30 +164,33 @@ public class Astronaut extends Entity {
 	}
 	
 	public void putMaterialInAsteroid() throws Exception {
-		Material[] materials = (Material[]) collectedMaterials.toArray();
+		ArrayList<Material> materials = new ArrayList<Material>(collectedMaterials);
 		
-		System.out.println("\nJelenleg " + materials.length + " nyersanyag van nalad.");
-		for(int i = 0; i < materials.length; i++) 
-			System.out.println("sorszam: " + i+1 + " nyersanyag: " +  materials[i].toString());
-		System.out.println("\nAdd meg a sorszamat a nyersanyagnak, amit le szeretnel helyezni!" + " (1 - " + materials.length + ")");
-		
-		Scanner input = new Scanner(System.in);
-		int selectedID = input.nextInt();
-		
-		while(selectedID < 1 || selectedID > materials.length) {
-			System.out.println("\nFiam annyi eszed van, mint egy furik majomnak!");
-			System.out.println("\nJelenleg " + materials.length + " nyersanyag van nalad.");
-			for(int i = 0; i < materials.length; i++) 
-				System.out.println("sorszam: " + i+1 + " nyersanyag: " +  materials[i].toString());
-			System.out.println("\nAdd meg a sorszamat a nyersanyagnak, amit le szeretnel helyezni!" + " (1 - " + materials.length + ")");
+		System.out.println("\nJelenleg " + materials.size() + " nyersanyag van nalad.");
+		if(materials.size()>0) {
+			for(int i = 0; i < materials.size(); i++) 
+				System.out.println("sorszam: " + i+1 + " nyersanyag: " +  materials.get(i).toString());
+			System.out.println("\nAdd meg a sorszamat a nyersanyagnak, amit le szeretnel helyezni!" + " (1 - " + materials.size() + ")");
 			
-			selectedID = input.nextInt();
+			Scanner input = new Scanner(System.in);
+			int selectedID = input.nextInt();
+			
+			while(selectedID < 1 || selectedID > materials.size()) {
+				System.out.println("\nFiam annyi eszed van, mint egy furik majomnak!");
+				System.out.println("\nJelenleg " + materials.size() + " nyersanyag van nalad.");
+				for(int i = 0; i < materials.size(); i++) 
+					System.out.println("sorszam: " + i+1 + " nyersanyag: " +  materials.get(i).toString());
+				System.out.println("\nAdd meg a sorszamat a nyersanyagnak, amit le szeretnel helyezni!" + " (1 - " + materials.size() + ")");
+				
+				selectedID = input.nextInt();
+			}
+			
+			
+			if( !position.replaceCore(materials.get(selectedID - 1)) ) 
+				throw new Exception("Can not replace asteroid core. Core is not empty.");
+			
+			collectedMaterials.remove(materials.get(selectedID - 1));
 		}
-		
-		
-		if( !position.replaceCore(materials[selectedID - 1]) ) 
-			throw new Exception("Can not replace asteroid core. Core is not empty.");
-		
-		collectedMaterials.remove(materials[selectedID - 1]);
+		// else materials empty TODO
 	}
 }
