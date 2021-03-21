@@ -1,14 +1,19 @@
 
 1 - Move with astronaut
 2 - Drill with astronaut
-3 - Mine with astrounaut
+3 - Mine with astronaut
 4 - Move with robot
 5 - Drill with robot
 6 - Build a robot
 7 - Build a gate
-8 - Deploy gate
-9 - Let's watch the world burn
-ls - Get inventory
+8 - Launch Portal instead (Deploy your gate)
+9 - Let's watch the world burn! (Uranium in open cored asteroid, near sun)
+10 - Become a serial killer now! (Control near sun)
+11 - Purge (Control solar strom)
+12 - Boil rice (ice sublimates near sun)
+13 - Fill the emptiness (put material into empty asteroid)
+14 - Grab that portal gun! (Teleport)
 
 type "help" for this
 type "exit" for exit
+type "copyright" for reading it
