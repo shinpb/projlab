@@ -105,8 +105,7 @@ public class Astronaut extends Entity {
 		Material tmp = position.mineCore();
 		if(tmp != null){ collectedMaterials.add(tmp);}     //itt beleirtam, mert nem mukodott -dodo
 		else{System.out.println("Core is empty");} //TODO exception
-		System.out.println(collectedMaterials.size());
-
+		
 	}
 	
 	public void solarStormEffect() {
