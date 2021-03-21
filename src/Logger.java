@@ -1,4 +1,4 @@
-public static class Logger {
+public class Logger {
 
 	private static int d=0;
 	
