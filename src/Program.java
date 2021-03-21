@@ -42,6 +42,7 @@ public class Program{
 		case "no":
 			  System.out.println("Okay than:(");
 			  System.exit(0);
+			  break;
 		case "yes":
 			  System.out.println("That's the spirit!\nChoose your fighter\n");
 			  try {readFile("panic_skeleton.txt");}
@@ -276,18 +277,17 @@ public class Program{
 		System.out.println("Welcome to the Szoftverprojektlaboratóriumprojekt!\nWanna try? (type yes/no) ");
 		String s = "";
 		s = input.next();
-		Logger.clear();
-
 		chosen(s);
 
-		Logger.print();
 				
 		while(true){
 			
 			s = input.next();
-			System.out.print("\033[H\033[2J");  //ez clear-eli a terminalt (lehet h windowson nem mukodik)
+			//System.out.print("\033[H\033[2J");  //ez clear-eli a terminalt (lehet h windowson nem mukodik)
+		Logger.clear();
 			chosen(s);
 			
+		//Logger.print();
 			try{randomAnswer();}catch(Exception e){e.printStackTrace();}
 			
 			
