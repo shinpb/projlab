@@ -130,6 +130,7 @@ public class Program{
             answers.add(line);
         }
 		System.out.println(answers.get((int) ((Math.random() * (answers.size() - 0)) + 0)));
+		filescn.close();
 	}
 
 	public static void readFile(String str)throws FileNotFoundException{
@@ -139,6 +140,7 @@ public class Program{
             String line = filescn.nextLine();
             System.out.println(line);
         }
+		filescn.close();
 	}
 
 	public static void bumm() {
