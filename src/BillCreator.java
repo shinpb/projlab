@@ -3,7 +3,8 @@ import java.util.Arrays;
 
 public class BillCreator {
 	public BillOfMaterial createRobotBill() {
-		return 
+		Logger.call("BillCreator.createRobotBill", "");
+		BillOfMaterial r=
 				new BillOfMaterial(
 						new ArrayList<Material>(
 								Arrays.asList(
@@ -13,10 +14,14 @@ public class BillCreator {
 								)
 						)
 				);
+		Logger.ret("Iron,Carbon,Uranium ("+r.toString()+")");
+		return r;
+
 	}
 	
 	public BillOfMaterial createGateBill() {
-		return 
+		Logger.call("BillCreator.createGategBill", "");
+		BillOfMaterial r=
 				new BillOfMaterial(
 						new ArrayList<Material>(
 								Arrays.asList(
@@ -27,10 +32,13 @@ public class BillCreator {
 								)
 						)
 				);
+		Logger.ret("Iron,Carbon,Uranium ("+r.toString()+")");
+		return r;
 	}
 	
 	public BillOfMaterial createGameWinningBill() {
-		return 
+		Logger.call("BillCreator.createGameWinningBill", "");
+		BillOfMaterial r=
 				new BillOfMaterial(
 						new ArrayList<Material>(
 								Arrays.asList(
@@ -41,5 +49,7 @@ public class BillCreator {
 								)
 						)
 				);
+		Logger.ret("Iron,Carbon,Uranium ("+r.toString()+")");
+		return r;
 	}
 }

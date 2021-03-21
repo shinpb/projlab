@@ -13,20 +13,26 @@ public class BillOfMaterial {
 	
 	//modell change
 	protected boolean isNeeded(Material m) {
+		Logger.call("BillOfMaterial.isNeeded",m.toString());
 		for(Material a: current) {
 			if(m.isSameType(a)) {
 				current.remove(a);
+				Logger.ret("true");
 				return true;
 			}
 		}
+		Logger.ret("false");
 		return false;
 	}
 	
 	public void reset() {
+		Logger.call("BillOfMaterial.reset","");
 		current=new ArrayList<Material>(originalList);
+		Logger.ret("");
 	}
 	
 	public Collection<Material> checkInventory(Collection<Material> inv) {
+		Logger.call("BillOfMaterial.checkInventory", "inv="+inv.toString());
 		reset();
 		ArrayList<Material> winv=new ArrayList<Material>(inv);
 		for(Material m: winv) {
@@ -35,7 +41,13 @@ public class BillOfMaterial {
 			}
 		}
 		
-		if(current.isEmpty()) return winv;
-		else return null;
+		if(current.isEmpty()) {
+			Logger.ret(winv.toString());
+			return winv;
+		}
+		else {
+			Logger.ret("null");
+			return null;
+		}
 	}
 }
