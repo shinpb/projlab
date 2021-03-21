@@ -38,8 +38,9 @@ public class Asteroid extends Place {
 	
 	public Material mineCore() {
 		if(core != null) {
-			core.mined();
 			Material temp = core;
+			core.mined();
+
 			core = null;
 			return temp;
 		} 

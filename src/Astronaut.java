@@ -102,8 +102,11 @@ public class Astronaut extends Entity {
 	public void mine() throws Exception {
 		if(collectedMaterials.size() == 10)
 			throw new Exception("Missing place for new material in inventory!");
-		
-		position.mineCore();
+		Material tmp = position.mineCore();
+		if(tmp != null){ collectedMaterials.add(tmp);}     //itt beleirtam, mert nem mukodott -dodo
+		else{System.out.println("Core is empty");} //TODO exception
+		System.out.println(collectedMaterials.size());
+
 	}
 	
 	public void solarStormEffect() {
