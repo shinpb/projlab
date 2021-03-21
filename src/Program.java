@@ -2,12 +2,37 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-//import java.math.random;
 
 
 
 
 public class Program{
+
+	private static Astronaut bigBackPack(Asteroid asteroid) {
+
+		Astronaut astronaut = new Astronaut(asteroid);
+		try{
+		asteroid.setCore(new Carbon());
+		astronaut.mine();
+		asteroid.setCore(new Iron());
+		astronaut.mine();
+		asteroid.setCore(new Ice());
+		astronaut.mine();
+		asteroid.setCore(new Uranium());
+		astronaut.mine();
+		asteroid.setCore(new Carbon());
+		astronaut.mine();
+		asteroid.setCore(new Iron());
+		astronaut.mine();
+		asteroid.setCore(new Ice());
+		astronaut.mine();
+		asteroid.setCore(new Uranium());
+		astronaut.mine();
+		}catch(Exception e){e.printStackTrace();}
+		
+		return astronaut;
+
+	}
 
 	public static void chosen(String s) {
 		switch (s) {
@@ -137,16 +162,16 @@ public class Program{
 		astronaut.move();
 	}
 	
-	public static void portal() {  //TODOinventory feltoltese
+	public static void portal() { 
 		Asteroid asteroid = new Asteroid();
-		Astronaut astronaut = new Astronaut(asteroid);
+		Astronaut astronaut = bigBackPack(asteroid);
 		try{
 		astronaut.craftGate();}catch(Exception e){e.printStackTrace();}
 	}
 	
-	public static void buildGate() {  //TODOinventory feltoltese
+	public static void buildGate() { 
 		Asteroid asteroid = new Asteroid();
-		Astronaut astronaut = new Astronaut(asteroid);
+		Astronaut astronaut = bigBackPack(asteroid);
 		try{
 			astronaut.craftGate();}catch(Exception e){e.printStackTrace();}
 		try{
@@ -155,7 +180,7 @@ public class Program{
 	
 	public static void robot() {
 		Asteroid asteroid = new Asteroid();
-		Astronaut astronaut = new Astronaut(asteroid); //TODOinventory feltoltese
+		Astronaut astronaut = bigBackPack(asteroid);
 		astronaut.craftRobot();
 	}
 
@@ -213,10 +238,10 @@ public class Program{
 
 	}
 
-	public static void teleport(){       //TODOinventory feltoltese
+	public static void teleport(){
 		Asteroid asteroid1 = new Asteroid();
 		Asteroid asteroid2 = new Asteroid();
-		Astronaut astronaut = new Astronaut(asteroid1);
+		Astronaut astronaut = bigBackPack(asteroid1);
 		try{
 			astronaut.craftGate();
 			astronaut.deployGate();
