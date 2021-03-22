@@ -161,7 +161,7 @@ public class Game {
 		}
 		//return false;
 		return true;
-		Logger.ret("" ,"");	
+		Logger.ret("");	
 	}
 	
 	public void solarStorm() {
