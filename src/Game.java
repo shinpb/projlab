@@ -24,7 +24,7 @@ public class Game {
 	private WindowHandler windowHandler;
 	private Collection<Robot> robots;
 	private Collection<Astronaut> astronauts;
-	/*
+	
 	public void start() {
 		//seged valtozok
 		//aszteroidaov merete
@@ -66,7 +66,7 @@ public class Game {
 		
 		for (Asteroid a : asteroidField) {
 			//ha keves szomszedja van 3-nal kevesebb
-			if(a.getNeighbours().size < 3) {
+			if(a.getNeighbours().size() < 3) {
 			
 				//3 szomszedsag hozzaadasa
 				for(int y = 0; y < 3; y++) {
@@ -92,20 +92,14 @@ public class Game {
 		System.out.println("Az aszteroidov elkeszult.");
 		
 		//asztronautak keszitese
-		for (int i = 0; i < astronautcount; i++) { 
-			astronauts.add(new Astronaut());
-		}
-		System.out.println("Az asztronautak utra keszen.");
-		
 		//asztronautak lerakasa random aszteroidakra
-		for (int i = 0; i < astronauts.size(); i++) { 		      
+		for (int i = 0; i < astronautcount; i++) { 		      
 			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size() + 1);
-			((ArrayList<Asteroid>) asteroidField).get(randomNum).addEntity(((ArrayList<Astronaut>) astronauts).get(i));;
-			
+			astronauts.add(new Astronaut(((ArrayList<Asteroid>) asteroidField).get(randomNum)));	
 	      }   		
 		System.out.println("Az asztronautak megerkeztek az aszteroidaovbe");
 	}
-	*/
+	
 	
 	public void step() {
 		
