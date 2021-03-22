@@ -22,7 +22,7 @@ public class Timer {
 	
 	public void start() {
 		//long startTime = System.nanoTime();
-		//TODO késõbb
+		//TODO kesobb
 		//while(/*TODO*/) {
 			tick();
 		//}

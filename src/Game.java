@@ -20,29 +20,28 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Game {
 	private Collection<Asteroid> asteroidField;
-	//TODO majd késõbb
+	//TODO majd kesobb
 	private WindowHandler windowHandler;
-	// a következõ kettõ nem muszáj de szerintem hasznos
 	private Collection<Robot> robots;
 	private Collection<Astronaut> astronauts;
 	/*
 	public void start() {
-		//segéd változók:
-		//aszteroidaöv mérete
+		//seged valtozok
+		//aszteroidaov merete
 		int asteroidfieldsize = 50;
-		//asztronauták száma
+		//asztronauta szama
 		int astronautcount = 5;
 		//randomhoz
 		int randomNum;
-		//összes materialbol mennyi kell a gyõzelemhez
+		//osszes materialbol mennyi kell a gyozelemhez
 		int materialsToWin = 3;
 		//mennyi material van osszesen
 		int materialcount = 4;
 		
 		
-		//aszteroidaöv készítés:
+		//aszteroidaov keszites:
 		for(int i = 0; i < materialsToWin; i++) {
-			//ice, iron, carbon, uranium mindenbõl 3, összesen 12
+			//ice, iron, carbon, uranium mindenbol 3, osszesen 12
 			asteroidField.add(new Asteroid(new Ice()));
 			asteroidField.add(new Asteroid(new Iron()));
 			asteroidField.add(new Asteroid(new Carbon()));
@@ -50,8 +49,8 @@ public class Game {
 		}
 		
 		for(int i = 0; i < asteroidfieldsize - materialsToWin * materialcount; i++) {
-			//maradék 38 random igy osszsesen 50
-			//random szám 1-4 között
+			//maradek 38 random igy osszsesen 50
+			//random szam 1-4 kozott
 			randomNum = ThreadLocalRandom.current().nextInt(1, materialcount + 1);
 			if(randomNum == 1) asteroidField.add(new Asteroid(new Ice()));
 			else if(randomNum == 2) asteroidField.add(new Asteroid(new Iron()));
@@ -60,29 +59,29 @@ public class Game {
 			else {System.out.println("Hiba a random szammal");}
 			
 		}
-		System.out.println("Az aszteroidák elkészültek");
+		System.out.println("Az aszteroidak elkeszultek");
 		
-		//szomszédossságok létrehozása
-		//TODO algoritmus a szomszédságok kialakítására javítani talán
+		//szomszedossagok letrohazosa
+		//TODO algoritmus javitasa
 		
 		for (Asteroid a : asteroidField) {
-			//ha kevés szomszédja van 3-nál kevesebb
+			//ha keves szomszedja van 3-nal kevesebb
 			if(a.getNeighbours().size < 3) {
 			
-				//3 szomszédság hozzáadása
+				//3 szomszedsag hozzaadasa
 				for(int y = 0; y < 3; y++) {
-					//Random szám generálása
+					//Random szam generalasa
 					randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size() + 1);
 					boolean same = false;
-					//megnézni van e már ilyen szomszédja
+					//megnezni van e mar ilyen szomszedja
 					for(Place p : a.getNeighbours()) {
 						if(p.equals(((ArrayList<Asteroid>) asteroidField).get(randomNum))) {
 							same = true;
 						}
 					}
-					//ha nincs ilyen szomszédja
+					//ha nincs ilyen szomszedja
 					if(same == false){
-						//szomszédság  beállítása
+						//szomszedsag  beallitasa
 						a.addNeighbour(((ArrayList<Asteroid>) asteroidField).get(randomNum));
 						((ArrayList<Asteroid>) asteroidField).get(randomNum).addNeighbour(a);
 					}
@@ -92,13 +91,13 @@ public class Game {
 		System.out.println("Az aszteroidak egymas szomszedai.");
 		System.out.println("Az aszteroidov elkeszult.");
 		
-		//asztronauták készítése
+		//asztronautak keszitese
 		for (int i = 0; i < astronautcount; i++) { 
 			astronauts.add(new Astronaut());
 		}
 		System.out.println("Az asztronautak utra keszen.");
 		
-		//asztronauták lerakása random aszteroidákra
+		//asztronautak lerakasa random aszteroidakra
 		for (int i = 0; i < astronauts.size(); i++) { 		      
 			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size() + 1);
 			((ArrayList<Asteroid>) asteroidField).get(randomNum).addEntity(((ArrayList<Astronaut>) astronauts).get(i));;
@@ -110,7 +109,7 @@ public class Game {
 	
 	public void step() {
 		
-		//Minden astronautára meghivjuk a step()
+		//Minden astronautara meghivjuk a step()
 		for(Astronaut a : astronauts) {
 			try{
 				a.step();
@@ -128,13 +127,13 @@ public class Game {
 		}
 		System.out.println("Leptek a robotok.");
 		
-		//ha entitásoknak egy aszteroidán megvan a raktárukba az összes nyersanyag vége
+		//ha entitasoknak egy aszteroidan megvan a raktarukba az osszes nyersanyag vege
 		if(checkGameState() == false) end();
 		
 	}
 	
 	private void end() {
-		//TODO majd késõbb
+		//TODO majd kesobb
 		
 		asteroidField.clear();
 		astronauts.clear();
@@ -143,15 +142,16 @@ public class Game {
 		System.out.println("A jatek vegetert");
 	}
 	
-	//true ha megy a játék, false ha nem
+	//true ha megy a jatek, false ha nem
 	private boolean checkGameState() {
 		
-		//bill készítése
+		//bill keszitese
 		BillOfMaterial bill = new BillCreator().createGameWinningBill();
-		//összes aszeroidára
+		//osszes aszeroidara
 		for (Asteroid a : asteroidField) {
 			ArrayList<Material> onAsteroid = new ArrayList<>();
-			//TODO összes entitás az aszteroidán
+			
+			//TODO osszes entitas az aszteroidan
 			
 		//	bill.checkInventory(inv);
 		}
@@ -160,20 +160,20 @@ public class Game {
 	}
 	
 	public void solarStorm() {
-		//összes aszteroidára solarStorm()
+		//osszes aszteroidara solarStorm()
 		for (Asteroid a : asteroidField) { 		      
 	          a.solarStorm();		
 	      }
 	}
 	
 	public void nearSun() {
-		//összes aszteroidára checkNearSun()
+		//osszes aszteroidara checknearsun()
 		for (Asteroid a : asteroidField) { 		      
 	          a.checkNearSun();		
 	      }
 	}
 	
-	//a megadott aszteroidát kiszedi az aszteroidák közül
+	//a megadott aszteroidat kiszedi az aszteroidaovbol
 	public void removeFromAsteroidField(Asteroid a) {
 		
 		this.asteroidField.remove(a);
