@@ -175,7 +175,8 @@ public class Asteroid extends Place {
 	private void coreSunEffectTrigger() {
 		Logger.call("Asteroid.coreSunEffectTrigger", "");
 		if(isNearSun && layers == 0) {
-			core.nearSunEffect();
+			if(core != null)
+				core.nearSunEffect();
 		}
 		Logger.ret("");
 	}
