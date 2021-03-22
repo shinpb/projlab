@@ -258,7 +258,7 @@ public class Astronaut extends Entity {
 			//egyebkent az aszteroida beallitja maganak a nyersanyagot ezert csak el kell tavolitani az inventorybol
 			collectedMaterials.remove(materials.get(selectedID - 1));
 		}
+		Logger.ret("");
 	}
 
-	Logger.ret("");
 }

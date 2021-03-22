@@ -63,7 +63,7 @@ public class Robot extends Entity {
 		
 		position.removeEntity(this); //eltavolitja magat a regi helyerol
 		nextPosition.addEntity(this); //felteszi magat az uj helyere
+		Logger.ret("");
 	}
 
-	Logger.ret("");
 }
