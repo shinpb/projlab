@@ -25,7 +25,7 @@ public class BillOfMaterial {
 	*/
 	//modell change
 	protected boolean isNeeded(Material m) {
-		Logger.call("BillOfMaterial.isNeeded",m);
+		Logger.call("BillOfMaterial.isNeeded",""+m);
 		for(int i=0; i<current.size(); i++) {
 			Material a=current.get(i);
 			if(m.isSameType(a)) {
@@ -74,7 +74,7 @@ public class BillOfMaterial {
 		}
 		
 		if(current.isEmpty()) {
-			Logger.ret(winv);
+			Logger.ret(""+winv);
 			return winv;
 		}
 		else {
