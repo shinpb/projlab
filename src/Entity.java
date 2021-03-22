@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collection;
+
 
 //
 //
@@ -7,7 +6,7 @@ import java.util.Collection;
 //
 //  @ Project : projlab
 //  @ File Name : Entity.java
-//  @ Date : 2021. 03. 19.
+//  @ Date : 2021. 03. 22.
 //  @ Author : Levente Vigh
 //
 //
@@ -16,40 +15,51 @@ import java.util.Collection;
 
 
 public abstract class Entity {
+	//az aszteroida amin az entitas all
 	protected Asteroid position;
 	
-	public Entity() {
-		
-	}
+	public Entity() { }
 	
 	public Entity(Asteroid a) {
 		position = a;
 	}
 
+	//amikor meghal lekerul az aszteroidarol
 	public void die() {
+		Logger.call("Enity.die()","");
+		
 		position.removeEntity(this);
 		position = null;
+		
+		Logger.ret("");
 	}
 	
+	//az entitas megfurja az aszteroidat amin eppen all
 	public void drill() {
+		Logger.call("Enity.drill()","");
+		
 		position.getDrilled();
+
+		Logger.ret("");	
 	}
-	
+
+	//aszteroidak kozott mozog/teleportal
 	public abstract void move();
-	
+	//napviharban milyen hatas eri az entitast
 	public abstract void solarStormEffect();
-	
+	//robbanas milyen hatasssal van az entitasra
 	public abstract void explosionEffect();
 	
-	public void step() throws Exception { }
+	//egy lepest vegrehajt az entitas
+	public void step() throws Exception { Logger.call("Enity.step()","");  Logger.ret(""); }
 	
 	public void setPosition(Asteroid a) throws Exception {
+		Logger.call("Enity.setPosition()", "Asteroid a: " + a.toString());
+		
 		if(null == a)
 			throw new Exception("Argument passed to Entity.setPosition(...) is null");
 		position = a;
-	}
-	
-	public Collection<Material> getInventory() {
-		return new ArrayList<Material>();
+
+		Logger.ret("");
 	}
 }
