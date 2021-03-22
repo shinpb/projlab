@@ -447,8 +447,7 @@ Főbb funkciói:
 		Logger.print();
 			try{randomAnswer();}catch(Exception e){e.printStackTrace();}
 			
-			
-			
+
 		}	
 
 	}

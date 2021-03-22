@@ -27,7 +27,7 @@ Támogatja a naplózást (Logger)
 								)
 						)
 				);
-		Logger.ret("Iron,Carbon,Uranium ("+r.toString()+")");
+		Logger.ret("Iron,Carbon,Uranium ("+r+")");
 		return r;
 
 	}
@@ -52,7 +52,7 @@ Támogatja a naplózást (Logger)
 								)
 						)
 				);
-		Logger.ret("Iron,Carbon,Uranium ("+r.toString()+")");
+		Logger.ret("Iron,Carbon,Uranium ("+r+")");
 		return r;
 	}
 	
@@ -77,7 +77,7 @@ Támogatja a naplózást (Logger)
 								)
 						)
 				);
-		Logger.ret("Iron,Carbon,Uranium ("+r.toString()+")");
+		Logger.ret("Iron,Carbon,Uranium ("+r+")");
 		return r;
 	}
 }

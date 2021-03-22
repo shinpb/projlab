@@ -25,7 +25,7 @@ public class BillOfMaterial {
 	*/
 	//modell change
 	protected boolean isNeeded(Material m) {
-		Logger.call("BillOfMaterial.isNeeded",m.toString());
+		Logger.call("BillOfMaterial.isNeeded",m);
 		for(int i=0; i<current.size(); i++) {
 			Material a=current.get(i);
 			if(m.isSameType(a)) {
@@ -62,7 +62,7 @@ public class BillOfMaterial {
 	Támogatja a naplózást
 	*/
 	public Collection<Material> checkInventory(Collection<Material> inv) {
-		Logger.call("BillOfMaterial.checkInventory", "inv="+inv.toString());
+		Logger.call("BillOfMaterial.checkInventory", "inv="+inv);
 		reset();
 		ArrayList<Material> winv=new ArrayList<Material>(inv);
 		for(int i=0; i<winv.size(); i++) {
@@ -74,7 +74,7 @@ public class BillOfMaterial {
 		}
 		
 		if(current.isEmpty()) {
-			Logger.ret(winv.toString());
+			Logger.ret(winv);
 			return winv;
 		}
 		else {
