@@ -25,9 +25,8 @@ public class Game {
 	private ArrayList<Robot> robots = new ArrayList<>();
 	private ArrayList<Astronaut> astronauts = new ArrayList<>();
 	
-	
-	
 	public void start() {
+		Logger.call("Game.start", "");
 		//seged valtozok
 		//aszteroidaov merete
 		int asteroidfieldsize = 50;
@@ -76,15 +75,15 @@ public class Game {
 					boolean same = false;
 					//megnezni van e mar ilyen szomszedja
 					for(Place p : a.getNeighbours()) {
-						if(p.equals(asteroidField.get(randomNum))) {
+						if(p.equals(((ArrayList<Asteroid>) asteroidField).get(randomNum))) {
 							same = true;
 						}
 					}
 					//ha nincs ilyen szomszedja
 					if(same == false){
 						//szomszedsag  beallitasa
-						a.addNeighbour(asteroidField.get(randomNum));
-						asteroidField.get(randomNum).addNeighbour(a);
+						a.addNeighbour(((ArrayList<Asteroid>) asteroidField).get(randomNum));
+						((ArrayList<Asteroid>) asteroidField).get(randomNum).addNeighbour(a);
 					}
 				}
 			}
@@ -96,13 +95,15 @@ public class Game {
 		//asztronautak lerakasa random aszteroidakra
 		for (int i = 0; i < astronautcount; i++) { 		      
 			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size() + 1);
-			astronauts.add(new Astronaut(asteroidField.get(randomNum)));	
+			astronauts.add(new Astronaut(((ArrayList<Asteroid>) asteroidField).get(randomNum)));	
 	      }   		
 		System.out.println("Az asztronautak megerkeztek az aszteroidaovbe");
+		Logger.ret("");
 	}
 	
 	
 	public void step() {
+		Logger.call("Game.step", "");
 		
 		//Minden astronautara meghivjuk a step()
 		for(Astronaut a : astronauts) {
@@ -125,10 +126,13 @@ public class Game {
 		//ha entitasoknak egy aszteroidan megvan a raktarukba az osszes nyersanyag vege
 		if(checkGameState() == false) end();
 		
+		Logger.ret("");		
 	}
 	
 	//kiuriti az aszteroidaovet, astronautakat, robotokat
 	private void end() {
+		Logger.call("Game.end", "");
+		
 		//TODO majd kesobb
 		
 		asteroidField.clear();
@@ -136,10 +140,12 @@ public class Game {
 		robots.clear();
 		
 		System.out.println("A jatek vegetert");
+		Logger.ret("");		
 	}
 	
 	//true ha megy a jatek, false ha nem
 	private boolean checkGameState() {
+		Logger.call("Game.checkGameState", "");
 		
 		//bill keszitese
 		BillOfMaterial bill = new BillCreator().createGameWinningBill();
@@ -155,16 +161,20 @@ public class Game {
 		}
 		//return false;
 		return true;
+		Logger.ret("" ,"");	
 	}
 	
 	public void solarStorm() {
+		Logger.call("Game.solarStorm", "");
 		//osszes aszteroidara solarStorm()
 		for (Asteroid a : asteroidField) { 		      
 	          a.solarStorm();		
 	      }
+		Logger.ret("");	
 	}
 	
 	public void NearSunTest() {
+		Logger.call("Game.NearSunTest", "");
 		//vizjeg 0 layer
 		Asteroid ice = new Asteroid(new Ice());
 		ice.setLayer(0);
@@ -185,19 +195,23 @@ public class Game {
 		//astronauta rarakasa az ures asteroiodra
 		Astronaut a = new Astronaut(empty);
 		astronauts.add(a);
+		Logger.ret("");	
 	}
 	
 	public void nearSun() {
+		Logger.call("Game.nearSun", "");
 		//osszes aszteroidara checknearsun()
 		for (Asteroid a : asteroidField) { 		      
 	          a.checkNearSun();		
 	      }
+		Logger.ret("");	
 	}
 	
 	//a megadott aszteroidat kiszedi az aszteroidaovbol
 	public void removeFromAsteroidField(Asteroid a) {
-		
+		Logger.call("Game.removeFromAsteroidField", "");
 		this.asteroidField.remove(a);
 		System.out.println("Egy aszteroida megsemmisult");
+		Logger.ret("");	
 	}
 }
