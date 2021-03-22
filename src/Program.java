@@ -213,7 +213,7 @@ Főbb funkciói:
 		gate2.setPosition(asteroid_remote);
 		try {
 		for(int i=0; i<30; i++)
-			robot.mine();
+			robot.drill();
 		}catch(Exception e) {e.printStackTrace();}
 		asteroid.setCore(uranium);
 		asteroid.setNearSun(true);
@@ -296,7 +296,7 @@ Főbb funkciói:
 		Robot robot = new Robot(asteroid);
 		try {
 		for(int i=0; i<30; i++)
-			robot.mine();
+			robot.drill();
 		}catch(Exception e) {e.printStackTrace();}
 		asteroid.setCore(ice);
 		asteroid.setNearSun(true);
@@ -331,14 +331,14 @@ Főbb funkciói:
 
 	public static void serialKilling(){
 		Game game = new Game();
-		//game.start();
-		//game.nearSun(); //TODO 
+		game.start();
+		game.nearSun(); //TODO 
 	}
 
 	public static void purge(){     //Game osztaly meg nincs kesz
 		Game game = new Game();
-		//game.start();				//ez is erősen TODO
-		//game.solarStorm();
+		game.start();				//ez is erősen TODO
+		game.solarStorm();
 	}
 
 
