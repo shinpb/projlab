@@ -145,6 +145,8 @@ public class Game {
 		for (Asteroid a : asteroidField) {
 			ArrayList<Material> onAsteroid = new ArrayList<>();
 			
+			//onAsteroid = a.allMaterial
+					
 			//TODO osszes entitas az aszteroidan
 			
 		//	bill.checkInventory(inv);
@@ -158,6 +160,29 @@ public class Game {
 		for (Asteroid a : asteroidField) { 		      
 	          a.solarStorm();		
 	      }
+	}
+	
+	public void NearSunTest() {
+		//vizjeg 0 layer
+		Asteroid ice = new Asteroid(new Ice());
+		ice.setLayer(0);
+		//iron 0 layer
+		Asteroid iron = new Asteroid(new Iron());
+		iron.setLayer(0);
+		//uranium 0 layer
+		Asteroid uranium = new Asteroid(new Uranium());
+		uranium.setLayer(0);
+		//empty 0 layer
+		Asteroid empty = new Asteroid(null);
+		empty.setLayer(0);
+		//hozzaadas az aszteroidaovhoz
+		asteroidField.add(ice);
+		asteroidField.add(iron);
+		asteroidField.add(uranium);
+		asteroidField.add(empty);
+		//astronauta rarakasa az ures asteroiodra
+		Astronaut a = new Astronaut(empty);
+		astronauts.add(a);
 	}
 	
 	public void nearSun() {
