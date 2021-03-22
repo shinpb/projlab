@@ -42,7 +42,15 @@ public class Asteroid extends Place {
 		gates = new Vector<Gate>();
 		layers = rand.nextInt(4) + 1;  //4+1?
 	}
-	
+
+	/**
+	 * Konstruktor with setCore
+	 */
+	public Asteroid(Material m) {
+		gates = new Vector<Gate>();
+		layers = rand.nextInt(4) + 1;  //4+1?
+		setCore(m);
+	}
 	/**
 	 * Furas eseten lefuto figgveny
 	 */
