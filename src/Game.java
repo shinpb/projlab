@@ -160,8 +160,10 @@ public class Game {
 		//	bill.checkInventory(inv);
 		}
 		//return false;
+		Logger.ret("");
+
 		return true;
-		Logger.ret("");	
+			
 	}
 	
 	public void solarStorm() {
