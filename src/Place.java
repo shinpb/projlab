@@ -36,7 +36,7 @@ public class Place {
 	 * @param e Entias
 	 */
 	public void addEntity(Entity e) {
-		Logger.call("Place.addEntity", " Entity = " + e.toString());
+		Logger.call("Place.addEntity", " Entity = " + e);
 		entities.add(e);
 		Logger.ret("");
 	}
@@ -46,7 +46,7 @@ public class Place {
 	 * @param e Entias
 	 */
 	public void removeEntity(Entity e) {
-		Logger.call("Place.removeEntity", " Entity = " + e.toString());
+		Logger.call("Place.removeEntity", " Entity = " + e);
 		for(int i = 0; i < entities.size(); i++) {
 			if(entities.elementAt(i).equals(e)) {
 				entities.remove(i);
@@ -75,7 +75,7 @@ public class Place {
 	 * @param p Szomszed
 	 */
 	public void addNeighbour(Place p) {
-		Logger.call("Place.addNeighbour", " Place = " + p.toString());
+		Logger.call("Place.addNeighbour", " Place = " + p);
 		neighbours.add(p);
 		Logger.ret("");
 	}
@@ -85,7 +85,7 @@ public class Place {
 	 * @param p Szomszed
 	 */
 	public void removeNeighbour(Place p) {
-		Logger.call("Place.removeNeighbour", " Place = " + p.toString());
+		Logger.call("Place.removeNeighbour", " Place = " + p);
 		for(int i = 0; i < neighbours.size(); i++) {
 			if(neighbours.elementAt(i).equals(p)) {
 				neighbours.remove(i);

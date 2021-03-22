@@ -91,13 +91,13 @@ public class Asteroid extends Place {
 	 * @return bool sikeresseg
 	 */
 	public boolean replaceCore(Material m) {
-		Logger.call("Asteroid.replaceCore", "Material = " + m.toString());
+		Logger.call("Asteroid.replaceCore", "Material = " + m);
 		if(core == null) {
-			core = m;
-			if(isNearSun) 
-				coreSunEffectTrigger();
-			Logger.ret("true");
-			return true;
+		core = m;
+		if(isNearSun) 
+			coreSunEffectTrigger();
+		Logger.ret("true");
+		return true;
 		}
 		Logger.ret("false");
 		return false;
@@ -137,7 +137,7 @@ public class Asteroid extends Place {
 	 * @param g Kapu
 	 */
 	public void addGate(Gate g) {
-		Logger.call("Asteroid.addGate ", "Gate = " + g.toString());
+		Logger.call("Asteroid.addGate ", "Gate = " + g);
 		gates.add(g);
 		Logger.ret("");
 	}
@@ -147,7 +147,7 @@ public class Asteroid extends Place {
 	 * @param g Kapu
 	 */
 	public void removeGate(Gate g) {
-		Logger.call("Asteroid.removeGate ", "Gate = " + g.toString());
+		Logger.call("Asteroid.removeGate ", "Gate = " + g);
 		for(int i = 0; i < gates.size(); i++) {
 			if(gates.elementAt(i).equals(g))
 				gates.remove(i);
@@ -199,7 +199,7 @@ public class Asteroid extends Place {
 	 * @param m Nyersanyag
 	 */
 	public void setCore(Material m) {
-		Logger.call("Asteroid.setCore", "Material = " + m.toString());
+		Logger.call("Asteroid.setCore", "Material = " + m);
 		core = m;
 		if(core != null)
 			core.setAsteroid(this);
@@ -220,7 +220,7 @@ public class Asteroid extends Place {
 	 * Entitas felvetele az aszteroidara
 	 */
 	public void addEntity(Entity e) {
-		Logger.call("Asteroid.addEntity", "Entity = " + e.toString());
+		Logger.call("Asteroid.addEntity", "Entity = " + e);
 		try{
 			entities.add(e);
 			e.setPosition(this);

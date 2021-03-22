@@ -36,7 +36,7 @@ public class Gate extends Place {
 	 * @param a Aszteroida
 	 */
 	public void setPosition(Asteroid a) {
-		Logger.call("Gate.setPosition ", "Asterioda = " + a.toString());
+		Logger.call("Gate.setPosition ", "Asterioda = " + a);
 		position = a;
 		Logger.ret("");
 	}
@@ -46,7 +46,7 @@ public class Gate extends Place {
 	 * @param g Kapu
 	 */
 	public void setOtherEnd(Gate g) {
-		Logger.call("Gate.setOtherEnd", " Gate = " + g.toString());
+		Logger.call("Gate.setOtherEnd", " Gate = " + g);
 		otherEnd = g;
 		Logger.ret("");
 	}
@@ -56,7 +56,7 @@ public class Gate extends Place {
 	 * @param e Entitas
 	 */
 	public void addEntity(Entity e) {
-		Logger.call("Gate.AddEntity", " Entity = " + e.toString());
+		Logger.call("Gate.AddEntity", " Entity = " + e);
 		if(isActive) {
 			otherEnd.getPosition().addEntity(e);
 		} else {
