@@ -220,9 +220,10 @@ Főbb funkciói:
 	}
 	
 	/*
-	
-	
-	
+	scenario for move astronaut
+	létrehoz 4 aszteroidát, ezek egymás szomszédjai
+	ratesz egy asztronautat
+	a user kivalaszthatja, melyik szomszedra szeretne ugrani
 	*/
 	public static void moveAstronaut() {
 		Asteroid asteroid1 = new Asteroid();
@@ -235,6 +236,13 @@ Főbb funkciói:
 		asteroid1.addNeighbour(asteroid4);
 		astronaut.move();
 	}
+
+	/*
+	scenario for craft gate
+	létrehoz egy aszteroidan allo asztronautat
+	feltolti az inventory-jat a szukseges anyagokkal
+	carft-ol egy gate-et
+	*/
 	
 	public static void portal() { 
 		Asteroid asteroid = new Asteroid();
@@ -242,6 +250,13 @@ Főbb funkciói:
 		try{
 		astronaut.craftGate();}catch(Exception e){e.printStackTrace();}
 	}
+	/*
+	scenario for deploy gate
+	létrehoz egy aszteroidan allo asztronautat
+	feltolti az inventory-jat a szukseges anyagokkal
+	carft-ol egy gate-et, majd le is teszi azt
+	*/
+
 	
 	public static void buildGate() { 
 		Asteroid asteroid = new Asteroid();
@@ -252,30 +267,63 @@ Főbb funkciói:
 			astronaut.deployGate();}catch(Exception e){e.printStackTrace();}
 	}
 	
+	/*
+	scenario for craft robot
+	létrehoz egy aszteroidan allo asztronautat
+	feltolti az inventory-jat a szukseges anyagokkal
+	carft-ol egy robotot
+	*/
+
 	public static void robot() {
 		Asteroid asteroid = new Asteroid();
 		Astronaut astronaut = bigBackPack(asteroid);
 		astronaut.craftRobot();
 	}
 
+	/*
+	scenario for drill with robot
+	létrehoz egy aszteroidan allo robotot
+	robot belefur az szteroidaba
+	*/
+
 	public static void drillWithRobot() {
 		Asteroid asteroid = new Asteroid();
 		Robot robot = new Robot(asteroid);
 		robot.drill();
 	}
+
+	/*
+	scenario for drill with astronaut
+	létrehoz egy aszteroidan allo asztronautat
+	asztronauta belefur az aszteroidaba
+	*/
 	
 	public static void drill() {
 		Asteroid asteroid = new Asteroid();
 		Astronaut astronaut = new Astronaut(asteroid);
 		astronaut.drill();
 	}
+
+	/*
+	scenario for mine
+	létrehoz egy aszteroidan allo asztronautat
+	asztronauta banyaszik
+	*/
 	
 	public static void getThatNyersanyag(){
-		Asteroid asteroid = new Asteroid();
+		Asteroid asteroid = new Asteroid(new Iron());
 		Astronaut astronaut = new Astronaut(asteroid);
+		asteroid.setLayer(0);
 		try{astronaut.mine();}catch(Exception e){e.printStackTrace();}
 		
 	}
+
+	/*
+	scenario for move robot
+	létrehoz 4 aszteroidát, ezek egymás szomszédjai
+	ratesz egy robotot
+	meghivja a robot move()-jat
+	*/
 
 	public static void moveRobot() {
 		Asteroid asteroid1 = new Asteroid();
@@ -289,22 +337,34 @@ Főbb funkciói:
 		robot.move();
 	}
 
+	/*
+	scenario for ice sublimates
+	létrehoz egy aszteroidan allo asztronautat, egy robotot
+	kozetretege 0
+	magja vizjeg
+	meghivja a setNearSun() fgv-t, ami elszublimaltatja a jeget (core = null)
+	*/
+
 	public static void ice(){
 		Asteroid asteroid = new Asteroid();
 		Astronaut astronaut = new Astronaut(asteroid);
 		Ice ice = new Ice();
-		Robot robot = new Robot(asteroid);
-		try {
-		for(int i=0; i<30; i++)
-			robot.drill();
-		}catch(Exception e) {e.printStackTrace();}
+		asteroid.setLayer(0);
 		asteroid.setCore(ice);
 		asteroid.setNearSun(true);
 	}
 
+	/*
+	scenario for put material into empty asteroid
+	létrehoz egy aszteroidan allo asztronautat
+	aszteroida magja szen, kozetretege 0
+	asztronauta kibanyassza a nyersanyagot, majd visszateszi
+	*/
+
 	public static void putCore(){
 		Asteroid asteroid = new Asteroid();
 		Carbon carbon = new Carbon();
+		asteroid.setLayer(0);
 		asteroid.setCore(carbon);
 		Astronaut astronaut = new Astronaut(asteroid);
 		try{astronaut.mine();
@@ -314,6 +374,15 @@ Főbb funkciói:
 		
 
 	}
+
+	/*
+	scenario for teleport
+	létrehoz 2 aszteroidat, egyiknek egy rajta allo asztronautat
+	feltolti az asztronauta hatizsakjat a szukseges nyersanyagokkal
+	craft-ol egy kaput, leteszi ahol all
+	atmegy a masik aszteoidara (ok nem szomszedosak), oda leteszi a kapu parjat
+	hasznalja a kaput
+	*/
 
 	public static void teleport(){
 		Asteroid asteroid1 = new Asteroid();
@@ -329,16 +398,28 @@ Főbb funkciói:
 		}catch(Exception e){e.printStackTrace();}
 	}
 
+	/*
+	scenario for nearsun effect
+
+	*/
+
 	public static void serialKilling(){
 		Game game = new Game();
-		game.start();
-		game.nearSun(); //TODO 
+		game.NearSunTest();
+		game.nearSun();
+		game.end(); 
 	}
+
+	/*
+	scenario for solarstorm effect
+
+	*/
 
 	public static void purge(){     //Game osztaly meg nincs kesz
 		Game game = new Game();
-		game.start();				//ez is erősen TODO
+		game.NearSunTest();				//ez is erősen TODO
 		game.solarStorm();
+		game.end();
 	}
 
 
