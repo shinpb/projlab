@@ -16,26 +16,43 @@ import java.util.Collection;
 
 
 public abstract class Entity {
-	//az aszteroida amin az entitas all
+	
+	/**
+	 *  az aszteroida amin az entitas all
+	 */
 	protected Asteroid position;
 	
+	/**
+	 *  konstruktor
+	 */
 	public Entity() { }
 	
+	/**
+	 * konstruktor
+	 * @param a - az aszteroida amin el lesz helyezve az entitas
+	 */
 	public Entity(Asteroid a) {
 		position = a;
 	}
 
-	//amikor meghal lekerul az aszteroidarol
+	
+	/**
+	 * meghal
+	 */
 	public void die() {
 		Logger.call("Enity.die()","");
 		
+		//amikor meghal lekerul az aszteroidarol
 		position.removeEntity(this);
 		position = null;
 		
 		Logger.ret("");
 	}
 	
-	//az entitas megfurja az aszteroidat amin eppen all
+	
+	/**
+	 * az entitas megfurja az aszteroidat amin eppen all
+	 */
 	public void drill() {
 		Logger.call("Enity.drill()","");
 		
@@ -44,14 +61,27 @@ public abstract class Entity {
 		Logger.ret("");	
 	}
 
-	//aszteroidak kozott mozog/teleportal
+	
+	/**
+	 * aszteroidak kozott mozog/teleportal
+	 */
 	public abstract void move();
-	//napviharban milyen hatas eri az entitast
+	
+	/**
+	 * napviharban milyen hatas eri az entitast
+	 */
 	public abstract void solarStormEffect();
-	//robbanas milyen hatasssal van az entitasra
+	
+	/**
+	 * robbanas milyen hatasssal van az entitasra
+	 */
 	public abstract void explosionEffect();
 	
-	//egy lepest vegrehajt az entitas
+
+	/**
+	 * egy lepest vegrehajt az entitas
+	 * @throws Exception - lasd: a leszarmazottakban hivott fuggvenyek
+	 */
 	public void step() throws Exception { Logger.call("Enity.step()","");  Logger.ret(""); }
 	
 	public void setPosition(Asteroid a) throws Exception {
@@ -64,6 +94,9 @@ public abstract class Entity {
 		Logger.ret("");
 	}
 
+	/**
+	 * @return az entitasnal levo nyersanyagok
+	 */
 	public Collection<Material> getInventory() {
 		return new ArrayList<Material>();
 	}

@@ -15,18 +15,28 @@ import java.util.Random;
 
 
 public class Robot extends Entity {
+	/**
+	 * konstruktor
+	 * @param a - az aszteroida amin el lesz helyezve a robot
+	 */
 	public Robot(Asteroid a) {
 		super(a);
 	}
 
-	//napvihar hatasara a robot elromlik
+	
+	/**
+	 * napvihar hatasara a robot elromlik
+	 */
 	public void solarStormEffect() {
 		die();
 
 		Logger.ret("");
 	}
 	
-	//robbanas hatasara a robot veletlenszeruen egy masik szomszedos aszteroidara esik
+	
+	/**
+	 * robbanas hatasara a robot veletlenszeruen egy masik szomszedos aszteroidara esik
+	 */
 	public void explosionEffect() {
 		Logger.call("Robot.explosionEffect()","");
 
@@ -35,7 +45,10 @@ public class Robot extends Entity {
 		Logger.ret("");
 	}
 	
-	//a robot veletlenszeruen vegrehajt egy lepest
+	
+	/**
+	 * a robot veletlenszeruen vegrehajt egy lepest
+	 */
 	public void step() {
 		Logger.call("Robot.step()","");
 
@@ -50,7 +63,10 @@ public class Robot extends Entity {
 		Logger.ret("");
 	}
 	
-	//a robot veletlenszeruen egy szomszedos aszteroidara lep
+	
+	/**
+	 * a robot veletlenszeruen egy szomszedos aszteroidara lep
+	 */
 	public void move() {
 		Logger.call("Robot.move()","");
 

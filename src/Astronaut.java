@@ -1,4 +1,3 @@
-import java.io.Console;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
@@ -20,11 +19,19 @@ import java.util.Scanner;
 
 
 public class Astronaut extends Entity {
-	//az asztronauta eszkoztaraban levo teleport kapuk
+	/**
+	 * az asztronauta eszkoztaraban levo teleport kapuk
+	 */
 	private Collection<Gate> gates;
-	//az asztronauta eszkoztaraban levo nyersanyagok
+	
+	/**
+	 * az asztronauta eszkoztaraban levo nyersanyagok
+	 */
 	private Collection<Material> collectedMaterials;
 	
+	/**
+	 * @param a - az aszteroida amin el lesz helyezve az asztronauta
+	 */
 	public Astronaut(Asteroid a) {
 		super(a);
 		
@@ -32,7 +39,10 @@ public class Astronaut extends Entity {
 		collectedMaterials = new ArrayList<Material>();
 	}
 	
-	//aszteroidak kozott mozog/teleportal
+	
+	/**
+	 * aszteroidak kozott mozog/teleportal
+	 */
 	public void move() {
 		Logger.call("Astronaut.move()","");
 		
@@ -67,7 +77,10 @@ public class Astronaut extends Entity {
 	}
 	
 	
-	//az asztronauta robotot keszit amit lehelyez azon az aszteroidan amin eppen all
+	
+	/**
+	 * az asztronauta robotot keszit amit lehelyez azon az aszteroidan amin eppen all
+	 */
 	public void craftRobot() {
 		Logger.call("Astronaut.craftRobot()","");
 		
@@ -88,7 +101,11 @@ public class Astronaut extends Entity {
 		Logger.ret("");
 	}
 	
-	//az asztronauta teleport kapupart keszit
+	
+	/**
+	 * az asztronauta teleport kapupart keszit
+	 * @throws Exception - lasd: fuggvenytorzs
+	 */
 	public void craftGate() throws Exception {
 		Logger.call("Astronaut.craftGate()","");
 
@@ -123,7 +140,11 @@ public class Astronaut extends Entity {
 		Logger.ret("");
 	}
 	
-	//az asztronauta kibanyassza az aszteroida magjat
+	
+	/**
+	 * az asztronauta kibanyassza az aszteroida magjat
+	 * @throws Exception - lasd: fuggvenytorzs
+	 */
 	public void mine() throws Exception {
 		Logger.call("Astronaut.mine()","");
 
@@ -142,7 +163,10 @@ public class Astronaut extends Entity {
 		Logger.ret("");
 	}
 	
-	//napvihar hatasara az asztronauta meghal		
+			
+	/**
+	 * napvihar hatasara az asztronauta meghal
+	 */
 	public void solarStormEffect() {
 		Logger.call("Astronaut.mine()","");
 
@@ -151,7 +175,11 @@ public class Astronaut extends Entity {
 		Logger.ret("");
 	}
 	
-	//az asztronauta lehelyez egy kaput az aszteroidara amin eppen all
+	
+	/**
+	 * az asztronauta lehelyez egy kaput az aszteroidara amin eppen all
+	 * @throws Exception - lasd: fuggvenytorzs
+	 */
 	public void deployGate() throws Exception {
 		Logger.call("Astronaut.deployGate()","");
 		
@@ -167,7 +195,10 @@ public class Astronaut extends Entity {
 		Logger.ret("");
 	}
 	
-	//egy lepest vegrehajt az asztronauta
+	
+	/**
+	 * egy lepest vegrehajt az asztronauta
+	 */
 	public void step() throws Exception {
 		Logger.call("Astronaut.step()","");
 
@@ -213,7 +244,10 @@ public class Astronaut extends Entity {
 		Logger.ret("");
 	}
 	
-	//robbanas hatasara az asztronauta meghal		
+		
+	/**
+	 * robbanas hatasara az asztronauta meghal	
+	 */
 	public void explosionEffect() {
 		Logger.call("Astronaut.explosionEffect()","");
 
@@ -222,7 +256,11 @@ public class Astronaut extends Entity {
 		Logger.ret("");
 	}
 	
-	//az asztronauta egy nyersanagot helyez az aszteroida magjaba
+	
+	/**
+	 * az asztronauta egy nyersanagot helyez az aszteroida magjaba
+	 * @throws Exception
+	 */
 	public void putMaterialInAsteroid() throws Exception {
 		Logger.call("Astronaut.putMaterialInAsteroid()","");
 
@@ -261,6 +299,9 @@ public class Astronaut extends Entity {
 		Logger.ret("");
 	}
 
+	/**
+	 * @return az asztronautanal levo nyersanyagok
+	 */
 	public Collection<Material> getInventory() {
 		return new ArrayList<Material>(collectedMaterials);
 	}
