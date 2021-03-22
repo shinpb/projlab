@@ -19,11 +19,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 public class Game {
-	private Collection<Asteroid> asteroidField;
+	private ArrayList<Asteroid> asteroidField = new ArrayList<>();
 	//TODO majd kesobb
 	private WindowHandler windowHandler;
-	private Collection<Robot> robots;
-	private Collection<Astronaut> astronauts;
+	private ArrayList<Robot> robots = new ArrayList<>();
+	private ArrayList<Astronaut> astronauts = new ArrayList<>();
+	
+	
 	
 	public void start() {
 		//seged valtozok
@@ -37,7 +39,6 @@ public class Game {
 		int materialsToWin = 3;
 		//mennyi material van osszesen
 		int materialcount = 4;
-		
 		
 		//aszteroidaov keszites:
 		for(int i = 0; i < materialsToWin; i++) {
@@ -126,6 +127,7 @@ public class Game {
 		
 	}
 	
+	//kiuriti az aszteroidaovet, astronautakat, robotokat
 	private void end() {
 		//TODO majd kesobb
 		
