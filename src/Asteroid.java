@@ -9,7 +9,7 @@ import java.util.Vector;
 //  @ Project : Untitled
 //  @ File Name : Asteroid.java
 //  @ Date : 2021. 03. 19.
-//  @ Author : 
+//  @ Author : Mate Simko
 //
 //
 
@@ -17,17 +17,35 @@ import java.util.Vector;
 
 
 public class Asteroid extends Place {
+	/**
+	 * Az aszteroida kulso retegeinek szama
+	 */
 	private int layers;
+	/**
+	 * Az aszteroida napkozelseget tarolo valtozo
+	 */
 	private boolean isNearSun;
+	/**
+	 * Az aszteroidan levo kapukat tarolo lista
+	 */
 	private Vector<Gate> gates;
+	/**
+	 * Az aszteroida magja
+	 */
 	private Material core;
 	Random rand = new Random();
 	
+	/**
+	 * Konstruktor
+	 */
 	public Asteroid() {
 		gates = new Vector<Gate>();
 		layers = rand.nextInt(4) + 1;  //4+1?
 	}
 	
+	/**
+	 * Furas eseten lefuto figgveny
+	 */
 	public void getDrilled() {
 		if(layers == 0) {
 			coreSunEffectTrigger();
@@ -36,6 +54,10 @@ public class Asteroid extends Place {
 		}
 	}
 	
+	/**
+	 * Az aszteroida banyaszasa
+	 * @return Nyersanyag
+	 */
 	public Material mineCore() {
 		if(core != null) {
 			Material temp = core;
@@ -47,7 +69,12 @@ public class Asteroid extends Place {
 		return null;
 	}
 	
-	//Bool?
+	/**
+	 * Az aszteroida nyersanyag visszarakasaert
+	 * felelos fuggveny
+	 * @param m Nyersanyag
+	 * @return bool sikeresseg
+	 */
 	public boolean replaceCore(Material m) {
 		if(core == null) {
 			core = m;
@@ -58,22 +85,41 @@ public class Asteroid extends Place {
 		return false;
 	}
 	
+	/**
+	 * Napkozeliseg lekerese
+	 */
 	public void checkNearSun() {  
 		setNearSun(rand.nextBoolean());
 	}
 	
+	/**
+	 * A szomszedokat tartalmazo lista getterje
+	 * @return Szomszedok
+	 */
 	public Collection<Place> getNeighbours() {
 		return neighbours;
 	}
 	
+	/**
+	 * Az entitasokat tartalmazo lista getterje
+	 * @return Entitasok
+	 */
 	public Collection<Entity> getEntities() {
 		return entities;
 	}
 	
+	/**
+	 * Kapu felvetele az aszteroidara
+	 * @param g Kapu
+	 */
 	public void addGate(Gate g) {
 		gates.add(g);
 	}
 	
+	/**
+	 * Kapu eltavolitasa az aszteroidara
+	 * @param g Kapu
+	 */
 	public void removeGate(Gate g) {
 		for(int i = 0; i < gates.size(); i++) {
 			if(gates.elementAt(i).equals(g))
@@ -81,6 +127,10 @@ public class Asteroid extends Place {
 		}
 	}
 	
+	/**
+	 * Napkozeliseg setterje
+	 * @param b Napkozeliseg
+	 */
 	public void setNearSun(boolean b) {
 		isNearSun = b;
 		if(isNearSun) {
@@ -88,12 +138,19 @@ public class Asteroid extends Place {
 		}
 	}
 	
+	/**
+	 * Napkozeliseg, es kifurt retegek eseten
+	 * szol a magnak errol.
+	 */
 	private void coreSunEffectTrigger() {
 		if(isNearSun && layers == 0) {
 			core.nearSunEffect();
 		}
 	}
 	
+	/**
+	 * Napviharert felelos fuggveny
+	 */
 	public void solarStorm() {
 		if(core != null && layers != 0) {
 			for(int i = 0; i < entities.size(); i++) {
@@ -102,16 +159,27 @@ public class Asteroid extends Place {
 		}
 	}
 	
+	/**
+	 * A mag setterje
+	 * @param m Nyersanyag
+	 */
 	public void setCore(Material m) {
 		core = m;
 		if(core != null)
 			core.setAsteroid(this);
 	}
 	
+	/**
+	 * A napkozelseg getterje
+	 * @return Napkozelseg
+	 */
 	public boolean getNearSun() {
 		return isNearSun;
 	}
 	
+	/**
+	 * Entitas felvetele az aszteroidara
+	 */
 	public void addEntity(Entity e) {
 		try{
 			entities.add(e);

@@ -5,30 +5,52 @@
 //  @ Project : Untitled
 //  @ File Name : Gate.java
 //  @ Date : 2021. 03. 19.
-//  @ Author : 
+//  @ Author : Mate Simko
 //
 //
-
-
 
 
 public class Gate extends Place {
+	/**
+	 * A kapu allapotat tarolo valtozo
+	 */
 	private boolean isActive;
+	/**
+	 * A kapu poziciojat tarolo valtozo
+	 */
 	private Asteroid position;
+	/**
+	 * A kapu parjat tarolo valtozo
+	 */
 	private Gate otherEnd;
 	
+	/**
+	 * Konstruktor
+	 */
 	public Gate() {
 		isActive = false;
 	}
 	
+	/**
+	 * Pozicio beallitasa
+	 * @param a Aszteroida
+	 */
 	public void setPosition(Asteroid a) {
 		position = a;
 	}
 	
+	/**
+	 * A kapu parjanak beallitasa
+	 * @param g Kapu
+	 */
 	public void setOtherEnd(Gate g) {
 		otherEnd = g;
 	}
 	
+	/**
+	 * Entitas belepese a kapun
+	 * @param e Entitas
+	 */
 	public void addEntity(Entity e) {
 		if(isActive) {
 			otherEnd.getPosition().addEntity(e);
@@ -37,6 +59,10 @@ public class Gate extends Place {
 		}
 	}
 	
+	/**
+	 * Robbanas fuggveny
+	 * Eltavolitja onmagat es a parjat
+	 */
 	public void explode() {
 		otherEnd.setPosition(null);
 		otherEnd.getPosition().removeGate(otherEnd);
@@ -45,14 +71,24 @@ public class Gate extends Place {
 		
 	}
 	
+	/**
+	 * Kapu aktivalasa
+	 */
 	public void enable() {
 		isActive = true;
 	}
 	
+	/**
+	 * Kapu inaktivalasa
+	 */
 	public void disable() {
 		isActive = false;
 	}
 	
+	/**
+	 * A kapu poziciojanak lekerese
+	 * @return Aszteroida
+	 */
 	public Asteroid getPosition() {
 		return position;
 	}

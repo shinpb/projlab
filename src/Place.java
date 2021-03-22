@@ -7,27 +7,42 @@ import java.util.Vector;
 //  @ Project : Untitled
 //  @ File Name : Place.java
 //  @ Date : 2021. 03. 19.
-//  @ Author : 
+//  @ Author : Mate Simko
 //
 //
-
-
 
 
 public class Place {
 	
+	/**
+	 * A Place-en levo entitasokat tarolo lista.
+	 */
 	protected Vector<Entity> entities;
+	/**
+	 * A Place szomszedait tarolo lista.
+	 */
 	protected Vector<Place> neighbours;
 	
+	/**
+	 * Konstruktor
+	 */
 	public Place() {
 		entities = new Vector<Entity>();
 		neighbours = new Vector<Place>();
 	}
 	
+	/**
+	 * Entitas felveteleert felelos fuggveny
+	 * @param e Entias
+	 */
 	public void addEntity(Entity e) {
 		entities.add(e);
 	}
 	
+	/**
+	 * Entitas torleseert felelos fuggveny
+	 * @param e Entias
+	 */
 	public void removeEntity(Entity e) {
 		for(int i = 0; i < entities.size(); i++) {
 			if(entities.elementAt(i).equals(e)) {
@@ -36,6 +51,10 @@ public class Place {
 		}
 	}
 	
+	/**
+	 * Robbanas fuggveny
+	 * Szol az osszes rajta levo entitasnak es szomszednak a robbanasrol
+	 */
 	public void explode() {
 		for(int i = 0; i < entities.size(); i++) {
 			entities.elementAt(i).explosionEffect();
@@ -45,10 +64,18 @@ public class Place {
 		}
 	}
 	
+	/**
+	 * Szomszed felveteleert felelos fuggveny
+	 * @param p Szomszed
+	 */
 	public void addNeighbour(Place p) {
 		neighbours.add(p);
 	}
 	
+	/**
+	 * Szomszed torleseert felelos fuggveny
+	 * @param p Szomszed
+	 */
 	public void removeNeighbour(Place p) {
 		for(int i = 0; i < neighbours.size(); i++) {
 			if(neighbours.elementAt(i).equals(p)) {
