@@ -57,11 +57,13 @@ public class Asteroid extends Place {
 	 * Furas eseten lefuto figgveny
 	 */
 	public void getDrilled() {
+		Logger.call("Asteroid.getDrilled", "");
 		if(layers == 0) {
 			coreSunEffectTrigger();
 		} else {
 			layers = layers - 1;
 		}
+		Logger.ret("");
 	}
 	
 	/**
@@ -69,13 +71,16 @@ public class Asteroid extends Place {
 	 * @return Nyersanyag
 	 */
 	public Material mineCore() {
+		Logger.call("Asteroid.mineCore", "");
 		if(core != null) {
 			Material temp = core;
 			core.mined();
 
 			core = null;
+			Logger.ret("Material =" + temp.toString());
 			return temp;
 		} 
+		Logger.ret("null");
 		return null;
 	}
 	
@@ -86,12 +91,15 @@ public class Asteroid extends Place {
 	 * @return bool sikeresseg
 	 */
 	public boolean replaceCore(Material m) {
+		Logger.call("Asteroid.replaceCore", "Material = " + m.toString());
 		if(core == null) {
 			core = m;
 			if(isNearSun) 
 				coreSunEffectTrigger();
+			Logger.ret("true");
 			return true;
 		}
+		Logger.ret("false");
 		return false;
 	}
 	
@@ -99,7 +107,9 @@ public class Asteroid extends Place {
 	 * Napkozeliseg lekerese
 	 */
 	public void checkNearSun() {  
+		Logger.call("Asteroid.checkNearSun", "");
 		setNearSun(rand.nextBoolean());
+		Logger.ret("");
 	}
 	
 	/**
@@ -107,6 +117,8 @@ public class Asteroid extends Place {
 	 * @return Szomszedok
 	 */
 	public Collection<Place> getNeighbours() {
+		Logger.call("Asteroid.getNeighbours", "");
+		Logger.ret("neighbours");
 		return neighbours;
 	}
 	
@@ -115,6 +127,8 @@ public class Asteroid extends Place {
 	 * @return Entitasok
 	 */
 	public Collection<Entity> getEntities() {
+		Logger.call("Asteroid.getEntities", "");
+		Logger.ret("entities");
 		return entities;
 	}
 	
@@ -123,7 +137,9 @@ public class Asteroid extends Place {
 	 * @param g Kapu
 	 */
 	public void addGate(Gate g) {
+		Logger.call("Asteroid.addGate ", "Gate = " + g.toString());
 		gates.add(g);
+		Logger.ret("");
 	}
 	
 	/**
@@ -131,10 +147,12 @@ public class Asteroid extends Place {
 	 * @param g Kapu
 	 */
 	public void removeGate(Gate g) {
+		Logger.call("Asteroid.removeGate ", "Gate = " + g.toString());
 		for(int i = 0; i < gates.size(); i++) {
 			if(gates.elementAt(i).equals(g))
 				gates.remove(i);
 		}
+		Logger.ret("");
 	}
 	
 	/**
@@ -142,10 +160,12 @@ public class Asteroid extends Place {
 	 * @param b Napkozeliseg
 	 */
 	public void setNearSun(boolean b) {
+		Logger.call("Asteroid.setNearSun", "isNarSun = " + b);
 		isNearSun = b;
 		if(isNearSun) {
 			coreSunEffectTrigger();
 		}
+		Logger.ret("");
 	}
 	
 	/**
@@ -153,20 +173,24 @@ public class Asteroid extends Place {
 	 * szol a magnak errol.
 	 */
 	private void coreSunEffectTrigger() {
+		Logger.call("Asteroid.coreSunEffectTrigger", "");
 		if(isNearSun && layers == 0) {
 			core.nearSunEffect();
 		}
+		Logger.ret("");
 	}
 	
 	/**
 	 * Napviharert felelos fuggveny
 	 */
 	public void solarStorm() {
+		Logger.call("Asteroid.solarStorm", "");
 		if(core != null && layers != 0) {
 			for(int i = 0; i < entities.size(); i++) {
 				entities.elementAt(i).solarStormEffect();
 			}
 		}
+		Logger.ret("");
 	}
 	
 	/**
@@ -174,9 +198,11 @@ public class Asteroid extends Place {
 	 * @param m Nyersanyag
 	 */
 	public void setCore(Material m) {
+		Logger.call("Asteroid.setCore", "Material = " + m.toString());
 		core = m;
 		if(core != null)
 			core.setAsteroid(this);
+		Logger.ret("");
 	}
 	
 	/**
@@ -184,6 +210,8 @@ public class Asteroid extends Place {
 	 * @return Napkozelseg
 	 */
 	public boolean getNearSun() {
+		Logger.call("Asteroid.getNearSun", "");
+		Logger.ret("isNearSun");
 		return isNearSun;
 	}
 	
@@ -191,15 +219,23 @@ public class Asteroid extends Place {
 	 * Entitas felvetele az aszteroidara
 	 */
 	public void addEntity(Entity e) {
+		Logger.call("Asteroid.addEntity", "Entity = " + e.toString());
 		try{
 			entities.add(e);
 			e.setPosition(this);
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
+		Logger.ret("");
 	}
 	
+	/**
+	 * Az aszeroidan levo osszes entitas 
+	 * nyersanyagainak lekeresere alkalmas fuggveny
+	 * @return Nyersanyagok
+	 */
 	public ArrayList<Material> allMaterial() {
+		Logger.call("Asteroid.allMaterial", "");
 		ArrayList<Material> r=new ArrayList<Material>();
 		for(Entity e: entities) {
 			 Collection<Material> c= e.getInventory();
@@ -207,11 +243,14 @@ public class Asteroid extends Place {
 			 	r.add(m);
 			 }
 		}
+		Logger.ret("materials");
 		return r;
 	}
 	
 	public void setLayer(int n){
+		Logger.call("Asteroid.setLayer", "layers = " + n);
 		layers=n;
+		Logger.ret("");
 	}
 	
 }

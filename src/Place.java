@@ -36,7 +36,9 @@ public class Place {
 	 * @param e Entias
 	 */
 	public void addEntity(Entity e) {
+		Logger.call("Place.addEntity", " Entity = " + e.toString());
 		entities.add(e);
+		Logger.ret("");
 	}
 	
 	/**
@@ -44,11 +46,13 @@ public class Place {
 	 * @param e Entias
 	 */
 	public void removeEntity(Entity e) {
+		Logger.call("Place.removeEntity", " Entity = " + e.toString());
 		for(int i = 0; i < entities.size(); i++) {
 			if(entities.elementAt(i).equals(e)) {
 				entities.remove(i);
 			}
 		}
+		Logger.ret("");
 	}
 	
 	/**
@@ -56,12 +60,14 @@ public class Place {
 	 * Szol az osszes rajta levo entitasnak es szomszednak a robbanasrol
 	 */
 	public void explode() {
+		Logger.call("Place.explode", "");
 		for(int i = 0; i < entities.size(); i++) {
 			entities.elementAt(i).explosionEffect();
 		}
 		for(int i = 0; i < neighbours.size(); i++) {
 			neighbours.elementAt(i).removeNeighbour(this);
 		}
+		Logger.ret("");
 	}
 	
 	/**
@@ -69,7 +75,9 @@ public class Place {
 	 * @param p Szomszed
 	 */
 	public void addNeighbour(Place p) {
+		Logger.call("Place.addNeighbour", " Place = " + p.toString());
 		neighbours.add(p);
+		Logger.ret("");
 	}
 	
 	/**
@@ -77,10 +85,12 @@ public class Place {
 	 * @param p Szomszed
 	 */
 	public void removeNeighbour(Place p) {
+		Logger.call("Place.removeNeighbour", " Place = " + p.toString());
 		for(int i = 0; i < neighbours.size(); i++) {
 			if(neighbours.elementAt(i).equals(p)) {
 				neighbours.remove(i);
 			}
 		}
+		Logger.ret("");
 	}
 }
