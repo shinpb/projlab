@@ -10,14 +10,14 @@ public abstract class Material {
 
 	//Beállítja, hogy a nyersanyag melyik aszteoidában van
 	public void setAsteroid(Asteroid a) {
-		Logger.call("BillOfMaterial.isNeeded",m.toString());
+		Logger.call("material.setAsteroid","");
 		asteroid = a;
 		Logger.ret("");
 	}
 	
 	//Ha kibányásszák, null-t tesz saját maga helyére
 	public void mined() {
-		Logger.call("BillOfMaterial.isNeeded",m.toString());
+		Logger.call("material.mined","");
 		asteroid.setCore(null);
 		Logger.ret("");
 	}

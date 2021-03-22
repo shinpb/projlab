@@ -7,7 +7,7 @@ Felüldefiniálja a nearSunEffect() metódust
 public class Ice extends Material {
 	//Elszublimál napközelségre, tehát eltűnik, az aszteroidája magjából
 	public void nearSunEffect() {
-		Logger.call("BillOfMaterial.isNeeded",m.toString());
+		Logger.call("ice.nearSunEffect","");
 		asteroid.setCore(null);
 		Logger.ret("");
 	}
