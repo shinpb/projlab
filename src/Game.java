@@ -76,15 +76,15 @@ public class Game {
 					boolean same = false;
 					//megnezni van e mar ilyen szomszedja
 					for(Place p : a.getNeighbours()) {
-						if(p.equals(((ArrayList<Asteroid>) asteroidField).get(randomNum))) {
+						if(p.equals(asteroidField.get(randomNum))) {
 							same = true;
 						}
 					}
 					//ha nincs ilyen szomszedja
 					if(same == false){
 						//szomszedsag  beallitasa
-						a.addNeighbour(((ArrayList<Asteroid>) asteroidField).get(randomNum));
-						((ArrayList<Asteroid>) asteroidField).get(randomNum).addNeighbour(a);
+						a.addNeighbour(asteroidField.get(randomNum));
+						asteroidField.get(randomNum).addNeighbour(a);
 					}
 				}
 			}
@@ -96,7 +96,7 @@ public class Game {
 		//asztronautak lerakasa random aszteroidakra
 		for (int i = 0; i < astronautcount; i++) { 		      
 			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size() + 1);
-			astronauts.add(new Astronaut(((ArrayList<Asteroid>) asteroidField).get(randomNum)));	
+			astronauts.add(new Astronaut(asteroidField.get(randomNum)));	
 	      }   		
 		System.out.println("Az asztronautak megerkeztek az aszteroidaovbe");
 	}
