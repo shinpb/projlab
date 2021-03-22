@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.Collection;
 
 //
 //
@@ -61,5 +62,9 @@ public abstract class Entity {
 		position = a;
 
 		Logger.ret("");
+	}
+
+	public Collection<Material> getInventory() {
+		return new ArrayList<Material>();
 	}
 }

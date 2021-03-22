@@ -261,4 +261,7 @@ public class Astronaut extends Entity {
 		Logger.ret("");
 	}
 
+	public Collection<Material> getInventory() {
+		return new ArrayList<Material>(collectedMaterials);
+	}
 }
