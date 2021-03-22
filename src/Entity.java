@@ -1,4 +1,5 @@
-
+import java.util.ArrayList;
+import java.util.Collection;
 
 //
 //
@@ -46,5 +47,9 @@ public abstract class Entity {
 		if(null == a)
 			throw new Exception("Argument passed to Entity.setPosition(...) is null");
 		position = a;
+	}
+	
+	public Collection<Material> getInventory() {
+		return new ArrayList<Material>();
 	}
 }

@@ -206,9 +206,9 @@ Főbb funkciói:
 		Uranium uranium = new Uranium();
 		Robot robot = new Robot(asteroid);
 		Gate gate = new Gate();
-		Gate gate2 = new Gate2();
+		Gate gate2 = new Gate();
 		gate.setOtherEnd(gate2);
-		gete2.setOtherEnd(gate);
+		gate2.setOtherEnd(gate);
 		gate.setPosition(asteroid);
 		gate2.setPosition(asteroid_remote);
 		try {

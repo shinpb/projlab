@@ -195,4 +195,9 @@ public class Astronaut extends Entity {
 		}
 		// else materials empty TODO
 	}
+	
+	
+	public Collection<Material> getInventory() {
+		return new ArrayList<Material>(collectedMaterials);
+	}
 }

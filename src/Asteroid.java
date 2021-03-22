@@ -1,6 +1,8 @@
 import java.util.Collection;
 import java.util.Random;
 import java.util.Vector;
+import java.util.ArrayList;
+import java.util.Collection;
 
 //
 //
@@ -195,6 +197,21 @@ public class Asteroid extends Place {
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
-		
 	}
+	
+	public ArrayList<Material> allMaterial() {
+		ArrayList<Material> r=new ArrayList<Material>();
+		for(Entity e: entities) {
+			 Collection<Material> c= e.getInventory();
+			 for(Material m:c) {
+			 	r.add(m);
+			 }
+		}
+		return r;
+	}
+	
+	public void setLayer(int n){
+		layers=n;
+	}
+	
 }
