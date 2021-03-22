@@ -4,36 +4,76 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 
-
+/*
+A szkeleton program
+Menüvezérelt, eseteket bemutató
+*/
 
 public class Program{
 
+	/*
+		Visszaad egy olyan Astronautát, aki
+		a paraméterül kapott aszteroidén van
+		és minden anyagból van 2 a tárolójában
+		hasznos az építős tesztesetekhez
+		mellékhatásaként az Asteroid magja üres lesz
+		NEM támogatja a naplózást
+	*/
 	private static Astronaut bigBackPack(Asteroid asteroid) {
-
 		Astronaut astronaut = new Astronaut(asteroid);
 		try{
-		asteroid.setCore(new Carbon());
-		astronaut.mine();
-		asteroid.setCore(new Iron());
-		astronaut.mine();
-		asteroid.setCore(new Ice());
-		astronaut.mine();
-		asteroid.setCore(new Uranium());
-		astronaut.mine();
-		asteroid.setCore(new Carbon());
-		astronaut.mine();
-		asteroid.setCore(new Iron());
-		astronaut.mine();
-		asteroid.setCore(new Ice());
-		astronaut.mine();
-		asteroid.setCore(new Uranium());
-		astronaut.mine();
+			for(int i=0; i<2; i++){
+				asteroid.setCore(new Carbon());
+				astronaut.mine();
+				asteroid.setCore(new Iron());
+				astronaut.mine();
+				asteroid.setCore(new Ice());
+				astronaut.mine();
+				asteroid.setCore(new Uranium());
+				astronaut.mine();
+			}
 		}catch(Exception e){e.printStackTrace();}
-		
 		return astronaut;
-
 	}
 
+/*
+A menürendszer lelke, az egyes esetekhez
+a hozzájuk tartozó függvént rendeli
+nyújt help-et, és exitre kilép
+Főbb funkciói:
+	exit-re, no ra
+		kilép a programból
+	yes-re, help-re
+		kiírja az elérhető menüpontokat
+	1-re
+		elindítja a moveAstronaut forgatókönyvét
+	2-re
+		elindítja a drill forgatókönyvét
+	3-re
+		elindítja a mine forgatókönyvét
+	4-re
+		elindítja a moveRobot forgatókönyvét
+	5-re
+		elindítja a robotDrill forgatókönyvét
+	6-re
+		elindítja a craftRobot forgatókönyvét
+	7-re
+		elindítja a craftGate forgatókönyvét
+	8-re
+		elindítja a deployGate forgatókönyvét
+	9-re
+		elindítja a asteroidExlpodes forgatókönyvét
+	10-re
+		elindítja a setNearSun forgatókönyvét
+	11-re
+		elindítja a solarStorm forgatókönyvét
+	12-re
+		elindítja a iceSublimate forgatókönyvét
+	13-re
+		elindítja a putCoreIntoEmptyAsteroid forgatókönyvét
+	14-re
+		elindítja a moveAstronaut és teleportAstronmaut forgatókönyvét
+*/
 	public static void chosen(String s) {
 		switch (s) {
 		case "exit":
@@ -48,33 +88,29 @@ public class Program{
 			  try {readFile("panic_skeleton.txt");}
 			  catch(Exception e) {e.printStackTrace();}
 			  break;
-  
 		case "help":
 			  try {readFile("panic_skeleton.txt");}
 			  catch(Exception e) {e.printStackTrace();}
 			  break;
-		
 		/*case "copyright":
 			  try {readFile("copyright.txt");}
 			  catch(Exception e) {e.printStackTrace();}
 			  break;*/
-	  
 		case "1":
 			  moveAstronaut();
 			  System.out.println("Astronaut is on a better place now\n");
-			  break;
-			  
+			  break; 
 		case "2":
 				drill();
 				System.out.println("Getting closer...\n");
 				break;
-
 		case "3":
 				getThatNyersanyag();
 				System.out.println("You golddigger\n");
 				break;
 		case "4":
 				//moveRobot();  A robot.move() nem mukodik
+				//TODO CHECK
 				System.out.println("It can move without your help anyways\n");
 				break;
 		case "5":
@@ -121,6 +157,11 @@ public class Program{
 		
 	}
 	
+	/*
+	Ez a függvény menő kis üzeneteket
+	dobál vissza, véletlenszerűen
+	csak hogy a telsztelők se unják halálra magukat
+	*/
 	public static void randomAnswer()throws FileNotFoundException{
 		File file = new File("randomString.txt");
 		Scanner filescn = new Scanner(file);
@@ -133,6 +174,12 @@ public class Program{
 		filescn.close();
 	}
 
+	/*
+	compact File reader
+	olvas, kiír, bezár
+	a soronkéni olvasás és kiírás eléég gyakori 
+	ahoz, hogy ez egy hasznos függvény legyen
+	*/
 	public static void readFile(String str)throws FileNotFoundException{
 		File file = new File(str);
 		Scanner filescn = new Scanner(file);
@@ -143,16 +190,40 @@ public class Program{
 		filescn.close();
 	}
 
+	/*
+	scenario for Asteroid exposion
+	létrehoz egy aszteroidát, rajra
+	egy robottal és egy asztonautával,
+	egy kapuval, ami kapcsolódik egy 
+	másik aszeroidához, majd felrobbantja
+	(a robor kifúrja az aszeroidát, ami urániummagú, 
+	majd napközelbe kerül)
+	*/
 	public static void bumm() {
 		Asteroid asteroid = new Asteroid();
+		Asteroid asteroid_remote = new Asteroid();
 		Astronaut astronaut = new Astronaut(asteroid);
 		Uranium uranium = new Uranium();
 		Robot robot = new Robot(asteroid);
 		Gate gate = new Gate();
+		Gate gate2 = new Gate2();
+		gate.setOtherEnd(gate2);
+		gete2.setOtherEnd(gate);
+		gate.setPosition(asteroid);
+		gate2.setPosition(asteroid_remote);
+		try {
+		for(int i=0; i<30; i++)
+			robot.mine();
+		}catch(Exception e) {e.printStackTrace();}
 		asteroid.setCore(uranium);
 		asteroid.setNearSun(true);
 	}
 	
+	/*
+	
+	
+	
+	*/
 	public static void moveAstronaut() {
 		Asteroid asteroid1 = new Asteroid();
 		Asteroid asteroid2 = new Asteroid();
@@ -223,7 +294,10 @@ public class Program{
 		Astronaut astronaut = new Astronaut(asteroid);
 		Ice ice = new Ice();
 		Robot robot = new Robot(asteroid);
-		Gate gate = new Gate();
+		try {
+		for(int i=0; i<30; i++)
+			robot.mine();
+		}catch(Exception e) {e.printStackTrace();}
 		asteroid.setCore(ice);
 		asteroid.setNearSun(true);
 	}
@@ -253,20 +327,17 @@ public class Program{
 			astronaut.deployGate();
 			astronaut.move();
 		}catch(Exception e){e.printStackTrace();}
-	
-			
-
 	}
 
 	public static void serialKilling(){
 		Game game = new Game();
 		//game.start();
-		//game.nearSun();
+		//game.nearSun(); //TODO 
 	}
 
 	public static void purge(){     //Game osztaly meg nincs kesz
 		Game game = new Game();
-		//game.start();
+		//game.start();				//ez is erősen TODO
 		//game.solarStorm();
 	}
 
