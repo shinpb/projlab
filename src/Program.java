@@ -400,26 +400,30 @@ Főbb funkciói:
 
 	/*
 	scenario for nearsun effect
-
+	nearSunTest() letrehoz egy-egy 0 kozetretegu asteroidat kulonbozo nyersanyagokkal, es egy ureset is, hozzaadja az asteroidfield-hez
+	ures asteroidara rateszi az asztronautat
+	az aszteroidamezo kozel kerul a naphoz (uranium magu felrobban)
 	*/
 
 	public static void serialKilling(){
 		Game game = new Game();
 		game.NearSunTest();
 		game.nearSun();
-		game.end(); 
+
 	}
 
 	/*
 	scenario for solarstorm effect
-
+	nearSunTest() letrehoz egy-egy 0 kozetretegu asteroidat kulonbozo nyersanyagokkal, es egy ureset is, hozzaadja az asteroidfield-hez
+	ures asteroidara rateszi az asztronautat
+	aszteroidamezon atmegy egy napvihar (asztronautra el tud bujni, az ures magban)
 	*/
 
-	public static void purge(){     //Game osztaly meg nincs kesz
+	public static void purge(){     
 		Game game = new Game();
-		game.NearSunTest();				//ez is erősen TODO
+		game.NearSunTest();				
 		game.solarStorm();
-		game.end();
+
 	}
 
 
