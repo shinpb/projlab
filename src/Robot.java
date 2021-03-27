@@ -18,6 +18,7 @@ public class Robot extends Entity {
 	public Robot(Asteroid a) {
 		super(a);
 	}
+	public Robot(){}  ///beleirtam -dodo
 
 	//napvihar hatasara a robot elromlik
 	public void solarStormEffect() {
@@ -25,7 +26,9 @@ public class Robot extends Entity {
 
 		Logger.ret("");
 	}
-	
+
+
+
 	//robbanas hatasara a robot veletlenszeruen egy masik szomszedos aszteroidara esik
 	public void explosionEffect() {
 		Logger.call("Robot.explosionEffect()","");
@@ -34,38 +37,38 @@ public class Robot extends Entity {
 
 		Logger.ret("");
 	}
-	
+
 	//a robot veletlenszeruen vegrehajt egy lepest
 	public void step() {
 		Logger.call("Robot.step()","");
 
 		Random r = new Random();
 		int stepOption = r.nextInt() %  2;
-		
-		if(0 == stepOption) 
+
+		if(0 == stepOption)
 			move();
-		else 
+		else
 			drill();
 
 		Logger.ret("");
 	}
-	
+
 	//a robot veletlenszeruen egy szomszedos aszteroidara lep
 	public void move() {
 		Logger.call("Robot.move()","");
 
 		Place[] neighbours = (Place[]) position.getNeighbours().toArray();
-		
+
 		//veletlenszzeruen valasztunk egy uj helyet
 		Random r = new Random();
-		int nextIndex = r.nextInt() % neighbours.length; 		
+		int nextIndex = r.nextInt() % neighbours.length;
 		Place nextPosition = neighbours[nextIndex];
-		
+
 		position.removeEntity(this); //eltavolitja magat a regi helyerol
 		nextPosition.addEntity(this); //felteszi magat az uj helyere
-		
+
 		Logger.ret("");
 	}
 
-	
+
 }
