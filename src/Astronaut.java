@@ -110,7 +110,7 @@ public class Astronaut extends Entity {
 		Logger.call("Astronaut.craftGate()","");
 
 		//ha nincs eleg hely az inventoryban kivetelt dobunk
-		if(gates.size() != 0)
+		if(gates.size() > 1)
 			throw new Exception("Missing place for new teleport gate(s) in inventory!");
 		
 		//letrehozunk egy recept keszitot es kerunk egy receptet a teleport kapuparhoz
