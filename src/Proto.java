@@ -86,7 +86,7 @@ public static void setState(String[] cmd){
 			state = State.S_IN_STATE;
 			break;
 		case "run":
-			state = State.S_IN_STATE;
+			state = State.S_RUN;
 			break;
 		case "export":
 			if(cmd.length == 2 && cmd[1].equals("all"))
@@ -124,7 +124,7 @@ public static void linker(String[] cmd){
 		int a,b;
 		try{
 			a = Integer.parseInt(cmd[1]);
-			b = Integer.parseInt(cmd[2]);
+			b = Integer.parseInt(cmd[3]);
 			switch(cmd[0]) {
 				case "asteroid":
 					if(a < asteroids.size()) {
@@ -336,6 +336,8 @@ public static void inGame(String[] cmd){
 		break;
 		case "gate": gateAction(cmd);
 		break;
+		default:
+		setState(cmd);
 		}
 }
 
@@ -458,6 +460,45 @@ private static void export_robot_all() {
 	for(Robot robo: robots)
 		export_robot(robo);
 }
+private static void export_all() {
+	export_asteroid_all();
+	export_gate_all();
+	export_astronaut_all();
+	export_robot_all();
+}
+private static void exportSwitch(String[] cmd){
+	if(cmd.length == 1) setState(cmd);
+	else {
+		int id = -1;
+		if(cmd.length >= 3) {
+			try{
+				id=Integer.parseInt(cmd[2]);
+			} catch(Exception e) {e.printStackTrace();}
+		}
+		switch(cmd[1]) {
+			case "astronaut":
+			if(id<0)	export_astronaut_all();
+			else	export_astronaut(astronauts.get(id));
+			break;
+			case "robot":
+			if(id<0)	export_robot_all();
+			else	export_robot(robots.get(id));
+			break;
+			case "asteroid":
+			if(id<0)	export_asteroid_all();
+			else	export_asteroid(asteroids.get(id));
+			break;
+			case "gate":
+			if(id<0)	export_gate_all();
+			else	export_gate(gates.get(id));
+			break;
+			case "all":
+			export_all();
+			break;
+			default: System.err.println("Syntax error: cant export " + cmd[1]);
+		}
+	}
+}
 
 	//MAIN -------------------------------------------------------------------------------------------------------------------------------------
 	public static void main(String args[]) {
@@ -466,7 +507,7 @@ private static void export_robot_all() {
 		String[] cmd;
 
 				while(run) {
-				cmd = input.next().split("\\s"); // " "
+				cmd = input.nextLine().split("\\s"); // " "
 				switch(state)
 				{
 					case S_IN_INIT:
@@ -494,8 +535,11 @@ private static void export_robot_all() {
 						inGame(cmd);
 						break;
 					case S_OUT:
+						exportSwitch(cmd);
 						break;
 					case S_OUT_FULL:
+						export_all();
+						state=State.S_RUN;
 						break;
 				}
 			}
