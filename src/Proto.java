@@ -416,6 +416,7 @@ private static void export_asteroid_all() {
 		export_asteroid(aster);
 }
 private static void export_astronaut(Astronaut astro) {
+	System.out.println("astronaut: "+astronautID(astro));
 //TODO asteroid getPosition
 //	System.println("position "+asteroidID(astro.getPosition()));
 	System.out.println("inventory "+astro.getInventory().size());
@@ -429,7 +430,34 @@ private static void export_astronaut_all() {
 	for(Astronaut astro: astronauts)
 		export_astronaut(astro);
 }
-
+private static void export_gate(Gate ga) {
+	int n=gateID(ga);
+	if(n<0) {
+		System.err.println("invalid gate reference at export (no id)");
+	}
+	System.out.println("gate: "+n); 										//id
+	//TODO gate isactive getter
+//	System.out.println("isActive: "+ga.isActive());
+	System.out.println("position "+asteroidID(ga.getPosition()));
+	//TODO GATE getaotherend
+//	System.out.println("otherEnd "gateID(ga.getOtherEnd());
+	System.out.println("end");															//end
+}
+private static void export_gate_all() {
+	System.out.println("gates: "+gates.size());
+	for(Gate ga: gates)
+		export_gate(ga);
+}
+private static void export_robot(Robot robo) {
+	System.out.println("robot: "+robotID(robo));
+//TODO robot getPosition
+//	System.println("position "+asteroidID(robot.getPosition()));
+}
+private static void export_robot_all() {
+	System.out.println("robots: "+robots.size());
+	for(Robot robo: robots)
+		export_robot(robo);
+}
 
 	//MAIN -------------------------------------------------------------------------------------------------------------------------------------
 	public static void main(String args[]) {
