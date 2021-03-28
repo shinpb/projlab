@@ -32,6 +32,9 @@ public class Proto {
 				return null;
 		}
 	}
+	private static String materialToString(Material m) {
+		return (""+m).split("@")[0].toLowerCase();
+	}
 
 
 	public static void loadState(String f){ //TODO ???
@@ -250,6 +253,9 @@ public static void gyereIdeInState(String[] cmd){
 					case "inventory":
 					//TODO astronaut add material
 					break;
+					case "position":
+					astronauts.get(Integer.parseInt(cmd[1])).setPosition(asteroids.get(Integer.parseInt(cmd[3])));
+					break;
 					default: System.err.println("Syntax error: state change: astonaut: invalid action\n");
 				}
 			break;
@@ -304,8 +310,10 @@ public static void robotAction(String[] cmd){
 			case "move":
 			break;
 			case "drill":
+			robots.get(Integer.parseInt(cmd[1])).drill();
 			break;
 			case "die":
+			robots.get(Integer.parseInt(cmd[1])).die();
 			break;
 		}
 	}catch(Exception e){}
@@ -329,6 +337,97 @@ public static void inGame(String[] cmd){
 		case "gate": gateAction(cmd);
 		break;
 		}
+}
+
+private static int asteroidID(Object aster) {
+	for(int i=0; i<asteroids.size(); i++)
+		if(asteroids.get(i) == aster) //reference check, szandekos
+			return i;
+	return -1;
+}
+private static int astronautID(Object astro) {
+	for(int i=0; i<astronauts.size(); i++)
+		if(astronauts.get(i) == astro) //reference check, szandekos
+			return i;
+	return -1;
+}
+private static int robotID(Object robo) {
+	for(int i=0; i<robots.size(); i++)
+		if(robots.get(i) == robo) //reference check, szandekos
+			return i;
+	return -1;
+}
+private static int gateID(Object ga) {
+	for(int i=0; i<gates.size(); i++)
+		if(gates.get(i) == ga) //reference check, szandekos
+			return i;
+	return -1;
+}
+private static void export_asteroid(Asteroid aster) {
+	int n=asteroidID(aster);
+	if(n<0) {
+		System.err.println("invalid asteroid reference at export (no id)");
+	}
+	System.out.println("asteroid: "+n); 										//id
+//TODO asteroid getcore
+//	System.out.print("\ncore "+materialToString(aster.getCore())+"\n");	//core
+	int cnt=0, id;
+	for(Place p: aster.getNeighbours())
+		if((id=asteroidID(p)) >=0)
+			cnt++;
+	System.out.println("asteroids "+cnt); 									//neighbours
+	for(Place p: aster.getNeighbours())
+		if((id=asteroidID(p)) >=0)
+			System.out.print(""+id+" ");												//neighbour list
+	System.out.print("\n");
+	cnt=0;
+	for(Place p: aster.getNeighbours())
+		if((id=gateID(p)) >=0)
+			cnt++;
+	System.out.println("asteroids "+cnt); 									//gates
+	for(Place p: aster.getNeighbours())
+		if((id=gateID(p)) >=0)
+			System.out.print(""+id+" ");												//gate list
+	System.out.print("\n");
+	cnt=0;
+	for(Entity e: aster.getEntities())
+		if((id=astronautID(e)) >=0)
+			cnt++;
+	System.out.println("astronauts "+cnt); 									//astronauts
+	for(Entity e: aster.getEntities())
+		if((id=astronautID(e)) >=0)
+			System.out.print(""+id+" ");												//astronaut list
+	System.out.print("\n");
+	cnt=0;
+	for(Entity e: aster.getEntities())
+		if((id=robotID(e)) >=0)
+			cnt++;
+	System.out.println("robots "+cnt); 											//robots
+	for(Entity e: aster.getEntities())
+		if((id=robotID(e)) >=0)
+			System.out.print(""+id+" ");												//robot list
+	System.out.print("\n");
+	cnt=0;
+	System.out.println("end");															//end
+}
+private static void export_asteroid_all() {
+	System.out.println("asteroids: "+asteroids.size());
+	for(Asteroid aster: asteroids)
+		export_asteroid(aster);
+}
+private static void export_astronaut(Astronaut astro) {
+//TODO asteroid getPosition
+//	System.println("position "+asteroidID(astro.getPosition()));
+	System.out.println("inventory "+astro.getInventory().size());
+	for(Material m: astro.getInventory())
+		System.out.print(materialToString(m)+" ");
+	System.out.print("\n");
+//TODO Astronaut gates getter
+}
+private static void export_astronaut_all() {
+	System.out.println("astronauts: "+astronauts.size());
+	for(Astronaut astro: astronauts)
+		export_astronaut(astro);
 }
 
 
@@ -433,15 +532,17 @@ export
 
 export full
 
-asteroid: 8
-{asteroid 3
-asteroid 3
+asteroids: 8
+{asteroid: 13
+//core ENUM
+asteroids 3
 1 3 2
-core ENUM
-astronaut 6
-1 2 3 4 5 6
-gate 4
+gates 4
 3 2 4 5
+astronauts 6
+1 2 3 4 5 6
+robots 1
+10 12
 end
 }
 
