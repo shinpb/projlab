@@ -17,7 +17,7 @@ public class Proto {
 	private static ArrayList<Astronaut> astronauts	= new ArrayList<>();
 	private static ArrayList<Asteroid>	 asteroids	= new ArrayList<>();
 	private static ArrayList<Robot>         robots	= new ArrayList<>();
-	//private static //ArrayList<Ufo> 	     	ufos	= new ArrayList<>();
+	private static ArrayList<Ufo> 	        	ufos	= new ArrayList<>();
 	private static ArrayList<Gate> 	         gates	= new ArrayList<>();
 
 	private static Material materialEnum(String s) {
@@ -61,9 +61,9 @@ public static void init(String[] cmd){
 			case "gate":
 				for(int i = gates.size(); i < n; i++) gates.add(new Gate());
 				break;
-//			case "ufo":
-//				for(int i = ufos.size(); i < n; i++) ufos.add(new Ufo());
-//				break;
+			case "ufo":
+				for(int i = ufos.size(); i < n; i++) ufos.add(new Ufo());
+				break;
 			default:
 				System.err.println("Syntax error: unknown type: \""+cmd[0]+"\" \""+cmd[1]+"\"\n");
 			}
@@ -115,9 +115,15 @@ public static void link_asteroid_astronaut(Asteroid aster, Astronaut astro) {
 public static void link_asteroid_robot(Asteroid aster, Robot robo) {
 	aster.addEntity(robo);
 }
+public static void link_asteroid_ufo(Asteroid aster, Ufo ufo) {
+	aster.addEntity(ufo);
+}
 public static void link_gate_gate(Gate ga, Gate ga2) {
 	 ga.setOtherEnd(ga2);
 	ga2.setOtherEnd(ga);
+}
+public static void link_astronaut_gate(Astronaut astro, Gate, ga) {
+	astro.addGate(ga);
 }
 
 public static void linker(String[] cmd){
@@ -192,7 +198,22 @@ public static void linker(String[] cmd){
 						}
 					} else System.err.println("Invalid robot id\n");
 					break;
-				//TODO case ufo
+				case "ufo":
+					if(a < ufos.size()) {
+						Ufo ufo=ufos.get(a);
+						switch(cmd[2]) {
+							case "asteroid":
+								if(b < asteroids.size()) {
+									Asteroid aster=asteroids.get(b);
+									link_asteroid_ufo(aster, ufo);
+								}
+								else System.err.println("Invalid asteroid id\n");
+								break;
+							default:
+								System.err.println("ufo cant link to \""+cmd[2]+"\"\n");
+						}
+					} else System.err.println("Invalid robot id\n");
+					break;
 				case "gate":
 					if(a < gates.size()) {
 						Gate ga=gates.get(a);
@@ -204,14 +225,14 @@ public static void linker(String[] cmd){
 								}
 								else System.err.println("Invalid asteroid id\n");
 								break;
-//							case "astronaut":
-//								if(b < astronauts.size()) {
-//									Astronaut astro=astronauts.get(b);
-//TODO astronaut gate add
-//									 //A lényeg, némi kód overheaddel
-//								}
-//								else System.err.println("Invalid astronaut id\n");
-//								break;
+							case "astronaut":
+								if(b < astronauts.size()) {
+									Astronaut astro=astronauts.get(b);
+									link_astronaut_gate(astro, ga);
+									 //A lényeg, némi kód overheaddel
+								 }
+								else System.err.println("Invalid astronaut id\n");
+								break;
 							case "gate":
 								if( (b!=a) && (b<gates.size())) {
 									Gate ga2=gates.get(b);
@@ -270,11 +291,10 @@ public static void astronautAction(String[] cmd){
 				case "move":
 					if(cmd.length == 3 ) astronauts.get(Integer.parseInt(cmd[1])).move();
 					switch(cmd[3]){
-//						case "asteroid": astronauts.get(Integer.parseInt(cmd[1])).move(asteroids.get(Integer.parseInt(cmd[3])));
-//						break;
-//						case "gate": astronauts.get(Integer.parseInt(cmd[1])).move(gates.get(Integer.parseInt(cmd[3])));
-//						break;
-//TODO Astronaut move place
+						case "asteroid": astronauts.get(Integer.parseInt(cmd[1])).move(asteroids.get(Integer.parseInt(cmd[3])));
+						break;
+						case "gate": astronauts.get(Integer.parseInt(cmd[1])).move(gates.get(Integer.parseInt(cmd[3])));
+						break;
 					}
 				break;
 				case "drill": astronauts.get(Integer.parseInt(cmd[1])).drill();
@@ -286,13 +306,17 @@ public static void astronautAction(String[] cmd){
 				case "build":
 					switch(cmd[3]){
 						case "robot":
+							astronauts.get(Integer.parseInt(cmd[1])).craftRobot();
 						break;
 						case "gate":
+							astronauts.get(Integer.parseInt(cmd[1])).craftGate();
 						break;
+						default: System.err.println("Syntax error: cant built: "+cmd[1]);
 					}
 				break;
 				case "die":
 				break;
+				default: System.err.println("Syntax error: invalid operation: "+cmd[0]);
 			}
 		}catch(Exception e){}
 }
@@ -359,6 +383,12 @@ private static int robotID(Object robo) {
 			return i;
 	return -1;
 }
+private static int ufoID(Object ufo) {
+	for(int i=0; i<ufos.size(); i++)
+		if(robots.get(i) == ufo) //reference check, szandekos
+			return i;
+	return -1;
+}
 private static int gateID(Object ga) {
 	for(int i=0; i<gates.size(); i++)
 		if(gates.get(i) == ga) //reference check, szandekos
@@ -419,7 +449,7 @@ private static void export_asteroid_all() {
 }
 private static void export_astronaut(Astronaut astro) {
 	System.out.println("astronaut: "+astronautID(astro));
-//TODO asteroid getPosition
+//TODO astronaut getPosition
 //	System.println("position "+asteroidID(astro.getPosition()));
 	System.out.println("inventory "+astro.getInventory().size());
 	for(Material m: astro.getInventory())
