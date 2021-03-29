@@ -495,7 +495,7 @@ private static void export_gate(Gate ga) {
 		System.err.println("invalid gate reference at export (no id)");
 	}
 	System.out.println("gate: "+n); 										//id
-	System.out.println("isActive: "+ga.isActive());
+	System.out.println("isActive: "+ga.getIsActive());
 	System.out.println("position "+asteroidID(ga.getPosition()));
 	System.out.println("otherEnd " +gateID(ga.getOtherEnd()));
 	System.out.println("end");															//end
