@@ -1,8 +1,6 @@
 import java.util.Collection;
 import java.util.Random;
-import java.util.Vector;
 import java.util.ArrayList;
-import java.util.Collection;
 
 //
 //
@@ -28,10 +26,6 @@ public class Asteroid extends Place {
 	 */
 	private boolean isNearSun;
 	/**
-	 * Az aszteroidan levo kapukat tarolo lista
-	 */
-	private Vector<Gate> gates;
-	/**
 	 * Az aszteroida magja
 	 */
 	private Material core;
@@ -41,7 +35,6 @@ public class Asteroid extends Place {
 	 * Konstruktor
 	 */
 	public Asteroid() {
-		gates = new Vector<Gate>();
 		layers = rand.nextInt(4) + 1;  //4+1?
 	}
 
@@ -49,7 +42,6 @@ public class Asteroid extends Place {
 	 * Konstruktor with setCore
 	 */
 	public Asteroid(Material m) {
-		gates = new Vector<Gate>();
 		layers = rand.nextInt(4) + 1;  //4+1?
 		setCore(m);
 	}
@@ -130,16 +122,6 @@ public class Asteroid extends Place {
 		Logger.call("Asteroid.getEntities", "");
 		Logger.ret("entities");
 		return entities;
-	}
-	
-	/**
-	 * Kapu felvetele az aszteroidara
-	 * @param g Kapu
-	 */
-	public void addGate(Gate g) {
-		Logger.call("Asteroid.addGate ", "Gate = " + g);
-		gates.add(g);
-		Logger.ret("");
 	}
 	
 	/**
@@ -248,10 +230,33 @@ public class Asteroid extends Place {
 		return r;
 	}
 	
+	/**
+	 * Retegvastagsag beallitasa
+	 * @param n vastagsag
+	 */
 	public void setLayer(int n){
 		Logger.call("Asteroid.setLayer", "layers = " + n);
 		layers=n;
 		Logger.ret("");
+	}
+	
+	/**
+	 * Kapu felvetele az aszteroidara
+	 * @param g Kapu
+	 */
+	public void addGate(Gate g) {
+		Logger.call("Asteroid.addGate ", "Gate = " + g);
+		gates.add(g);
+		g.setPosition(this);
+		Logger.ret("");
+	}
+	
+	/**
+	 * Core getter
+	 * @return Core
+	 */
+	public Material gerCore() {
+		return core;
 	}
 	
 }

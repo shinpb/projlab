@@ -22,11 +22,16 @@ public class Place {
 	 * A Place szomszedait tarolo lista.
 	 */
 	protected Vector<Place> neighbours;
+	/**
+	 * A kapukat tarolo lista
+	 */
+	protected Vector<Gate> gates;
 	
 	/**
 	 * Konstruktor
 	 */
 	public Place() {
+		gates = new Vector<Gate>();
 		entities = new Vector<Entity>();
 		neighbours = new Vector<Place>();
 	}
@@ -92,5 +97,32 @@ public class Place {
 			}
 		}
 		Logger.ret("");
+	}
+	
+	/**
+	 * Kapu felvetele az aszteroidara
+	 * @param g Kapu
+	 */
+	public void addGate(Gate g) {
+		Logger.call("Place.addGate ", "Gate = " + g);
+		gates.add(g);
+		Logger.ret("");
+	}
+	
+	/**
+	 * Kapu eltavolitasa
+	 * @param g Kapu
+	 */
+	public void removeGate(Gate g) {
+		Logger.call("Place.removeGate ", "Gate = " + g);
+		for(int i = 0; i < gates.size(); i++) {
+			if(gates.elementAt(i).equals(g))
+				gates.remove(i);
+		}
+		Logger.ret("");
+	}
+	
+	public Vector<Gate> getGates() {
+		return gates;
 	}
 }
