@@ -50,11 +50,6 @@ public class Ufo extends Entity implements IMine {
 		Logger.ret("");
 	}
 	
-	public void drill() {
-		Logger.call("Ufo.drill()","");
-		Logger.ret("");
-	}
-	
 	public void die() {
 		Logger.call("Ufo.die()","");
 		Logger.ret("");
@@ -62,7 +57,13 @@ public class Ufo extends Entity implements IMine {
 	
 	public void mine() {
 		Logger.call("Ufo.mine()","");
-		position.mineCore();
+		Material m = position.mineCore();
+		if(null == m)
+			this.move();
 		Logger.ret("");
+	}
+
+	public void step() {
+		this.mine();
 	}
 }
