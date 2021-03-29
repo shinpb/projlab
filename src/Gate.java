@@ -148,9 +148,6 @@ public class Gate extends Place {
 		Logger.ret("");
 	}
 	
-	/**
-	 * Megkergules setter
-	 */
 	public void setBolond(boolean b) {
 		isBolond = b;
 	}

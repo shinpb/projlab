@@ -173,6 +173,9 @@ public class Asteroid extends Place {
 				entities.elementAt(i).solarStormEffect();
 			}
 		}
+		for(int i = 0; i < gates.size(); i++) {
+			gates.elementAt(i).setBolond(true);
+		}
 		Logger.ret("");
 	}
 	
