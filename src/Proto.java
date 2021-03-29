@@ -283,7 +283,8 @@ public static void gyereIdeInState(String[] cmd){
 			case "gate":
 				switch(cmd[2]){
 					case "bolond":
-					gates.get(Integer.parseInt(cmd[1])).setBolond((boolean)Integer.parseInt(cmd[3]));
+					if(Integer.parseInt(cmd[3]) == 0)	gates.get(Integer.parseInt(cmd[1])).setBolond(false);
+					else gates.get(Integer.parseInt(cmd[1])).setBolond(true);
 					break;
 					default: System.err.println("Syntax error: state change: gate: invalid action\n");
 				}
@@ -299,9 +300,9 @@ public static void astronautAction(String[] cmd){
 				case "move":
 					if(cmd.length == 3 ) astronauts.get(Integer.parseInt(cmd[1])).move();
 					switch(cmd[3]){
-						case "asteroid": astronauts.get(Integer.parseInt(cmd[1])).move(asteroids.get(Integer.parseInt(cmd[3])));
+						case "asteroid": astronauts.get(Integer.parseInt(cmd[1])).moveTo(asteroids.get(Integer.parseInt(cmd[3])));
 						break;
-						case "gate": astronauts.get(Integer.parseInt(cmd[1])).move(gates.get(Integer.parseInt(cmd[3])));
+						case "gate": astronauts.get(Integer.parseInt(cmd[1])).moveTo(gates.get(Integer.parseInt(cmd[3])));
 						break;
 					}
 				break;
@@ -359,9 +360,9 @@ public static void ufoAction(String[] cmd){
 					case "move":
 						if(cmd.length == 3 ) ufos.get(Integer.parseInt(cmd[1])).move();
 						switch(cmd[3]){
-							case "asteroid": ufos.get(Integer.parseInt(cmd[1])).move(asteroids.get(Integer.parseInt(cmd[3])));
+							case "asteroid": ufos.get(Integer.parseInt(cmd[1])).moveTo(asteroids.get(Integer.parseInt(cmd[3])));
 							break;
-							case "gate": ufos.get(Integer.parseInt(cmd[1])).move(gates.get(Integer.parseInt(cmd[3])));
+							case "gate": ufos.get(Integer.parseInt(cmd[1])).moveTo(gates.get(Integer.parseInt(cmd[3])));
 							break;
 						}
 					break;
@@ -427,8 +428,7 @@ private static void export_asteroid(Asteroid aster) {
 		System.err.println("invalid asteroid reference at export (no id)");
 	}
 	System.out.println("asteroid: "+n); 										//id
-//TODO asteroid getcore
-//	System.out.print("\ncore "+materialToString(aster.getCore())+"\n");	//core
+	System.out.print("\ncore "+materialToString(aster.getCore())+"\n");	//core
 	int cnt=0, id;
 	for(Place p: aster.getNeighbours())
 		if((id=asteroidID(p)) >=0)
@@ -475,12 +475,11 @@ private static void export_asteroid_all() {
 }
 private static void export_astronaut(Astronaut astro) {
 	System.out.println("astronaut: "+astronautID(astro));
-//TODO astronaut getPosition
-//	System.println("position "+asteroidID(astro.getPosition()));
+	System.println("position "+asteroidID(astro.getPosition()));
 	System.out.println("inventory "+astro.getInventory().size());
 	for(Material m: astro.getInventory())
 		System.out.print(materialToString(m)+" ");
-	System.out.println("inventory "+astro.getGates().size());
+	System.out.println("gates "+astro.getGates().size());
 		for(Gate ga: astro.getGates())
 			System.out.print(gateID(ga)+" ");
 	System.out.print("\n");
@@ -520,6 +519,20 @@ private static void export_all() {
 	export_gate_all();
 	export_astronaut_all();
 	export_robot_all();
+	export_ufo_all();
+}
+private static void export_ufo(Ufo ufo) {
+	System.out.println("ufo: "+ufoID(ufo));
+	System.println("position "+ufoID(ufo.getPosition()));
+	System.out.println("inventory "+ufo.getInventory().size());
+	for(Material m: ufo.getInventory())
+		System.out.print(materialToString(m)+" ");
+	System.out.print("\n");
+}
+private static void export_ufo_all() {
+	System.out.println("ufos: "+ufos.size());
+	for(Ufo ufo: ufos)
+		export_ufo(ufo);
 }
 private static void exportSwitch(String[] cmd){
 	if(cmd.length == 1) setState(cmd);
