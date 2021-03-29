@@ -6,11 +6,10 @@ import java.util.Random;
 //
 //  @ Project : projlab
 //  @ File Name : Robot.java
-//  @ Date : 2021. 03. 22.
+//  @ Date : 2021. 03. 29.
 //  @ Author : Levente Vigh
 //
 //
-
 
 
 
@@ -80,7 +79,7 @@ public class Robot extends Entity {
 		int nextIndex = r.nextInt() % neighbours.length; 		
 		Place nextPosition = neighbours[nextIndex];
 		
-		nextPosition.addEntity(this); //felteszi magat az uj helyere
+		moveTo(nextPosition); //felteszi magat az uj helyere
 		
 		Logger.ret("");
 	}

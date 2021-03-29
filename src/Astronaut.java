@@ -10,7 +10,7 @@ import java.util.Scanner;
 //
 //  @ Project : projlab
 //  @ File Name : Astronaut.java
-//  @ Date : 2021. 03. 22.
+//  @ Date : 2021. 03. 29.
 //  @ Author : Levente Vigh
 //
 //
@@ -340,9 +340,5 @@ public class Astronaut extends Entity {
 		Logger.ret("");
 	}
 
-	public void moveTo(Place destination) {
-		Logger.call("Astronaut.moveTo()","destination: " + destination.toString());
-			destination.addEntity(this); //ezutan felrakja magat az uj helyere
-		Logger.ret("");
-	} 
+	
 }

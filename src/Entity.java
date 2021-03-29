@@ -7,7 +7,7 @@ import java.util.Collection;
 //
 //  @ Project : projlab
 //  @ File Name : Entity.java
-//  @ Date : 2021. 03. 22.
+//  @ Date : 2021. 03. 29.
 //  @ Author : Levente Vigh
 //
 //
@@ -110,4 +110,13 @@ public abstract class Entity {
 		Logger.ret("position: " + position.toString());
 		return position;
 	}
+
+	public void moveTo(Place destination) {
+		if(null == destination)
+			return;
+		
+		Logger.call("Enity.moveTo()","destination: " + destination.toString());
+			destination.addEntity(this); //ezutan felrakja magat az uj helyere
+		Logger.ret("");
+	} 
 }
