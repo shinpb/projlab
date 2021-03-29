@@ -16,17 +16,17 @@ import java.util.Collection;
 
 
 public abstract class Entity {
-	
+
 	/**
 	 *  az aszteroida amin az entitas all
 	 */
 	protected Asteroid position;
-	
+
 	/**
 	 *  konstruktor
 	 */
 	public Entity() { }
-	
+
 	/**
 	 * konstruktor
 	 * @param a - az aszteroida amin el lesz helyezve az entitas
@@ -35,52 +35,53 @@ public abstract class Entity {
 		position = a;
 	}
 
-	
+
 	/**
 	 * meghal
 	 */
 	public void die() {
 		Logger.call("Enity.die()","");
-		
+
 		//amikor meghal lekerul az aszteroidarol
 		position.removeEntity(this);
 		position = null;
-		
+
 		Logger.ret("");
 	}
-	
-	
-	
 
-	
+
+
+
+
 	/**
 	 * aszteroidak kozott mozog/teleportal
 	 */
 	public abstract void move();
-	
+
 	/**
 	 * napviharban milyen hatas eri az entitast
 	 */
 	public abstract void solarStormEffect();
-	
+
 	/**
 	 * robbanas milyen hatasssal van az entitasra
 	 */
 	public abstract void explosionEffect();
-	
+
 
 	/**
 	 * egy lepest vegrehajt az entitas
 	 * @throws Exception - lasd: a leszarmazottakban hivott fuggvenyek
 	 */
 	public void step() throws Exception { Logger.call("Enity.step()","");  Logger.ret(""); }
-	
+
 	public void setPosition(Asteroid a) throws Exception {
 		Logger.call("Enity.setPosition()", "Asteroid a: " + a.toString());
-		
+
 		if(null == a)
 			throw new Exception("Argument passed to Entity.setPosition(...) is null");
-		position.removeEntity(this); //eloszor eltavolitja magat a regi helyerol
+		if(position != null) //edit: Balint
+			position.removeEntity(this); //eloszor eltavolitja magat a regi helyerol
 		position = a;
 
 		Logger.ret("");
@@ -105,9 +106,9 @@ public abstract class Entity {
 	public void moveTo(Place destination) {
 		if(null == destination)
 			return;
-		
+
 		Logger.call("Enity.moveTo()","destination: " + destination.toString());
 			destination.addEntity(this); //ezutan felrakja magat az uj helyere
 		Logger.ret("");
-	} 
+	}
 }
