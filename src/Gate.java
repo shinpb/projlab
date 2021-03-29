@@ -148,7 +148,27 @@ public class Gate extends Place {
 		Logger.ret("");
 	}
 	
+	/**
+	 * Megkergules allitasa
+	 * @param b megkergultseg
+	 */
 	public void setBolond(boolean b) {
 		isBolond = b;
+	}
+	
+	/**
+	 * Aktivitas getter
+	 * @return Aktivitas
+	 */
+	public boolean getIsActive() {
+		return isActive;
+	}
+	
+	/**
+	 * Kapu par getter
+	 * @return Kapu
+	 */
+	public Gate getOtherEnd() {
+		return otherEnd;
 	}
 }
