@@ -123,7 +123,11 @@ public static void link_gate_gate(Gate ga, Gate ga2) {
 	ga2.setOtherEnd(ga);
 }
 public static void link_astronaut_gate(Astronaut astro, Gate ga) {
-	astro.addGate(ga);
+	try {
+		astro.addGate(ga);
+	} catch(Exception e) {
+		e.printStackTrace();
+	}
 }
 
 public static void linker(String[] cmd){
@@ -323,7 +327,7 @@ public static void astronautAction(String[] cmd){
 						default: System.err.println("Syntax error: cant built: "+cmd[1]);
 					}
 				break;
-				case "die":
+				case "die": astronauts.get(Integer.parseInt(cmd[1])).mine();
 				break;
 				default: System.err.println("Syntax error: invalid operation: "+cmd[0]);
 			}
@@ -368,8 +372,7 @@ public static void ufoAction(String[] cmd){
 					break;
 					case "mine": ufos.get(Integer.parseInt(cmd[1])).mine();
 					break;
-					break;
-					case "die":
+					case "die": ufos.get(Integer.parseInt(cmd[1])).die();
 					break;
 					default: System.err.println("Syntax error: invalid operation: "+cmd[0]);
 				}
