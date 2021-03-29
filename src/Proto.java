@@ -122,7 +122,7 @@ public static void link_gate_gate(Gate ga, Gate ga2) {
 	 ga.setOtherEnd(ga2);
 	ga2.setOtherEnd(ga);
 }
-public static void link_astronaut_gate(Astronaut astro, Gate, ga) {
+public static void link_astronaut_gate(Astronaut astro, Gate ga) {
 	astro.addGate(ga);
 }
 
@@ -272,12 +272,20 @@ public static void gyereIdeInState(String[] cmd){
 			case "astronaut":
 				switch(cmd[2]){
 					case "inventory":
-					//TODO astronaut add material
+					astronauts.get(Integer.parseInt(cmd[1])).addMaterial(materialEnum(cmd[3]));
 					break;
 					case "position":
 					astronauts.get(Integer.parseInt(cmd[1])).setPosition(asteroids.get(Integer.parseInt(cmd[3])));
 					break;
 					default: System.err.println("Syntax error: state change: astonaut: invalid action\n");
+				}
+			break;
+			case "gate":
+				switch(cmd[2]){
+					case "bolond":
+					gates.get(Integer.parseInt(cmd[1])).setBolond(Integer.parseInt(cmd[3]));
+					break;
+					default: System.err.println("Syntax error: state change: gate: invalid action\n");
 				}
 			break;
 			default: System.err.println("Syntax error: state change: invalid object\n");
@@ -346,7 +354,25 @@ public static void gateAction(String[] cmd){
 
 }
 public static void ufoAction(String[] cmd){
-
+			try{
+				switch(cmd[2]){
+					case "move":
+						if(cmd.length == 3 ) ufos.get(Integer.parseInt(cmd[1])).move();
+						switch(cmd[3]){
+							case "asteroid": ufos.get(Integer.parseInt(cmd[1])).move(asteroids.get(Integer.parseInt(cmd[3])));
+							break;
+							case "gate": ufos.get(Integer.parseInt(cmd[1])).move(gates.get(Integer.parseInt(cmd[3])));
+							break;
+						}
+					break;
+					case "mine": ufos.get(Integer.parseInt(cmd[1])).mine();
+					break;
+					break;
+					case "die":
+					break;
+					default: System.err.println("Syntax error: invalid operation: "+cmd[0]);
+				}
+			}catch(Exception e){}
 }
 public static void inGame(String[] cmd){
 	switch(cmd[0]){
@@ -454,8 +480,10 @@ private static void export_astronaut(Astronaut astro) {
 	System.out.println("inventory "+astro.getInventory().size());
 	for(Material m: astro.getInventory())
 		System.out.print(materialToString(m)+" ");
+	System.out.println("inventory "+astro.getGates().size());
+		for(Gate ga: astro.getGates())
+			System.out.print(gateID(ga)+" ");
 	System.out.print("\n");
-//TODO Astronaut gates getter
 }
 private static void export_astronaut_all() {
 	System.out.println("astronauts: "+astronauts.size());
@@ -468,11 +496,9 @@ private static void export_gate(Gate ga) {
 		System.err.println("invalid gate reference at export (no id)");
 	}
 	System.out.println("gate: "+n); 										//id
-	//TODO gate isactive getter
-//	System.out.println("isActive: "+ga.isActive());
+	System.out.println("isActive: "+ga.isActive());
 	System.out.println("position "+asteroidID(ga.getPosition()));
-	//TODO GATE getaotherend
-//	System.out.println("otherEnd "gateID(ga.getOtherEnd());
+	System.out.println("otherEnd " +gateID(ga.getOtherEnd()));
 	System.out.println("end");															//end
 }
 private static void export_gate_all() {
@@ -482,8 +508,7 @@ private static void export_gate_all() {
 }
 private static void export_robot(Robot robo) {
 	System.out.println("robot: "+robotID(robo));
-//TODO robot getPosition
-//	System.println("position "+asteroidID(robot.getPosition()));
+	System.println("position "+asteroidID(robot.getPosition()));
 }
 private static void export_robot_all() {
 	System.out.println("robots: "+robots.size());
