@@ -50,16 +50,7 @@ public abstract class Entity {
 	}
 	
 	
-	/**
-	 * az entitas megfurja az aszteroidat amin eppen all
-	 */
-	public void drill() {
-		Logger.call("Enity.drill()","");
-		
-		position.getDrilled();
-
-		Logger.ret("");	
-	}
+	
 
 	
 	/**

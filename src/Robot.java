@@ -13,7 +13,7 @@ import java.util.Random;
 
 
 
-public class Robot extends Entity {
+public class Robot extends Entity implements IDrill {
 	/**
 	 * konstruktor
 	 * @param a - az aszteroida amin el lesz helyezve a robot
@@ -33,6 +33,17 @@ public class Robot extends Entity {
 		die();
 
 		Logger.ret("");
+	}
+	
+	/**
+	 * a robot megfurja az aszteroidat amin eppen all
+	 */
+	public void drill() {
+		Logger.call("Robot.drill()","");
+		
+		position.getDrilled();
+
+		Logger.ret("");	
 	}
 	
 	

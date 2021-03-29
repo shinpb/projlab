@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 
 
-public class Astronaut extends Entity {
+public class Astronaut extends Entity implements IDrill, IMine {
 	/**
 	 * az asztronauta eszkoztaraban levo teleport kapuk
 	 */
@@ -83,6 +83,17 @@ public class Astronaut extends Entity {
 		Logger.ret("");
 	}
 	
+	
+	/**
+	 * megfurja az aszteroidat amin eppen all
+	 */
+	public void drill() {
+		Logger.call("Astronaut.drill()","");
+		
+		position.getDrilled();
+
+		Logger.ret("");	
+	}
 	
 	
 	/**

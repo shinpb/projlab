@@ -12,14 +12,14 @@ import java.util.Random;
 //
 
 
-public class Ufo extends Entity {
+public class Ufo extends Entity implements IMine {
 	
 	public Ufo(Asteroid a) {
 		super(a);
 	}
 
 	public Ufo() {
-
+		super();
 	}
 	
 	@Override
