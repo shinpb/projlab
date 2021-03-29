@@ -5,6 +5,10 @@ public class Ufo extends Entity {
 	public Ufo(Asteroid a) {
 		super(a);
 	}
+
+	public Ufo() {
+
+	}
 	
 	@Override
 	public void move() {

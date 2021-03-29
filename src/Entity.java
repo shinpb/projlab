@@ -89,6 +89,7 @@ public abstract class Entity {
 		
 		if(null == a)
 			throw new Exception("Argument passed to Entity.setPosition(...) is null");
+		position.removeEntity(this); //eloszor eltavolitja magat a regi helyerol
 		position = a;
 
 		Logger.ret("");
@@ -98,6 +99,15 @@ public abstract class Entity {
 	 * @return az entitasnal levo nyersanyagok
 	 */
 	public Collection<Material> getInventory() {
-		return new ArrayList<Material>();
+		Logger.call("Enity.getInventory()", "");
+		ArrayList<Material> inv = new ArrayList<Material>();
+		Logger.ret("inv: " + inv.toString());
+		return inv;
+	}
+
+	public Asteroid getPosition() {
+		Logger.call("Enity.getPosition()","");
+		Logger.ret("position: " + position.toString());
+		return position;
 	}
 }

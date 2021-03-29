@@ -80,7 +80,6 @@ public class Robot extends Entity {
 		int nextIndex = r.nextInt() % neighbours.length; 		
 		Place nextPosition = neighbours[nextIndex];
 		
-		position.removeEntity(this); //eltavolitja magat a regi helyerol
 		nextPosition.addEntity(this); //felteszi magat az uj helyere
 		
 		Logger.ret("");

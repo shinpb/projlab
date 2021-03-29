@@ -76,8 +76,9 @@ public class Astronaut extends Entity {
 			
 			//a user altal kivalasztott helyre lep az asztronauta
 			Place nextPosition = neighbours.get(destinationID - 1);
-			position.removeEntity(this); //eloszor eltavolitja magat a regi helyerol
-			nextPosition.addEntity(this); //ezutan felrakja magat az uj helyere
+
+
+			moveTo(nextPosition);
 		}
 		Logger.ret("");
 	}
@@ -139,8 +140,8 @@ public class Astronaut extends Entity {
 			g2.setOtherEnd(g1);
 			
 			//felvesszuk az invetoryba a kapukat
-			gates.add(g1);
-			gates.add(g2);
+			addGate(g1); 
+			addGate(g2);
 		}
 
 		Logger.ret("");
@@ -159,12 +160,8 @@ public class Astronaut extends Entity {
 			throw new Exception("Missing place for new material in inventory!");
 		//kibanyasszuk az aszteroida magjat
 		Material core = position.mineCore();
-		
-		//ha ures volt a mag kivetelt dobunk
-		if(null == core)
-			throw new Exception("Core is empty.");
-		else
-			collectedMaterials.add(core); //egyebkent felvesszuk az inventoryba az anyagot
+
+		addMaterial(core); //felvesszuk az inventoryba az anyagot
 
 		Logger.ret("");
 	}
@@ -309,6 +306,43 @@ public class Astronaut extends Entity {
 	 * @return az asztronautanal levo nyersanyagok
 	 */
 	public Collection<Material> getInventory() {
-		return new ArrayList<Material>(collectedMaterials);
+		Logger.call("Astronaut.getInventory()","");
+		ArrayList<Material> inv = new ArrayList<Material>(collectedMaterials);
+		Logger.ret("inv: " + inv.toString());
+		return inv;
 	}
+
+	public Collection<Gate> getGates() {
+		Logger.call("Astronaut.getGates()","");
+		Collection<Gate> gts = new ArrayList<Gate>(gates);
+		Logger.ret("gts: " + gts.toString());
+		return gts;
+	}
+
+	public void addGate(Gate g) throws Exception {
+		Logger.call("Astronaut.addGate()","g: " + g.toString());
+		//ha nincs eleg hely az inventoryban kivetelt dobunk
+		if(gates.size() > 1)
+			throw new Exception("Missing place for new teleport gate(s) in inventory!");
+		gates.add(g);
+		Logger.ret("");
+	}
+
+	public void addMaterial(Material m) throws Exception {
+		//ha ures volt a mag nem taroljuk el
+		if(null == m)
+			return;
+			
+		Logger.call("Astronaut.addMaterial()","m: " + m.toString());
+		if(collectedMaterials.size() == 10)
+			throw new Exception("Missing place for new material in inventory!");
+		collectedMaterials.add(m);
+		Logger.ret("");
+	}
+
+	public void moveTo(Place destination) {
+		Logger.call("Astronaut.moveTo()","destination: " + destination.toString());
+			destination.addEntity(this); //ezutan felrakja magat az uj helyere
+		Logger.ret("");
+	} 
 }
