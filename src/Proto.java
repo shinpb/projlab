@@ -475,7 +475,7 @@ private static void export_asteroid_all() {
 }
 private static void export_astronaut(Astronaut astro) {
 	System.out.println("astronaut: "+astronautID(astro));
-	System.println("position "+asteroidID(astro.getPosition()));
+	System.out.println("position "+asteroidID(astro.getPosition()));
 	System.out.println("inventory "+astro.getInventory().size());
 	for(Material m: astro.getInventory())
 		System.out.print(materialToString(m)+" ");
@@ -507,7 +507,7 @@ private static void export_gate_all() {
 }
 private static void export_robot(Robot robo) {
 	System.out.println("robot: "+robotID(robo));
-	System.println("position "+asteroidID(robot.getPosition()));
+	System.out.println("position "+asteroidID(robo.getPosition()));
 	System.out.println("end");
 }
 private static void export_robot_all() {
@@ -517,7 +517,7 @@ private static void export_robot_all() {
 }
 private static void export_ufo(Ufo ufo) {
 	System.out.println("ufo: "+ufoID(ufo));
-	System.println("position "+ufoID(ufo.getPosition()));
+	System.out.println("position "+ufoID(ufo.getPosition()));
 	System.out.println("inventory "+ufo.getInventory().size());
 	for(Material m: ufo.getInventory())
 		System.out.print(materialToString(m)+" ");
@@ -555,7 +555,7 @@ private static void exportSwitch(String[] cmd){
 			break;
 			case "ufo":
 			if(id<0)	export_ufo_all();
-			else	export_ufo(ufo.get(id));
+			else	export_ufo(ufos.get(id));
 			break;
 			case "asteroid":
 			if(id<0)	export_asteroid_all();
