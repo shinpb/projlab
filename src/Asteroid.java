@@ -258,7 +258,7 @@ public class Asteroid extends Place {
 	 * Core getter
 	 * @return Core
 	 */
-	public Material gerCore() {
+	public Material getCore() {
 		return core;
 	}
 	
