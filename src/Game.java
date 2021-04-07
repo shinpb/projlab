@@ -24,7 +24,56 @@ public class Game {
 	private WindowHandler windowHandler;
 	private ArrayList<Robot> robots = new ArrayList<>();
 	private ArrayList<Astronaut> astronauts = new ArrayList<>();
+	private ArrayList<Ufo> ufos = new ArrayList<>();
 	
+	//aszteroidaovhoz aszteroida hozzadasa
+	public void addAsteroid(Asteroid a) {
+		asteroidField.add(a);
+	}
+	//robot hozzadasa
+	public void addRobot(Robot r) {
+		robots.add(r);
+	}
+	//ufo hozzadasa
+	public void addUfo(Ufo u) {
+		ufos.add(u);
+	}
+	//asztronauta hozzaadasa
+	public void addAstronaut(Astronaut a) {
+		astronauts.add(a);
+	}
+	//aszteroida levetel az aszteroidaovbol
+	public void removeAsteroid(Asteroid a) {
+		asteroidField.remove(asteroidField.indexOf(a));
+	}
+	//robotot levesz a palyarol
+	public void removeRobot(Robot r) {
+		robots.remove(robots.indexOf(r));
+	}
+	//ufo eltavolitasa
+	public void removeUfo(Ufo u) {
+		ufos.remove(ufos.indexOf(u));
+	}
+	//levesz egy asztronautat
+	public void removeAstronaut(Astronaut a) {
+		astronauts.remove(astronauts.indexOf(a));
+	}
+	//aszteroidaov lekerese
+	public ArrayList<Asteroid> getAsteroids() {
+		return asteroidField;
+	}
+	//robotok lekerese
+	public ArrayList<Robot> getRobots() {
+		return robots;
+	}
+	//ufok lekerese
+	public ArrayList<Ufo> getUfos() {
+		return ufos;
+	}
+	//asztronautak lekerese
+	public ArrayList<Astronaut> getAstronauts() {
+		return astronauts;
+	}
 	public void start() {
 		Logger.call("Game.start", "");
 		//seged valtozok
