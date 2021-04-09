@@ -21,7 +21,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Game {
 	private ArrayList<Asteroid> asteroidField = new ArrayList<>();
 	//TODO majd kesobb
-	private WindowHandler windowHandler;
+	//private WindowHandler windowHandler;
 	private ArrayList<Robot> robots = new ArrayList<>();
 	private ArrayList<Astronaut> astronauts = new ArrayList<>();
 	private ArrayList<Ufo> ufos = new ArrayList<>();
@@ -74,6 +74,7 @@ public class Game {
 	public ArrayList<Astronaut> getAstronauts() {
 		return astronauts;
 	}
+	//TODO javításra szorul
 	public void start() {
 		Logger.call("Game.start", "");
 		//seged valtozok
@@ -172,6 +173,13 @@ public class Game {
 		}
 		System.out.println("Leptek a robotok.");
 		
+		//Minden ufora meghivjuk a step()
+		for(Ufo u : ufos) {
+			//u.step(); //TODO
+			u.move();
+		}		
+		System.out.println("Leptek az ufok.");
+
 		//ha entitasoknak egy aszteroidan megvan a raktarukba az osszes nyersanyag vege
 		if(checkGameState() == false) end();
 		
@@ -258,11 +266,4 @@ public class Game {
 		Logger.ret("");	
 	}
 	
-	//a megadott aszteroidat kiszedi az aszteroidaovbol
-	public void removeFromAsteroidField(Asteroid a) {
-		Logger.call("Game.removeFromAsteroidField", "");
-		this.asteroidField.remove(a);
-		System.out.println("Egy aszteroida megsemmisult");
-		Logger.ret("");	
-	}
 }
