@@ -36,6 +36,56 @@ public class Proto {
 		return (""+m).split("@")[0].toLowerCase();
 	}
 
+	private static void gameSetAsteroidArray() {
+		ArrayList<Asteroid> ori=g.getAsteroids();
+		for(int i=ori.size()-1; i>=0; i--)
+			g.removeAsteroid(ori.get(i));
+		for(Asteroid a: asteroids) g.addAsteroid(a);
+	}
+	private static void gameSetAstronautArray() {
+		ArrayList<Astronaut> ori=g.getAstronauts();
+		for(int i=ori.size()-1; i>=0; i--)
+			g.removeAstronaut(ori.get(i));
+		for(Astronaut a: astronauts) g.addAstronaut(a);
+	}
+	private static void gameSetRobotArray() {
+		ArrayList<Robot> ori=g.getRobots();
+		for(int i=ori.size()-1; i>=0; i--)
+			g.removeRobot(ori.get(i));
+		for(Robot a: robots) g.addRobot(a);
+	}
+	private static void gameSetUfoArray() {
+		ArrayList<Ufo> ori=g.getUfos();
+		for(int i=ori.size()-1; i>=0; i--)
+			g.removeUfo(ori.get(i));
+		for(Ufo a: ufos) g.addUfo(a);
+	}
+	private static void syncArrays() {
+		ArrayList<Astronaut> astrolist=g.getAstronauts();
+		for(int i=0; i<astronauts.size(); i++)
+			if(!astrolist.contains(astronauts.get(i)))
+				astronauts.set(i, null);
+		ArrayList<Asteroid> asterlist=g.getAsteroids();
+		for(int i=0; i<asteroids.size(); i++)
+			if(!asterlist.contains(asteroids.get(i)))
+				asteroids.set(i, null);
+		ArrayList<Robot> robolist=g.getRobots();
+		for(int i=0; i<robots.size(); i++)
+			if(!robolist.contains(robots.get(i)))
+				robots.set(i, null);
+		ArrayList<Ufo> ufolist=g.getUfos();
+		for(int i=0; i<ufos.size(); i++)
+			if(!ufolist.contains(ufos.get(i)))
+				ufos.set(i, null);
+
+		for(int i=0; i<gates.size(); i++) {
+			Gate g=gates.get(i);
+			if((g.getOtherEnd() == null) && (g.getPosition()==null))
+				gates.set(i, null);
+		}
+
+	}
+
 
 	public static void loadState(String f){ //TODO ???
 		try{
@@ -51,18 +101,22 @@ public static void init(String[] cmd){
 		switch(cmd[0]) {
 			case "astronaut":
 				for(int i = astronauts.size(); i < n; i++) astronauts.add(new Astronaut());
+				gameSetAstronautArray();
 				break;
 			case "asteroid":
 				for(int i = asteroids.size(); i < n; i++) asteroids.add(new Asteroid());
+				gameSetAsteroidArray();
 				break;
 			case "robot":
 				for(int i = robots.size(); i < n; i++) robots.add(new Robot());
+				gameSetRobotArray();
 				break;
 			case "gate":
 				for(int i = gates.size(); i < n; i++) gates.add(new Gate());
 				break;
 			case "ufo":
 				for(int i = ufos.size(); i < n; i++) ufos.add(new Ufo());
+				gameSetUfoArray();
 				break;
 			default:
 				System.err.println("Syntax error: unknown type: \""+cmd[0]+"\" \""+cmd[1]+"\"\n");
@@ -75,6 +129,7 @@ public static void init(String[] cmd){
 
 
 public static void setState(String[] cmd){
+	if(cmd.length==0) return;
 	switch(cmd[0]) {
 		case "init":
 			state = State.S_IN_INIT;
@@ -285,7 +340,14 @@ public static void gyereIdeInState(String[] cmd){
 				switch(cmd[2]){
 					case "layer": asteroids.get(Integer.parseInt(cmd[1])).setLayer(Integer.parseInt(cmd[3]));
 					break;
-					case "core": asteroids.get(Integer.parseInt(cmd[1])).setCore(materialEnum(cmd[3]));
+					case "core":
+						if(cmd.length>=5 && cmd[3].equals("uranium")) {
+							Uranium u=new Uranium();
+							u.setExp(Integer.parseInt(cmd[4]));
+							asteroids.get(Integer.parseInt(cmd[1])).setCore(u);
+						}
+						else
+							asteroids.get(Integer.parseInt(cmd[1])).setCore(materialEnum(cmd[3]));
 					break;
 					default: System.err.println("Syntax error: state change: asteroid: invalid action\n");
 				}
@@ -429,14 +491,19 @@ public static void ufoAction(String[] cmd){
 public static void inGame(String[] cmd){
 	switch(cmd[0]){
 		case "astronaut": astronautAction(cmd);
+		syncArrays();
 		break;
 		case "asteroid": asteroidAction(cmd);
+		syncArrays();
 		break;
 		case "robot": robotAction(cmd);
+		syncArrays();
 		break;
 		case "ufo": ufoAction(cmd);
+		syncArrays();
 		break;
 		case "gate": gateAction(cmd);
+		syncArrays();
 		break;
 		default:
 		setState(cmd);
@@ -526,9 +593,14 @@ private static void export_asteroid(Asteroid aster) {
 	System.out.println("end");															//end
 }
 private static void export_asteroid_all() {
-	System.out.println("asteroids: "+asteroids.size());
+	int c=0;
 	for(Asteroid aster: asteroids)
-		export_asteroid(aster);
+		if(aster != null)
+			c++;
+	System.out.println("asteroids: "+c);
+	for(Asteroid aster: asteroids)
+		if(aster != null)
+			export_asteroid(aster);
 }
 private static void export_astronaut(Astronaut astro) {
 	System.out.println("astronaut: "+astronautID(astro));
@@ -543,9 +615,14 @@ private static void export_astronaut(Astronaut astro) {
 	System.out.print("\nend\n");
 }
 private static void export_astronaut_all() {
-	System.out.println("astronauts: "+astronauts.size());
+	int c=0;
 	for(Astronaut astro: astronauts)
-		export_astronaut(astro);
+		if(astro != null)
+			c++;
+	System.out.println("astronauts: "+c);
+	for(Astronaut astro: astronauts)
+		if(astro != null)
+			export_astronaut(astro);
 }
 private static void export_gate(Gate ga) {
 	int n=gateID(ga);
@@ -559,9 +636,14 @@ private static void export_gate(Gate ga) {
 	System.out.println("end");															//end
 }
 private static void export_gate_all() {
-	System.out.println("gates: "+gates.size());
+	int c=0;
 	for(Gate ga: gates)
-		export_gate(ga);
+		if(ga != null)
+			c++;
+	System.out.println("gates: "+c);
+	for(Gate ga: gates)
+		if(ga != null)
+			export_gate(ga);
 }
 private static void export_robot(Robot robo) {
 	System.out.println("robot: "+robotID(robo));
@@ -569,9 +651,14 @@ private static void export_robot(Robot robo) {
 	System.out.println("end");
 }
 private static void export_robot_all() {
-	System.out.println("robots: "+robots.size());
+	int c=0;
 	for(Robot robo: robots)
-		export_robot(robo);
+		if(robo != null)
+			c++;
+	System.out.println("robots: "+c);
+	for(Robot robo: robots)
+		if(robo != null)
+			export_robot(robo);
 }
 private static void export_ufo(Ufo ufo) {
 	System.out.println("ufo: "+ufoID(ufo));
@@ -582,9 +669,14 @@ private static void export_ufo(Ufo ufo) {
 	System.out.print("\nend\n");
 }
 private static void export_ufo_all() {
-	System.out.println("ufos: "+ufos.size());
+	int c=0;
 	for(Ufo ufo: ufos)
-		export_ufo(ufo);
+		if(ufo != null)
+			c++;
+	System.out.println("ufos: "+c);
+	for(Ufo ufo: ufos)
+		if(ufo != null)
+			export_ufo(ufo);
 }
 private static void export_all() {
 	export_asteroid_all();
@@ -639,6 +731,7 @@ private static void exportSwitch(String[] cmd){
 
 				while(run) {
 				cmd = input.nextLine().split("\\s"); // " "
+				if(cmd.length==0) continue;
 				switch(state)
 				{
 					case S_IN_INIT:

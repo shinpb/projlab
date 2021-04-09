@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 //  @ Project : Untitled
 //  @ File Name : Game.java
 //  @ Date : 2021. 03. 19.
-//  @ Author : 
+//  @ Author :
 //
 //
 
@@ -25,7 +25,7 @@ public class Game {
 	private ArrayList<Robot> robots = new ArrayList<>();
 	private ArrayList<Astronaut> astronauts = new ArrayList<>();
 	private ArrayList<Ufo> ufos = new ArrayList<>();
-	
+
 	//aszteroidaovhoz aszteroida hozzadasa
 	public void addAsteroid(Asteroid a) {
 		asteroidField.add(a);
@@ -74,7 +74,7 @@ public class Game {
 	public ArrayList<Astronaut> getAstronauts() {
 		return astronauts;
 	}
-	//TODO javításra szorul
+	//TODO javitÃ¡sra szorul
 	public void start() {
 		Logger.call("Game.start", "");
 		//seged valtozok
@@ -88,7 +88,7 @@ public class Game {
 		int materialsToWin = 3;
 		//mennyi material van osszesen
 		int materialcount = 4;
-		
+
 		//aszteroidaov keszites:
 		for(int i = 0; i < materialsToWin; i++) {
 			//ice, iron, carbon, uranium mindenbol 3, osszesen 12
@@ -97,7 +97,7 @@ public class Game {
 			asteroidField.add(new Asteroid(new Carbon()));
 			asteroidField.add(new Asteroid(new Uranium()));
 		}
-		
+
 		for(int i = 0; i < asteroidfieldsize - materialsToWin * materialcount; i++) {
 			//maradek 38 random igy osszsesen 50
 			//random szam 1-4 kozott
@@ -107,17 +107,17 @@ public class Game {
 			else if(randomNum == 3) asteroidField.add(new Asteroid(new Carbon()));
 			else if(randomNum == 4) asteroidField.add(new Asteroid(new Uranium()));
 			else {System.out.println("Hiba a random szammal");}
-			
+
 		}
 		System.out.println("Az aszteroidak elkeszultek");
-		
+
 		//szomszedossagok letrohazosa
 		//TODO algoritmus javitasa
-		
+
 		for (Asteroid a : asteroidField) {
 			//ha keves szomszedja van 3-nal kevesebb
 			if(a.getNeighbours().size() < 3) {
-			
+
 				//3 szomszedsag hozzaadasa
 				for(int y = 0; y < 3; y++) {
 					//Random szam generalasa
@@ -137,24 +137,24 @@ public class Game {
 					}
 				}
 			}
-		}		
+		}
 		System.out.println("Az aszteroidak egymas szomszedai.");
 		System.out.println("Az aszteroidov elkeszult.");
-		
+
 		//asztronautak keszitese
 		//asztronautak lerakasa random aszteroidakra
-		for (int i = 0; i < astronautcount; i++) { 		      
+		for (int i = 0; i < astronautcount; i++) {
 			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size() + 1);
-			astronauts.add(new Astronaut(asteroidField.get(randomNum)));	
-	      }   		
+			astronauts.add(new Astronaut(asteroidField.get(randomNum)));
+	      }
 		System.out.println("Az asztronautak megerkeztek az aszteroidaovbe");
 		Logger.ret("");
 	}
-	
-	
+
+
 	public void step() {
 		Logger.call("Game.step", "");
-		
+
 		//Minden astronautara meghivjuk a step()
 		for(Astronaut a : astronauts) {
 			try{
@@ -163,75 +163,75 @@ public class Game {
 				ex.printStackTrace();
 			}
 		}
-		
-		
+
+
 		System.out.println("Leptek a telepesek.");
-		
+
 		//Minden robotra meghivjuk a step()
 		for(Robot r : robots) {
 			r.step();
 		}
 		System.out.println("Leptek a robotok.");
-		
+
 		//Minden ufora meghivjuk a step()
 		for(Ufo u : ufos) {
 			//u.step(); //TODO
 			u.move();
-		}		
+		}
 		System.out.println("Leptek az ufok.");
 
 		//ha entitasoknak egy aszteroidan megvan a raktarukba az osszes nyersanyag vege
 		if(checkGameState() == false) end();
-		
-		Logger.ret("");		
+
+		Logger.ret("");
 	}
-	
+
 	//kiuriti az aszteroidaovet, astronautakat, robotokat
 	private void end() {
 		Logger.call("Game.end", "");
-		
+
 		//TODO majd kesobb
-		
+
 		asteroidField.clear();
 		astronauts.clear();
 		robots.clear();
-		
+
 		System.out.println("A jatek vegetert");
-		Logger.ret("");		
+		Logger.ret("");
 	}
-	
+
 	//true ha megy a jatek, false ha nem
 	private boolean checkGameState() {
 		Logger.call("Game.checkGameState", "");
-		
+
 		//bill keszitese
 		BillOfMaterial bill = new BillCreator().createGameWinningBill();
 		//osszes aszeroidara
 		for (Asteroid a : asteroidField) {
 			ArrayList<Material> onAsteroid = new ArrayList<>();
-			
+
 			//onAsteroid = a.allMaterial
-					
+
 			//TODO osszes entitas az aszteroidan
-			
+
 		//	bill.checkInventory(inv);
 		}
 		//return false;
 		Logger.ret("");
 
 		return true;
-			
+
 	}
-	
+
 	public void solarStorm() {
 		Logger.call("Game.solarStorm", "");
 		//osszes aszteroidara solarStorm()
-		for (Asteroid a : asteroidField) { 		      
-	          a.solarStorm();		
+		for (Asteroid a : asteroidField) {
+	          a.solarStorm();
 	      }
-		Logger.ret("");	
+		Logger.ret("");
 	}
-	
+
 	public void NearSunTest() {
 		Logger.call("Game.NearSunTest", "");
 		//vizjeg 0 layer
@@ -254,16 +254,16 @@ public class Game {
 		//astronauta rarakasa az ures asteroiodra
 		Astronaut a = new Astronaut(empty);
 		astronauts.add(a);
-		Logger.ret("");	
+		Logger.ret("");
 	}
-	
+
 	public void nearSun() {
 		Logger.call("Game.nearSun", "");
 		//osszes aszteroidara checknearsun()
-		for (Asteroid a : asteroidField) { 		      
-	          a.checkNearSun();		
+		for (Asteroid a : asteroidField) {
+	          a.checkNearSun();
 	      }
-		Logger.ret("");	
+		Logger.ret("");
 	}
-	
+
 }

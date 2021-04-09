@@ -28,6 +28,10 @@ public class Uranium extends Material {
 		Logger.ret("");
 	}
 
+	public void setExp(int n) { //balint
+		exp=n;
+	}
+
 	//modell change
 	protected int getID() {
 		return(769);
