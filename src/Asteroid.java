@@ -47,7 +47,7 @@ public class Asteroid extends Place {
 	}
 	/**
 	 * Furas eseten lefuto figgveny
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void getDrilled() throws Exception {
 		Logger.call("Asteroid.getDrilled", "");
@@ -82,7 +82,7 @@ public class Asteroid extends Place {
 	 * felelos fuggveny
 	 * @param m Nyersanyag
 	 * @return bool sikeresseg
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public boolean replaceCore(Material m) throws Exception {
 		Logger.call("Asteroid.replaceCore", "Material = " + m);
@@ -99,7 +99,7 @@ public class Asteroid extends Place {
 
 	/**
 	 * Napkozeliseg lekerese
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void checkNearSun() throws Exception {
 		Logger.call("Asteroid.checkNearSun", "");
@@ -143,7 +143,7 @@ public class Asteroid extends Place {
 	/**
 	 * Napkozeliseg setterje
 	 * @param b Napkozeliseg
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void setNearSun(boolean b) throws Exception {
 		Logger.call("Asteroid.setNearSun", "isNarSun = " + b);
@@ -157,7 +157,7 @@ public class Asteroid extends Place {
 	/**
 	 * Napkozeliseg, es kifurt retegek eseten
 	 * szol a magnak errol.
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	private void coreSunEffectTrigger() throws Exception {
 		Logger.call("Asteroid.coreSunEffectTrigger", "");
@@ -212,8 +212,9 @@ public class Asteroid extends Place {
 	public void addEntity(Entity e) {
 		Logger.call("Asteroid.addEntity", "Entity = " + e);
 		try{
-			entities.add(e);
+			//sorrend fontos (balint)
 			e.setPosition(this);
+			entities.add(e);
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}

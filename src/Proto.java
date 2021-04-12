@@ -744,7 +744,6 @@ private static void exportSwitch(String[] cmd){
 			case "test":
 				System.err.println("TEST");
 				System.err.println("");
-				System.err.println("");
 				//export_all();
 				break;
 			*/
@@ -763,44 +762,46 @@ private static void exportSwitch(String[] cmd){
 		String[] cmd;
 
 				while(run) {
-				cmd = input.nextLine().split("\\s"); // " "
-				if(
-					(cmd.length==0) ||
-					(cmd.length == 1 && cmd[0].equals("")) ||
-					(cmd[0].charAt(0)=='#') ||
-					((cmd[0].length() >= 2) && (cmd[0].charAt(0)=='/') && (cmd[0].charAt(1)=='/'))
-				) continue;
-				switch(state)
-				{
-					case S_IN_INIT:
-						if(cmd.length == 2 && !cmd[0].equals("export")) {
-							init(cmd);
-						} else {
-							setState(cmd);
-						}
-						break;
-					case S_IN_LINK:
-					 if(cmd.length == 4) {
-						 linker(cmd);
-						} else {
-							setState(cmd);
-						}
-						break;
-					case S_IN_STATE:
-						if(cmd.length > 2) {
-							gyereIdeInState(cmd);
-						} else {
-							setState(cmd);
-						}
-						break;
-					case S_RUN:
-						inGame(cmd);
-						break;
-//					case S_OUT:
-//						break;
-//					case S_OUT_FULL:
-//						break;
-				}
+					try{
+					cmd = input.nextLine().split("\\s"); // " "
+					if(
+						(cmd.length==0) ||
+						(cmd.length == 1 && cmd[0].equals("")) ||
+						(cmd[0].charAt(0)=='#') ||
+						((cmd[0].length() >= 2) && (cmd[0].charAt(0)=='/') && (cmd[0].charAt(1)=='/'))
+					) continue;
+					switch(state)
+					{
+						case S_IN_INIT:
+							if(cmd.length == 2 && !cmd[0].equals("export")) {
+									init(cmd);
+								} else {
+									setState(cmd);
+								}
+							break;
+						case S_IN_LINK:
+						 if(cmd.length == 4) {
+								 linker(cmd);
+								} else {
+									setState(cmd);
+								}
+							break;
+						case S_IN_STATE:
+							if(cmd.length > 2) {
+									gyereIdeInState(cmd);
+								} else {
+									setState(cmd);
+								}
+							break;
+						case S_RUN:
+							inGame(cmd);
+							break;
+		//				case S_OUT:
+		//					break;
+		//				case S_OUT_FULL:
+		//					break;
+					}
+				} catch(java.util.NoSuchElementException e) {run=false;}
 			}
 		}
 	}
