@@ -369,6 +369,12 @@ public static void gyereIdeInState(String[] cmd){
 					if(Integer.parseInt(cmd[3]) == 0)	gates.get(Integer.parseInt(cmd[1])).setBolond(false);
 					else gates.get(Integer.parseInt(cmd[1])).setBolond(true);
 					break;
+					case "enable":
+					gates.get(Integer.parseInt(cmd[1])).enable();
+					break;
+					case "disable":
+					gates.get(Integer.parseInt(cmd[1])).disable();
+					break;
 					default: System.err.println("Syntax error: state change: gate: invalid action\n");
 				}
 			break;
