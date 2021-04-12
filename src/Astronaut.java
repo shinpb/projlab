@@ -31,10 +31,12 @@ public class Astronaut extends Entity implements IDrill, IMine {
 
 	/**
 	 * @param a - az aszteroida amin el lesz helyezve az asztronauta
+	 * @throws Exception 
 	 */
-	public Astronaut(Asteroid a) {
+	public Astronaut(Asteroid a) throws Exception {
 		super(a);
-
+		if(null == a)
+			throw new Exception("Argument passed to Astronaut.ctor is null!");
 		gates = new ArrayList<Gate>();
 		collectedMaterials = new ArrayList<Material>();
 	}
@@ -48,13 +50,13 @@ public class Astronaut extends Entity implements IDrill, IMine {
 
 	/**
 	 * aszteroidak kozott mozog/teleportal
+	 * @throws Exception 
 	 */
-	public void move() {
+	public void move() throws Exception {
 		Logger.call("Astronaut.move()","");
 
 		//lekerjuk a szomszedos helyeket
 		ArrayList<Place> neighbours = new ArrayList<Place>(position.getNeighbours());
-
 
 		System.out.println("\nJelenlegi pozicionak " + neighbours.size() + " szomszedos helye van.");
 
@@ -86,8 +88,9 @@ public class Astronaut extends Entity implements IDrill, IMine {
 
 	/**
 	 * megfurja az aszteroidat amin eppen all
+	 * @throws Exception 
 	 */
-	public void drill() {
+	public void drill() throws Exception {
 		Logger.call("Astronaut.drill()","");
 
 		position.getDrilled();
@@ -98,8 +101,9 @@ public class Astronaut extends Entity implements IDrill, IMine {
 
 	/**
 	 * az asztronauta robotot keszit amit lehelyez azon az aszteroidan amin eppen all
+	 * @throws Exception 
 	 */
-	public void craftRobot() {
+	public void craftRobot() throws Exception {
 		Logger.call("Astronaut.craftRobot()","");
 
 		//letrehozunk egy recept keszitot es kerunk egy receptet a robothoz
@@ -344,22 +348,29 @@ public class Astronaut extends Entity implements IDrill, IMine {
 	}
 
 	public void addGate(Gate g) throws Exception {
-		Logger.call("Astronaut.addGate()","g: " + g.toString());
+		String s = (null == g) ? "null" : g.toString();
+		Logger.call("Astronaut.addGate()","g: " + s);
+
+		if(null == g)
+			throw new Exception("Argument passed to Astronaut.addGate(...) is null!");
 		//ha nincs eleg hely az inventoryban kivetelt dobunk
 		if(gates.size() > 1)
 			throw new Exception("Missing place for new teleport gate(s) in inventory!");
+			
 		gates.add(g);
 		Logger.ret("");
 	}
 
 	public void addMaterial(Material m) throws Exception {
+		String s = (null == m) ? "null" : m.toString();
+		Logger.call("Astronaut.addMaterial()","m: " + s);
+		
 		//ha ures volt a mag nem taroljuk el
 		if(null == m)
-			return;
-
-		Logger.call("Astronaut.addMaterial()","m: " + m.toString());
+			throw new Exception("Argument passed to Astronaut.addMaterial(...) is null!");
 		if(collectedMaterials.size() == 10)
 			throw new Exception("Missing place for new material in inventory!");
+
 		collectedMaterials.add(m);
 		Logger.ret("");
 	}

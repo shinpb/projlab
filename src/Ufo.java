@@ -14,8 +14,10 @@ import java.util.Random;
 
 public class Ufo extends Entity implements IMine {
 	
-	public Ufo(Asteroid a) {
+	public Ufo(Asteroid a) throws Exception {
 		super(a);
+		if(null == a)
+			throw new Exception("Argument passed to Ufo.ctor is null!");
 	}
 
 	public Ufo() {
@@ -23,7 +25,7 @@ public class Ufo extends Entity implements IMine {
 	}
 	
 	@Override
-	public void move() {
+	public void move() throws Exception {
 		Logger.call("Ufo.move()","");
 
 		Place[] neighbours = (Place[]) position.getNeighbours().toArray();
@@ -55,7 +57,7 @@ public class Ufo extends Entity implements IMine {
 		Logger.ret("");
 	}
 	
-	public void mine() {
+	public void mine() throws Exception {
 		Logger.call("Ufo.mine()","");
 		Material m = position.mineCore();
 		if(null == m)
@@ -63,7 +65,7 @@ public class Ufo extends Entity implements IMine {
 		Logger.ret("");
 	}
 
-	public void step() {
+	public void step() throws Exception {
 		this.mine();
 	}
 }

@@ -75,7 +75,7 @@ public class Game {
 		return astronauts;
 	}
 	//TODO javitásra szorul
-	public void start() {
+	public void start() throws Exception {
 		Logger.call("Game.start", "");
 		//seged valtozok
 		//aszteroidaov merete
@@ -152,7 +152,7 @@ public class Game {
 	}
 
 
-	public void step() {
+	public void step() throws Exception {
 		Logger.call("Game.step", "");
 
 		//Minden astronautara meghivjuk a step()
@@ -232,7 +232,7 @@ public class Game {
 		Logger.ret("");
 	}
 
-	public void NearSunTest() {
+	public void NearSunTest() throws Exception {
 		Logger.call("Game.NearSunTest", "");
 		//vizjeg 0 layer
 		Asteroid ice = new Asteroid(new Ice());
@@ -257,7 +257,7 @@ public class Game {
 		Logger.ret("");
 	}
 
-	public void nearSun() {
+	public void nearSun() throws Exception {
 		Logger.call("Game.nearSun", "");
 		//osszes aszteroidara checknearsun()
 		for (Asteroid a : asteroidField) {

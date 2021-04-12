@@ -17,9 +17,12 @@ public class Robot extends Entity implements IDrill {
 	/**
 	 * konstruktor
 	 * @param a - az aszteroida amin el lesz helyezve a robot
+	 * @throws Exception 
 	 */
-	public Robot(Asteroid a) {
+	public Robot(Asteroid a) throws Exception {
 		super(a);
+		if(a == null)
+			throw new Exception("Argument passed to Robot.ctor is null!");
 	}
 	
 	public Robot() { //edit: Bálint
@@ -37,8 +40,9 @@ public class Robot extends Entity implements IDrill {
 	
 	/**
 	 * a robot megfurja az aszteroidat amin eppen all
+	 * @throws Exception 
 	 */
-	public void drill() {
+	public void drill() throws Exception {
 		Logger.call("Robot.drill()","");
 		
 		position.getDrilled();
@@ -49,8 +53,9 @@ public class Robot extends Entity implements IDrill {
 	
 	/**
 	 * robbanas hatasara a robot veletlenszeruen egy masik szomszedos aszteroidara esik
+	 * @throws Exception 
 	 */
-	public void explosionEffect() {
+	public void explosionEffect() throws Exception {
 		Logger.call("Robot.explosionEffect()","");
 
 		move(); //milyen szerencse hogy a robot mozgaskor is veletlenszeruen egy szomszedos aszteroidara lep
@@ -61,8 +66,9 @@ public class Robot extends Entity implements IDrill {
 	
 	/**
 	 * a robot veletlenszeruen vegrehajt egy lepest
+	 * @throws Exception 
 	 */
-	public void step() {
+	public void step() throws Exception {
 		Logger.call("Robot.step()","");
 
 		Random r = new Random();
@@ -79,8 +85,9 @@ public class Robot extends Entity implements IDrill {
 	
 	/**
 	 * a robot veletlenszeruen egy szomszedos aszteroidara lep
+	 * @throws Exception 
 	 */
-	public void move() {
+	public void move() throws Exception {
 		Logger.call("Robot.move()","");
 
 		Place[] neighbours = (Place[]) position.getNeighbours().toArray();

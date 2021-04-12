@@ -47,8 +47,9 @@ public class Asteroid extends Place {
 	}
 	/**
 	 * Furas eseten lefuto figgveny
+	 * @throws Exception 
 	 */
-	public void getDrilled() {
+	public void getDrilled() throws Exception {
 		Logger.call("Asteroid.getDrilled", "");
 		if(layers == 0) {
 			coreSunEffectTrigger();
@@ -81,8 +82,9 @@ public class Asteroid extends Place {
 	 * felelos fuggveny
 	 * @param m Nyersanyag
 	 * @return bool sikeresseg
+	 * @throws Exception 
 	 */
-	public boolean replaceCore(Material m) {
+	public boolean replaceCore(Material m) throws Exception {
 		Logger.call("Asteroid.replaceCore", "Material = " + m);
 		if(core == null) {
 		core = m;
@@ -97,8 +99,9 @@ public class Asteroid extends Place {
 
 	/**
 	 * Napkozeliseg lekerese
+	 * @throws Exception 
 	 */
-	public void checkNearSun() {
+	public void checkNearSun() throws Exception {
 		Logger.call("Asteroid.checkNearSun", "");
 		setNearSun(rand.nextBoolean());
 		Logger.ret("");
@@ -140,8 +143,9 @@ public class Asteroid extends Place {
 	/**
 	 * Napkozeliseg setterje
 	 * @param b Napkozeliseg
+	 * @throws Exception 
 	 */
-	public void setNearSun(boolean b) {
+	public void setNearSun(boolean b) throws Exception {
 		Logger.call("Asteroid.setNearSun", "isNarSun = " + b);
 		isNearSun = b;
 		if(isNearSun) {
@@ -153,8 +157,9 @@ public class Asteroid extends Place {
 	/**
 	 * Napkozeliseg, es kifurt retegek eseten
 	 * szol a magnak errol.
+	 * @throws Exception 
 	 */
-	private void coreSunEffectTrigger() {
+	private void coreSunEffectTrigger() throws Exception {
 		Logger.call("Asteroid.coreSunEffectTrigger", "");
 		if(isNearSun && layers == 0) {
 			if(core != null)

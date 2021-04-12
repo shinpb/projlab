@@ -23,7 +23,7 @@ public abstract class Material {
 	}
 	
 	//Felüldefiniálja minden nyersanyag, amely reagál a napközelségre
-	public void nearSunEffect() {
+	public void nearSunEffect() throws Exception {
 		return;
 	}
 	

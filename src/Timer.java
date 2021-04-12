@@ -16,11 +16,11 @@
 public class Timer {
 	private Game game;
 	
-	private void tick() {
+	private void tick() throws Exception {
 		game.step();
 	}
 	
-	public void start() {
+	public void start() throws Exception {
 		//long startTime = System.nanoTime();
 		//TODO kesobb
 		//while(/*TODO*/) {

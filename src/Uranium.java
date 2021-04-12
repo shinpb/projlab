@@ -21,7 +21,7 @@ public class Uranium extends Material {
 
 	}
 	//ha nincs kőzetréteg és napközelben van,robban
-	public void nearSunEffect() {
+	public void nearSunEffect() throws Exception {
 		Logger.call("uranium.nearSunEffect","");
 		exp++;
 		if(exp == 3){asteroid.explode();}

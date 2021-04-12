@@ -19,7 +19,7 @@ public class Program{
 		mellékhatásaként az Asteroid magja üres lesz
 		NEM támogatja a naplózást
 	*/
-	private static Astronaut bigBackPack(Asteroid asteroid) {
+	private static Astronaut bigBackPack(Asteroid asteroid) throws Exception {
 		Astronaut astronaut = new Astronaut(asteroid);
 		try{
 			for(int i=0; i<2; i++){
@@ -74,7 +74,7 @@ Főbb funkciói:
 	14-re
 		elindítja a moveAstronaut és teleportAstronmaut forgatókönyvét
 */
-	public static void chosen(String s) {
+	public static void chosen(String s) throws Exception {
 		switch (s) {
 		case "exit":
 			  System.exit(0);
@@ -199,7 +199,7 @@ Főbb funkciói:
 	(a robor kifúrja az aszeroidát, ami urániummagú, 
 	majd napközelbe kerül)
 	*/
-	public static void bumm() {
+	public static void bumm() throws Exception {
 		Asteroid asteroid = new Asteroid();
 		Asteroid asteroid_remote = new Asteroid();
 		Astronaut astronaut = new Astronaut(asteroid);
@@ -225,7 +225,7 @@ Főbb funkciói:
 	ratesz egy asztronautat
 	a user kivalaszthatja, melyik szomszedra szeretne ugrani
 	*/
-	public static void moveAstronaut() {
+	public static void moveAstronaut() throws Exception {
 		Asteroid asteroid1 = new Asteroid();
 		Asteroid asteroid2 = new Asteroid();
 		Asteroid asteroid3 = new Asteroid();
@@ -244,7 +244,7 @@ Főbb funkciói:
 	carft-ol egy gate-et
 	*/
 	
-	public static void portal() { 
+	public static void portal() throws Exception { 
 		Asteroid asteroid = new Asteroid();
 		Astronaut astronaut = bigBackPack(asteroid);
 		try{
@@ -258,7 +258,7 @@ Főbb funkciói:
 	*/
 
 	
-	public static void buildGate() { 
+	public static void buildGate() throws Exception { 
 		Asteroid asteroid = new Asteroid();
 		Astronaut astronaut = bigBackPack(asteroid);
 		try{
@@ -274,7 +274,7 @@ Főbb funkciói:
 	carft-ol egy robotot
 	*/
 
-	public static void robot() {
+	public static void robot() throws Exception {
 		Asteroid asteroid = new Asteroid();
 		Astronaut astronaut = bigBackPack(asteroid);
 		astronaut.craftRobot();
@@ -286,7 +286,7 @@ Főbb funkciói:
 	robot belefur az szteroidaba
 	*/
 
-	public static void drillWithRobot() {
+	public static void drillWithRobot() throws Exception {
 		Asteroid asteroid = new Asteroid();
 		Robot robot = new Robot(asteroid);
 		robot.drill();
@@ -298,7 +298,7 @@ Főbb funkciói:
 	asztronauta belefur az aszteroidaba
 	*/
 	
-	public static void drill() {
+	public static void drill() throws Exception {
 		Asteroid asteroid = new Asteroid();
 		Astronaut astronaut = new Astronaut(asteroid);
 		astronaut.drill();
@@ -310,7 +310,7 @@ Főbb funkciói:
 	asztronauta banyaszik
 	*/
 	
-	public static void getThatNyersanyag(){
+	public static void getThatNyersanyag() throws Exception {
 		Asteroid asteroid = new Asteroid(new Iron());
 		Astronaut astronaut = new Astronaut(asteroid);
 		asteroid.setLayer(0);
@@ -325,7 +325,7 @@ Főbb funkciói:
 	meghivja a robot move()-jat
 	*/
 
-	public static void moveRobot() {
+	public static void moveRobot() throws Exception {
 		Asteroid asteroid1 = new Asteroid();
 		Asteroid asteroid2 = new Asteroid();
 		Asteroid asteroid3 = new Asteroid();
@@ -345,7 +345,7 @@ Főbb funkciói:
 	meghivja a setNearSun() fgv-t, ami elszublimaltatja a jeget (core = null)
 	*/
 
-	public static void ice(){
+	public static void ice() throws Exception {
 		Asteroid asteroid = new Asteroid();
 		Astronaut astronaut = new Astronaut(asteroid);
 		Ice ice = new Ice();
@@ -361,7 +361,7 @@ Főbb funkciói:
 	asztronauta kibanyassza a nyersanyagot, majd visszateszi
 	*/
 
-	public static void putCore(){
+	public static void putCore() throws Exception {
 		Asteroid asteroid = new Asteroid();
 		Carbon carbon = new Carbon();
 		asteroid.setLayer(0);
@@ -384,7 +384,7 @@ Főbb funkciói:
 	hasznalja a kaput
 	*/
 
-	public static void teleport(){
+	public static void teleport() throws Exception {
 		Asteroid asteroid1 = new Asteroid();
 		Asteroid asteroid2 = new Asteroid();
 		Astronaut astronaut = bigBackPack(asteroid1);
@@ -405,7 +405,7 @@ Főbb funkciói:
 	az aszteroidamezo kozel kerul a naphoz (uranium magu felrobban)
 	*/
 
-	public static void serialKilling(){
+	public static void serialKilling() throws Exception {
 		Game game = new Game();
 		game.NearSunTest();
 		game.nearSun();
@@ -419,7 +419,7 @@ Főbb funkciói:
 	aszteroidamezon atmegy egy napvihar (asztronautra el tud bujni, az ures magban)
 	*/
 
-	public static void purge(){     
+	public static void purge() throws Exception {     
 		Game game = new Game();
 		game.NearSunTest();				
 		game.solarStorm();
@@ -428,31 +428,33 @@ Főbb funkciói:
 
 
 	public static void main(String args[]) {
-		System.setIn(new UnClosableDecorator(System.in));
-		
-		Scanner input = new Scanner(System.in);
-		
-		System.out.println("Welcome to the Szoftverprojektlaboratóriumprojekt!\nWanna try? (type yes/no) ");
-		String s = "";
-		s = input.next();
-		chosen(s);
-
-				
-		while(true){
+		try {
+			System.setIn(new UnClosableDecorator(System.in));
 			
+			Scanner input = new Scanner(System.in);
+			
+			System.out.println("Welcome to the Szoftverprojektlaboratóriumprojekt!\nWanna try? (type yes/no) ");
+			String s = "";
 			s = input.next();
-			//System.out.print("\033[H\033[2J");  //ez clear-eli a terminalt (lehet h windowson nem mukodik)
-		Logger.clear();
 			chosen(s);
-			
-		Logger.print();
-			try{randomAnswer();}catch(Exception e){e.printStackTrace();}
-			
-			
-			
-		}	
 
+					
+			while(true){
+				
+				s = input.next();
+				//System.out.print("\033[H\033[2J");  //ez clear-eli a terminalt (lehet h windowson nem mukodik)
+			Logger.clear();
+				chosen(s);
+				
+			Logger.print();
+				try{randomAnswer();}catch(Exception e){e.printStackTrace();}
+				
+				
+				
+			}
+			
+		} catch(Exception e) { 
+			e.printStackTrace();
+		}
 	}
-	
-	
 }

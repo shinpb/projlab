@@ -1,4 +1,4 @@
 
 public interface IDrill {
-	public void drill();
+	public void drill() throws Exception;
 }

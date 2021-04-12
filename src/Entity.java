@@ -56,7 +56,7 @@ public abstract class Entity {
 	/**
 	 * aszteroidak kozott mozog/teleportal
 	 */
-	public abstract void move();
+	public abstract void move() throws Exception;
 
 	/**
 	 * napviharban milyen hatas eri az entitast
@@ -66,7 +66,7 @@ public abstract class Entity {
 	/**
 	 * robbanas milyen hatasssal van az entitasra
 	 */
-	public abstract void explosionEffect();
+	public abstract void explosionEffect() throws Exception;
 
 
 	/**
@@ -76,7 +76,8 @@ public abstract class Entity {
 	public void step() throws Exception { Logger.call("Enity.step()","");  Logger.ret(""); }
 
 	public void setPosition(Asteroid a) throws Exception {
-		Logger.call("Enity.setPosition()", "Asteroid a: " + a.toString());
+		String s = (null == a) ? "null" : a.toString();
+		Logger.call("Enity.setPosition()", "Asteroid a: " + s);
 
 		if(null == a)
 			throw new Exception("Argument passed to Entity.setPosition(...) is null");
@@ -103,12 +104,14 @@ public abstract class Entity {
 		return position;
 	}
 
-	public void moveTo(Place destination) {
-		if(null == destination)
-			return;
+	public void moveTo(Place destination) throws Exception {
+		String s = (null == destination) ? "null" : destination.toString();  
+		Logger.call("Enity.moveTo()","destination: " + s);
 
-		Logger.call("Enity.moveTo()","destination: " + destination.toString());
-			destination.addEntity(this); //ezutan felrakja magat az uj helyere
+		if(null == destination)
+			throw new Exception("Argument passed to Entity.moveTo(...) is null");
+
+		destination.addEntity(this); //ezutan felrakja magat az uj helyere
 		Logger.ret("");
 	}
 }

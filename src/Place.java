@@ -63,8 +63,9 @@ public class Place {
 	/**
 	 * Robbanas fuggveny
 	 * Szol az osszes rajta levo entitasnak es szomszednak a robbanasrol
+	 * @throws Exception 
 	 */
-	public void explode() {
+	public void explode() throws Exception {
 		Logger.call("Place.explode", "");
 		for(int i = 0; i < entities.size(); i++) {
 			entities.elementAt(i).explosionEffect();

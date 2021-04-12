@@ -538,7 +538,7 @@ private static int robotID(Object robo) {
 }
 private static int ufoID(Object ufo) {
 	for(int i=0; i<ufos.size(); i++)
-		if(ufos.get(i) == ufo) //reference check, szandekos
+		if(robots.get(i) == ufo) //reference check, szandekos
 			return i;
 	return -1;
 }
