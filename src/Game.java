@@ -74,6 +74,16 @@ public class Game {
 	public ArrayList<Astronaut> getAstronauts() {
 		return astronauts;
 	}
+
+//	getAllEntities from AsteroidField (balint)
+	public ArrayList<Entity> getEntities() {
+		ArrayList<Entity> es=new ArrayList<>();
+		for(Asteroid a: asteroidField)
+			for(Entity e: a.getEntities())
+				if(!es.contains(e))
+					es.add(e);
+		return es;
+	}
 	//TODO javitásra szorul
 	public void start() throws Exception {
 		Logger.call("Game.start", "");

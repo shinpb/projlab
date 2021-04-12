@@ -13,7 +13,7 @@ import java.util.Vector;
 
 
 public class Place {
-	
+
 	/**
 	 * A Place-en levo entitasokat tarolo lista.
 	 */
@@ -26,7 +26,7 @@ public class Place {
 	 * A kapukat tarolo lista
 	 */
 	protected Vector<Gate> gates;
-	
+
 	/**
 	 * Konstruktor
 	 */
@@ -35,7 +35,7 @@ public class Place {
 		entities = new Vector<Entity>();
 		neighbours = new Vector<Place>();
 	}
-	
+
 	/**
 	 * Entitas felveteleert felelos fuggveny
 	 * @param e Entias
@@ -45,25 +45,21 @@ public class Place {
 		entities.add(e);
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Entitas torleseert felelos fuggveny
 	 * @param e Entias
 	 */
 	public void removeEntity(Entity e) {
 		Logger.call("Place.removeEntity", " Entity = " + e);
-		for(int i = 0; i < entities.size(); i++) {
-			if(entities.elementAt(i).equals(e)) {
-				entities.remove(i);
-			}
-		}
+		entities.remove(e);
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Robbanas fuggveny
 	 * Szol az osszes rajta levo entitasnak es szomszednak a robbanasrol
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void explode() throws Exception {
 		Logger.call("Place.explode", "");
@@ -75,7 +71,7 @@ public class Place {
 		}
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Szomszed felveteleert felelos fuggveny
 	 * @param p Szomszed
@@ -85,7 +81,7 @@ public class Place {
 		neighbours.add(p);
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Szomszed torleseert felelos fuggveny
 	 * @param p Szomszed
@@ -99,7 +95,7 @@ public class Place {
 		}
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Kapu felvetele az aszteroidara
 	 * @param g Kapu
@@ -109,7 +105,7 @@ public class Place {
 		gates.add(g);
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Kapu eltavolitasa
 	 * @param g Kapu
@@ -122,7 +118,7 @@ public class Place {
 		}
 		Logger.ret("");
 	}
-	
+
 	public Vector<Gate> getGates() {
 		return gates;
 	}

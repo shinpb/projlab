@@ -419,11 +419,11 @@ public static void astronautAction(String[] cmd){
 						default: System.err.println("Syntax error: cant built: "+cmd[1]);
 					}
 				break;
-				case "die": astronauts.get(Integer.parseInt(cmd[1])).mine();
+				case "die": astronauts.get(Integer.parseInt(cmd[1])).die();
 				break;
 				default: System.err.println("Syntax error: invalid operation: "+cmd[0]);
 			}
-		}catch(Exception e){}
+		}catch(Exception e){e.printStackTrace();}
 }
 public static void asteroidAction(String[] cmd){
 	try{
@@ -440,7 +440,7 @@ public static void asteroidAction(String[] cmd){
 			break;
 			default: System.err.println("Syntax error: invalid operation (asteroid): "+cmd[2]);
 		}
-	}catch(Exception e){}
+	}catch(Exception e){e.printStackTrace();}
 }
 public static void robotAction(String[] cmd){
 	try{
@@ -463,7 +463,7 @@ public static void robotAction(String[] cmd){
 			robots.get(Integer.parseInt(cmd[1])).die();
 			break;
 		}
-	}catch(Exception e){}
+	}catch(Exception e){e.printStackTrace();}
 }
 public static void gateAction(String[] cmd){
 	try{
@@ -474,7 +474,7 @@ public static void gateAction(String[] cmd){
 			break;
 			default: System.err.println("Syntax error: invalid operation (gate): "+cmd[2]);
 		}
-	}catch(Exception e){}
+	}catch(Exception e){e.printStackTrace();}
 }
 public static void ufoAction(String[] cmd){
 			try{
@@ -732,10 +732,14 @@ private static void exportSwitch(String[] cmd){
 			if(id<0)	export_gate_all();
 			else	export_gate(gates.get(id));
 			break;
-			/*case "test":
+			/*
+			case "test":
+				System.err.println("TEST");
 				System.err.println("");
-				export_all();
-				break;*/
+				System.err.println("");
+				//export_all();
+				break;
+			*/
 			case "all":
 			export_all();
 			break;
