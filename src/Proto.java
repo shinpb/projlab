@@ -404,7 +404,9 @@ public static void astronautAction(String[] cmd){
 				break;
 				case "deploy": astronauts.get(Integer.parseInt(cmd[1])).deployGate();
 				break;
-				case "putMaterialInAsteroid": astronauts.get(Integer.parseInt(cmd[1])).putMaterialInAsteroid();
+				case "putMaterialInAsteroid":;
+				if(cmd.length>=4) astronauts.get(Integer.parseInt(cmd[1])).putMaterialInAsteroid(Integer.parseInt(cmd[3]));
+				else astronauts.get(Integer.parseInt(cmd[1])).putMaterialInAsteroid();
 				break;
 				case "build":
 					switch(cmd[3]){
