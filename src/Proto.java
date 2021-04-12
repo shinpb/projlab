@@ -61,22 +61,30 @@ public class Proto {
 		for(Ufo a: ufos) g.addUfo(a);
 	}
 	private static void syncArrays() {
-		ArrayList<Astronaut> astrolist=g.getAstronauts();
+		ArrayList<Entity> entlist=g.getEntities();
+//		ArrayList<Astronaut> astrolist=g.getAstronauts();
 		for(int i=0; i<astronauts.size(); i++)
-			if(!astrolist.contains(astronauts.get(i)))
+			if(!entlist.contains(astronauts.get(i)))
 				astronauts.set(i, null);
+//		ArrayList<Robot> robolist=g.getRobots();
+		for(int i=0; i<robots.size(); i++)
+			if(!entlist.contains(robots.get(i)))
+				robots.set(i, null);
+//		ArrayList<Ufo> ufolist=g.getUfos();
+		for(int i=0; i<ufos.size(); i++)
+			if(!entlist.contains(ufos.get(i)))
+				ufos.set(i, null);
+//some magic
+		for(Entity e: entlist) {
+//			if((""+e).split("@")[0].equals("Robot"))
+			if(!astronauts.contains(e) && !ufos.contains(e))
+			robots.add((Robot)e);
+		}
+
 		ArrayList<Asteroid> asterlist=g.getAsteroids();
 		for(int i=0; i<asteroids.size(); i++)
 			if(!asterlist.contains(asteroids.get(i)))
 				asteroids.set(i, null);
-		ArrayList<Robot> robolist=g.getRobots();
-		for(int i=0; i<robots.size(); i++)
-			if(!robolist.contains(robots.get(i)))
-				robots.set(i, null);
-		ArrayList<Ufo> ufolist=g.getUfos();
-		for(int i=0; i<ufos.size(); i++)
-			if(!ufolist.contains(ufos.get(i)))
-				ufos.set(i, null);
 
 		for(int i=0; i<gates.size(); i++) {
 			Gate g=gates.get(i);
