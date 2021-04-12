@@ -30,7 +30,7 @@ public class Asteroid extends Place {
 	 */
 	private Material core;
 	Random rand = new Random();
-	
+
 	/**
 	 * Konstruktor
 	 */
@@ -57,7 +57,7 @@ public class Asteroid extends Place {
 		}
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Az aszteroida banyaszasa
 	 * @return Nyersanyag
@@ -71,11 +71,11 @@ public class Asteroid extends Place {
 			core = null;
 			Logger.ret("Material =" + temp.toString());
 			return temp;
-		} 
+		}
 		Logger.ret("null");
 		return null;
 	}
-	
+
 	/**
 	 * Az aszteroida nyersanyag visszarakasaert
 	 * felelos fuggveny
@@ -86,7 +86,7 @@ public class Asteroid extends Place {
 		Logger.call("Asteroid.replaceCore", "Material = " + m);
 		if(core == null) {
 		core = m;
-		if(isNearSun) 
+		if(isNearSun)
 			coreSunEffectTrigger();
 		Logger.ret("true");
 		return true;
@@ -94,16 +94,16 @@ public class Asteroid extends Place {
 		Logger.ret("false");
 		return false;
 	}
-	
+
 	/**
 	 * Napkozeliseg lekerese
 	 */
-	public void checkNearSun() {  
+	public void checkNearSun() {
 		Logger.call("Asteroid.checkNearSun", "");
 		setNearSun(rand.nextBoolean());
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * A szomszedokat tartalmazo lista getterje
 	 * @return Szomszedok
@@ -113,7 +113,7 @@ public class Asteroid extends Place {
 		Logger.ret("neighbours");
 		return neighbours;
 	}
-	
+
 	/**
 	 * Az entitasokat tartalmazo lista getterje
 	 * @return Entitasok
@@ -123,7 +123,7 @@ public class Asteroid extends Place {
 		Logger.ret("entities");
 		return entities;
 	}
-	
+
 	/**
 	 * Kapu eltavolitasa az aszteroidara
 	 * @param g Kapu
@@ -136,7 +136,7 @@ public class Asteroid extends Place {
 		}
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Napkozeliseg setterje
 	 * @param b Napkozeliseg
@@ -149,7 +149,7 @@ public class Asteroid extends Place {
 		}
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Napkozeliseg, es kifurt retegek eseten
 	 * szol a magnak errol.
@@ -162,7 +162,7 @@ public class Asteroid extends Place {
 		}
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Napviharert felelos fuggveny
 	 */
@@ -178,7 +178,7 @@ public class Asteroid extends Place {
 		}
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * A mag setterje
 	 * @param m Nyersanyag
@@ -190,7 +190,7 @@ public class Asteroid extends Place {
 			core.setAsteroid(this);
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * A napkozelseg getterje
 	 * @return Napkozelseg
@@ -200,7 +200,7 @@ public class Asteroid extends Place {
 		Logger.ret("isNearSun");
 		return isNearSun;
 	}
-	
+
 	/**
 	 * Entitas felvetele az aszteroidara
 	 */
@@ -214,9 +214,9 @@ public class Asteroid extends Place {
 		}
 		Logger.ret("");
 	}
-	
+
 	/**
-	 * Az aszeroidan levo osszes entitas 
+	 * Az aszeroidan levo osszes entitas
 	 * nyersanyagainak lekeresere alkalmas fuggveny
 	 * @return Nyersanyagok
 	 */
@@ -232,7 +232,7 @@ public class Asteroid extends Place {
 		Logger.ret("materials");
 		return r;
 	}
-	
+
 	/**
 	 * Retegvastagsag beallitasa
 	 * @param n vastagsag
@@ -242,7 +242,17 @@ public class Asteroid extends Place {
 		layers=n;
 		Logger.ret("");
 	}
-	
+
+	/**
+	 * Retegvastagsag lekérése
+	 * @return rétegvastagság
+	 */
+	public int getLayer(){
+		Logger.call("Asteroid.getLayer", "");
+		Logger.ret(""+layers);
+		return layers;
+	}
+
 	/**
 	 * Kapu felvetele az aszteroidara
 	 * @param g Kapu
@@ -253,7 +263,7 @@ public class Asteroid extends Place {
 		g.setPosition(this);
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Core getter
 	 * @return Core
@@ -261,5 +271,5 @@ public class Asteroid extends Place {
 	public Material getCore() {
 		return core;
 	}
-	
+
 }

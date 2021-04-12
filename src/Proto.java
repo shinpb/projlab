@@ -546,6 +546,7 @@ private static void export_asteroid(Asteroid aster) {
 		System.err.println("invalid asteroid reference at export (no id)");
 	}
 	System.out.println("asteroid: "+n); 										//id
+	System.out.println("layer "+aster.getLayer());	//core
 	System.out.println("core "+materialToString(aster.getCore()));	//core
 	int cnt=0, id;
 	for(Place p: aster.getNeighbours())
@@ -691,7 +692,7 @@ private static void export_all() {
 	export_ufo_all();
 }
 private static void exportSwitch(String[] cmd){
-	if(cmd.length == 1) setState(cmd);
+	if(cmd.length == 1) System.err.println("Syntax error: export requires an argument");
 	else {
 		int id = -1;
 		if(cmd.length >= 3) {
@@ -720,6 +721,11 @@ private static void exportSwitch(String[] cmd){
 			if(id<0)	export_gate_all();
 			else	export_gate(gates.get(id));
 			break;
+			case "test":
+				//do something
+				//TODO
+				export_all();
+				break;
 			case "all":
 			export_all();
 			break;
@@ -736,11 +742,16 @@ private static void exportSwitch(String[] cmd){
 
 				while(run) {
 				cmd = input.nextLine().split("\\s"); // " "
-				if(cmd.length==0) continue;
+				if(
+					(cmd.length==0) ||
+					(cmd.length == 1 && cmd[0].equals("")) ||
+					(cmd[0].charAt(0)=='#') ||
+					((cmd[0].length() >= 2) && (cmd[0].charAt(0)=='/') && (cmd[0].charAt(1)=='/'))
+				) continue;
 				switch(state)
 				{
 					case S_IN_INIT:
-						if(cmd.length == 2) {
+						if(cmd.length == 2 && !cmd[1].equals("all")) {
 							init(cmd);
 						} else {
 							setState(cmd);
