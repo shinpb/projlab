@@ -597,6 +597,7 @@ private static void export_asteroid_all() {
 	for(Asteroid aster: asteroids)
 		if(aster != null)
 			c++;
+	if(c==0) return;
 	System.out.println("asteroids: "+c);
 	for(Asteroid aster: asteroids)
 		if(aster != null)
@@ -619,6 +620,7 @@ private static void export_astronaut_all() {
 	for(Astronaut astro: astronauts)
 		if(astro != null)
 			c++;
+	if(c==0) return;
 	System.out.println("astronauts: "+c);
 	for(Astronaut astro: astronauts)
 		if(astro != null)
@@ -640,6 +642,7 @@ private static void export_gate_all() {
 	for(Gate ga: gates)
 		if(ga != null)
 			c++;
+	if(c==0) return;
 	System.out.println("gates: "+c);
 	for(Gate ga: gates)
 		if(ga != null)
@@ -655,6 +658,7 @@ private static void export_robot_all() {
 	for(Robot robo: robots)
 		if(robo != null)
 			c++;
+	if(c==0) return;
 	System.out.println("robots: "+c);
 	for(Robot robo: robots)
 		if(robo != null)
@@ -673,6 +677,7 @@ private static void export_ufo_all() {
 	for(Ufo ufo: ufos)
 		if(ufo != null)
 			c++;
+	if(c==0) return;
 	System.out.println("ufos: "+c);
 	for(Ufo ufo: ufos)
 		if(ufo != null)
