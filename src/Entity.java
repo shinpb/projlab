@@ -94,18 +94,18 @@ public abstract class Entity {
 	public Collection<Material> getInventory() {
 		Logger.call("Enity.getInventory()", "");
 		ArrayList<Material> inv = new ArrayList<Material>();
-		Logger.ret("inv: " + inv.toString());
+		Logger.ret("inv: " + inv);
 		return inv;
 	}
 
 	public Asteroid getPosition() {
 		Logger.call("Enity.getPosition()","");
-		Logger.ret("position: " + position.toString());
+		Logger.ret("position: " + position);
 		return position;
 	}
 
 	public void moveTo(Place destination) throws Exception {
-		String s = (null == destination) ? "null" : destination.toString();  
+		String s = (null == destination) ? "null" : destination.toString();
 		Logger.call("Enity.moveTo()","destination: " + s);
 
 		if(null == destination)

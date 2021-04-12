@@ -482,9 +482,9 @@ public static void ufoAction(String[] cmd){
 					case "move":
 						if(cmd.length == 3 ) ufos.get(Integer.parseInt(cmd[1])).move();
 						switch(cmd[3]){
-							case "asteroid": ufos.get(Integer.parseInt(cmd[1])).moveTo(asteroids.get(Integer.parseInt(cmd[3])));
+							case "asteroid": ufos.get(Integer.parseInt(cmd[1])).moveTo(asteroids.get(Integer.parseInt(cmd[4])));
 							break;
-							case "gate": ufos.get(Integer.parseInt(cmd[1])).moveTo(gates.get(Integer.parseInt(cmd[3])));
+							case "gate": ufos.get(Integer.parseInt(cmd[1])).moveTo(gates.get(Integer.parseInt(cmd[4])));
 							break;
 						}
 					break;
@@ -494,7 +494,7 @@ public static void ufoAction(String[] cmd){
 					break;
 					default: System.err.println("Syntax error: invalid operation: "+cmd[0]);
 				}
-			}catch(Exception e){}
+			}catch(Exception e){ e.printStackTrace();}
 }
 public static void inGame(String[] cmd){
 	switch(cmd[0]){
@@ -593,10 +593,13 @@ private static void export_asteroid(Asteroid aster) {
 			System.out.print(""+id+" ");												//robot list
 	System.out.print("\n");
 	cnt=0;
-	System.out.println("ufos "+cnt); 											//robots
+	for(Entity e: aster.getEntities())
+		if((id=ufoID(e)) >=0)
+			cnt++;
+	System.out.println("ufos "+cnt); 											//ufos
 	for(Entity e: aster.getEntities())
 	if((id=ufoID(e)) >=0)
-		System.out.print(""+id+" ");												//robot list
+		System.out.print(""+id+" ");												//ufos list
 	System.out.print("\n");
 	cnt=0;
 	System.out.println("end");															//end
@@ -675,7 +678,7 @@ private static void export_robot_all() {
 }
 private static void export_ufo(Ufo ufo) {
 	System.out.println("ufo: "+ufoID(ufo));
-	System.out.println("position "+ufoID(ufo.getPosition()));
+	System.out.println("position "+asteroidID(ufo.getPosition()));
 	System.out.println("inventory "+ufo.getInventory().size());
 	for(Material m: ufo.getInventory())
 		System.out.print(materialToString(m)+" ");
@@ -729,11 +732,10 @@ private static void exportSwitch(String[] cmd){
 			if(id<0)	export_gate_all();
 			else	export_gate(gates.get(id));
 			break;
-			case "test":
-				//do something
-				//TODO
+			/*case "test":
+				System.err.println("");
 				export_all();
-				break;
+				break;*/
 			case "all":
 			export_all();
 			break;
@@ -759,7 +761,7 @@ private static void exportSwitch(String[] cmd){
 				switch(state)
 				{
 					case S_IN_INIT:
-						if(cmd.length == 2 && !cmd[1].equals("all")) {
+						if(cmd.length == 2 && !cmd[0].equals("export")) {
 							init(cmd);
 						} else {
 							setState(cmd);
