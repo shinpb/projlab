@@ -5,5 +5,6 @@ mkdir -p "${outd}"
 javac *.java
 for f in $(cat "$(dirname ${0})/test_names.txt")
 do
+	echo "RUN TEST: ${f}"
 	java Proto < "$(dirname ${0})/in/${f}.in.txt" > "${outd}/${f}.out.txt"
 done

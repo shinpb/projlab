@@ -111,11 +111,11 @@ public class Astronaut extends Entity implements IDrill, IMine {
 		BillOfMaterial b = bc.createRobotBill();
 
 		//megkerjuk a receptet hogy nezze meg az inventorynkban megvan-e minden szukseges anyag
-		ArrayList<Material> newInventory = new ArrayList<Material>(b.checkInventory(collectedMaterials));
+		Collection<Material> newInventory = b.checkInventory(collectedMaterials);
 
 		//a recept egy olyan inventoryt ad vissza amibol mar el lettek tavolitva a szukseges anyagok
 		if(newInventory != null) { //ha nincs meg minden szukseges anyag akkor null-t ad vissza
-			collectedMaterials = newInventory; //beallitjuk az uj inventorynkat
+			collectedMaterials = new ArrayList<Material>(newInventory); //beallitjuk az uj inventorynkat
 			Robot r = new Robot(position); //letrehozunk egy robotot
 			position.addEntity(r); //lehelyezzuk a robotot az aszteroidara
 		}
@@ -140,11 +140,11 @@ public class Astronaut extends Entity implements IDrill, IMine {
 		BillOfMaterial b = bc.createGateBill();
 
 		//megkerjuk a receptet hogy nezze meg az inventorynkban megvan-e minden szukseges anyag
-		ArrayList<Material> newInventory = new ArrayList<Material>(b.checkInventory(collectedMaterials));
+		Collection<Material> newInventory = b.checkInventory(collectedMaterials);
 
 		//a recept egy olyan inventoryt ad vissza amibol mar el lettek tavolitva a szukseges anyagok
 		if(newInventory != null) { //ha nincs meg minden szukseges anyag akkor null-t ad vissza
-			collectedMaterials = newInventory; //beallitjuk az uj inventorynkat
+			collectedMaterials = new ArrayList<Material>(newInventory); //beallitjuk az uj inventorynkat
 
 			//letrehozunk ket kaput
 			Gate g1 = new Gate();

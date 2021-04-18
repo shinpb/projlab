@@ -26,14 +26,14 @@ public class Gate extends Place {
 	 * A kapu parjat tarolo valtozo
 	 */
 	private Gate otherEnd;
-	
+
 	/**
 	 * Konstruktor
 	 */
 	public Gate() {
 		isActive = false;
 	}
-	
+
 	/**
 	 * Pozicio beallitasa
 	 * @param a Aszteroida
@@ -43,7 +43,7 @@ public class Gate extends Place {
 		position = a;
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * A kapu parjanak beallitasa
 	 * @param g Kapu
@@ -53,21 +53,21 @@ public class Gate extends Place {
 		otherEnd = g;
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Entitas belepese a kapun
 	 * @param e Entitas
 	 */
 	public void addEntity(Entity e) {
 		Logger.call("Gate.AddEntity", " Entity = " + e);
-		if(isActive) {
+		if(isActive && otherEnd != null) {
 			otherEnd.getPosition().addEntity(e);
 		} else {
 			position.addEntity(e);
 		}
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Robbanas fuggveny
 	 * Eltavolitja onmagat es a parjat
@@ -80,7 +80,7 @@ public class Gate extends Place {
 		position.removeGate(this);
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Kapu aktivalasa
 	 */
@@ -89,7 +89,7 @@ public class Gate extends Place {
 		isActive = true;
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Kapu inaktivalasa
 	 */
@@ -98,7 +98,7 @@ public class Gate extends Place {
 		isActive = false;
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * A kapu poziciojanak lekerese
 	 * @return Aszteroida
@@ -108,7 +108,7 @@ public class Gate extends Place {
 		Logger.ret("position");
 		return position;
 	}
-	
+
 	/**
 	 * Lepes
 	 */
@@ -122,7 +122,7 @@ public class Gate extends Place {
 			places[choosen].addGate(this);
 		}
 	}
-	
+
 	/**
 	 * Kapu felvetele
 	 * @param g Kapu
@@ -133,9 +133,9 @@ public class Gate extends Place {
 		otherEnd.position.addGate(g);
 		Logger.ret("");
 	}
-	
+
 	/**
-	 * Kapu eltavolitasa 
+	 * Kapu eltavolitasa
 	 * @param g Kapu
 	 */
 	public void removeGate(Gate g) {
@@ -143,7 +143,7 @@ public class Gate extends Place {
 		otherEnd.position.removeGate(g);
 		Logger.ret("");
 	}
-	
+
 	/**
 	 * Megkergules allitasa
 	 * @param b megkergultseg
@@ -151,7 +151,7 @@ public class Gate extends Place {
 	public void setBolond(boolean b) {
 		isBolond = b;
 	}
-	
+
 	/**
 	 * Kapu par getter
 	 * @return Kapu
