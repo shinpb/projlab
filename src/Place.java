@@ -13,7 +13,7 @@ import java.util.Vector;
 
 
 public class Place {
-
+	
 	/**
 	 * A Place-en levo entitasokat tarolo lista.
 	 */
@@ -26,7 +26,11 @@ public class Place {
 	 * A kapukat tarolo lista
 	 */
 	protected Vector<Gate> gates;
-
+	/**
+	 *	A Place aktivitasat tarolo valtozo
+	 */
+	protected boolean isActive;
+	
 	/**
 	 * Konstruktor
 	 */
@@ -34,8 +38,9 @@ public class Place {
 		gates = new Vector<Gate>();
 		entities = new Vector<Entity>();
 		neighbours = new Vector<Place>();
+		isActive = true;
 	}
-
+	
 	/**
 	 * Entitas felveteleert felelos fuggveny
 	 * @param e Entias
@@ -45,23 +50,26 @@ public class Place {
 		entities.add(e);
 		Logger.ret("");
 	}
-
+	
 	/**
 	 * Entitas torleseert felelos fuggveny
 	 * @param e Entias
 	 */
 	public void removeEntity(Entity e) {
 		Logger.call("Place.removeEntity", " Entity = " + e);
-		entities.remove(e);
+		for(int i = 0; i < entities.size(); i++) {
+			if(entities.elementAt(i).equals(e)) {
+				entities.remove(i);
+			}
+		}
 		Logger.ret("");
 	}
-
+	
 	/**
 	 * Robbanas fuggveny
 	 * Szol az osszes rajta levo entitasnak es szomszednak a robbanasrol
-	 * @throws Exception
 	 */
-	public void explode() throws Exception {
+	public void explode() {
 		Logger.call("Place.explode", "");
 		for(int i = 0; i < entities.size(); i++) {
 			entities.elementAt(i).explosionEffect();
@@ -69,9 +77,10 @@ public class Place {
 		for(int i = 0; i < neighbours.size(); i++) {
 			neighbours.elementAt(i).removeNeighbour(this);
 		}
+		isActive = false;
 		Logger.ret("");
 	}
-
+	
 	/**
 	 * Szomszed felveteleert felelos fuggveny
 	 * @param p Szomszed
@@ -81,7 +90,7 @@ public class Place {
 		neighbours.add(p);
 		Logger.ret("");
 	}
-
+	
 	/**
 	 * Szomszed torleseert felelos fuggveny
 	 * @param p Szomszed
@@ -95,7 +104,7 @@ public class Place {
 		}
 		Logger.ret("");
 	}
-
+	
 	/**
 	 * Kapu felvetele az aszteroidara
 	 * @param g Kapu
@@ -105,7 +114,7 @@ public class Place {
 		gates.add(g);
 		Logger.ret("");
 	}
-
+	
 	/**
 	 * Kapu eltavolitasa
 	 * @param g Kapu
@@ -118,8 +127,21 @@ public class Place {
 		}
 		Logger.ret("");
 	}
-
+	
+	/**
+	 * A helyen levo kapuk getter-je
+	 * @return Kapuk
+	 */
 	public Vector<Gate> getGates() {
 		return gates;
 	}
+	
+	/**
+	 * A kapu isActive attributumanak getter-je
+	 * @return Aktivitas
+	 */
+	 public boolean getIsActive(){
+		 return isActive;
+	 }
+	
 }
