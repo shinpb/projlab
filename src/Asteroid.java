@@ -43,7 +43,7 @@ public class Asteroid extends Place {
 	 * Konstruktor with setCore
 	 */
 	public Asteroid(Material m) {
-		layers = rand.nextInt(4) + 1;  
+		layers = rand.nextInt(4) + 1;
 		setCore(m);
 		isActive = true;
 	}
@@ -67,7 +67,7 @@ public class Asteroid extends Place {
 	 */
 	public Material mineCore() {
 		Logger.call("Asteroid.mineCore", "");
-		if(core != null) {
+		if(core != null && layers == 0) { //edit: balint
 			Material temp = core;
 			core.mined();
 

@@ -176,7 +176,8 @@ public class Astronaut extends Entity implements IDrill, IMine {
 		//kibanyasszuk az aszteroida magjat
 		Material core = position.mineCore();
 
-		addMaterial(core); //felvesszuk az inventoryba az anyagot
+		if(core != null)	//deib: balint
+			addMaterial(core); //felvesszuk az inventoryba az anyagot
 
 		Logger.ret("");
 	}
