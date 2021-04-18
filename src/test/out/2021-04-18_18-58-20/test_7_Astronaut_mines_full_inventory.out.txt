@@ -1,0 +1,23 @@
+asteroids: 1
+asteroid: 0
+layer 0
+core carbon
+asteroids 0
+
+gates 0
+
+astronauts 1
+0 
+robots 0
+
+ufos 0
+
+end
+astronauts: 1
+astronaut: 0
+position 0
+inventory 10
+iron iron iron iron iron iron iron iron iron iron 
+gates 0
+
+end

@@ -1,0 +1,15 @@
+asteroids: 1
+asteroid: 0
+layer 2
+core carbon
+asteroids 0
+
+gates 0
+
+astronauts 0
+
+robots 0
+
+ufos 0
+
+end

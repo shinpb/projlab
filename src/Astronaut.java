@@ -31,7 +31,7 @@ public class Astronaut extends Entity implements IDrill, IMine {
 
 	/**
 	 * @param a - az aszteroida amin el lesz helyezve az asztronauta
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public Astronaut(Asteroid a) throws Exception {
 		super(a);
@@ -50,7 +50,7 @@ public class Astronaut extends Entity implements IDrill, IMine {
 
 	/**
 	 * aszteroidak kozott mozog/teleportal
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void move() throws Exception {
 		Logger.call("Astronaut.move()","");
@@ -88,7 +88,7 @@ public class Astronaut extends Entity implements IDrill, IMine {
 
 	/**
 	 * megfurja az aszteroidat amin eppen all
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void drill() throws Exception {
 		Logger.call("Astronaut.drill()","");
@@ -101,7 +101,7 @@ public class Astronaut extends Entity implements IDrill, IMine {
 
 	/**
 	 * az asztronauta robotot keszit amit lehelyez azon az aszteroidan amin eppen all
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public void craftRobot() throws Exception {
 		Logger.call("Astronaut.craftRobot()","");
@@ -111,7 +111,7 @@ public class Astronaut extends Entity implements IDrill, IMine {
 		BillOfMaterial b = bc.createRobotBill();
 
 		//megkerjuk a receptet hogy nezze meg az inventorynkban megvan-e minden szukseges anyag
-		ArrayList<Material> newInventory = new ArrayList(b.checkInventory(collectedMaterials));
+		ArrayList<Material> newInventory = new ArrayList<Material>(b.checkInventory(collectedMaterials));
 
 		//a recept egy olyan inventoryt ad vissza amibol mar el lettek tavolitva a szukseges anyagok
 		if(newInventory != null) { //ha nincs meg minden szukseges anyag akkor null-t ad vissza
@@ -140,7 +140,7 @@ public class Astronaut extends Entity implements IDrill, IMine {
 		BillOfMaterial b = bc.createGateBill();
 
 		//megkerjuk a receptet hogy nezze meg az inventorynkban megvan-e minden szukseges anyag
-		ArrayList<Material> newInventory = new ArrayList(b.checkInventory(collectedMaterials));
+		ArrayList<Material> newInventory = new ArrayList<Material>(b.checkInventory(collectedMaterials));
 
 		//a recept egy olyan inventoryt ad vissza amibol mar el lettek tavolitva a szukseges anyagok
 		if(newInventory != null) { //ha nincs meg minden szukseges anyag akkor null-t ad vissza
@@ -207,7 +207,7 @@ public class Astronaut extends Entity implements IDrill, IMine {
 
 		//egyebkent lehelyezunk egy kaput es eltavolitjuk az inventorybol
 		//Gate[] portalGates = (Gate[]) gates.toArray();
-		
+
 		Gate g = gates.get(0);
 		position.addGate(g);
 		gates.remove(g);
@@ -358,7 +358,7 @@ public class Astronaut extends Entity implements IDrill, IMine {
 		//ha nincs eleg hely az inventoryban kivetelt dobunk
 		if(gates.size() > 1)
 			throw new Exception("Missing place for new teleport gate(s) in inventory!");
-			
+
 		gates.add(g);
 		Logger.ret("");
 	}
@@ -366,7 +366,7 @@ public class Astronaut extends Entity implements IDrill, IMine {
 	public void addMaterial(Material m) throws Exception {
 		String s = (null == m) ? "null" : m.toString();
 		Logger.call("Astronaut.addMaterial()","m: " + s);
-		
+
 		//ha ures volt a mag nem taroljuk el
 		if(null == m)
 			throw new Exception("Argument passed to Astronaut.addMaterial(...) is null!");

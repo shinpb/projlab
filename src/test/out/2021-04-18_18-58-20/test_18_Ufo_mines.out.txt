@@ -1,0 +1,21 @@
+asteroids: 1
+asteroid: 0
+layer 0
+core null
+asteroids 0
+
+gates 0
+
+astronauts 0
+
+robots 0
+
+ufos 1
+0 
+end
+ufos: 1
+ufo: 0
+position 0
+inventory 0
+
+end

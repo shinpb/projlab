@@ -1,0 +1,48 @@
+asteroids: 2
+asteroid: 0
+layer 3
+core null
+asteroids 0
+
+gates 0
+
+astronauts 0
+
+robots 0
+
+ufos 0
+
+end
+asteroid: 1
+layer 3
+core null
+asteroids 0
+
+gates 0
+
+astronauts 1
+0 
+robots 0
+
+ufos 0
+
+end
+gates: 2
+gate: 0
+isActive: false
+position -1
+otherEnd 1
+end
+gate: 1
+isActive: false
+position -1
+otherEnd 0
+end
+astronauts: 1
+astronaut: 0
+position 1
+inventory 0
+
+gates 2
+0 1 
+end
