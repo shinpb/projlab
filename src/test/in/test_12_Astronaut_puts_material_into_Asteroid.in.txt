@@ -1,0 +1,12 @@
+init
+asteroid 1
+astronaut 1
+link
+astronaut 0 asteroid 0
+state
+asteroid 0 core null
+asteroid 0 layer 0
+astronaut 0 inventory iron
+run
+astronaut 0 putMaterialInAsteroid 0
+export all

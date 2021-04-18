@@ -1,0 +1,8 @@
+init
+asteroid 1
+state
+asteroid 0 layer 0
+asteroid 0 core uranium
+run
+asteroid 0 setNearSun 1
+export all

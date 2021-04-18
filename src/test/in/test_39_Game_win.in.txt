@@ -1,0 +1,11 @@
+init
+asteroid 1
+astronaut 2
+link
+astronaut 0 asteroid 0
+astronaut 1 asteroid 0
+state
+astronaut 0 inventory iron
+astronaut 0 inventory iron
+astronaut 0 inventory iron
+astronaut 0 inventory carbon

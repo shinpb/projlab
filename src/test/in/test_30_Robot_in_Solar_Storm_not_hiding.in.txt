@@ -1,0 +1,11 @@
+init
+asteroid 1
+robot 1
+link
+asteroid 0 robot 0
+state
+asteroid 0 layer 2
+asteroid 0 core carbon
+run
+asteroid 0 solarStorm
+export all

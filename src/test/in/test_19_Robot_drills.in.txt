@@ -1,0 +1,10 @@
+init
+asteroid 1
+robot 1
+link
+robot 0 asteroid 0
+state
+asteroid 0 layer 3
+run
+robot 0 drill
+export all

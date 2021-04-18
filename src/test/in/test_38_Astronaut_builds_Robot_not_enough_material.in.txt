@@ -1,0 +1,11 @@
+init
+asteroid 1
+astronaut 1
+link
+astronaut 0 asteroid 0
+state
+astronaut 0 inventory iron
+astronaut 0 inventory carbon
+run
+astronaut 0 build robot 1
+export all

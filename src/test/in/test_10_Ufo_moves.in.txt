@@ -1,0 +1,9 @@
+init
+asteroid 2
+ufo 1
+link
+asteroid 0 asteroid 1
+asteroid 0 ufo 0
+run
+ufo 0 move asteroid 1
+export all

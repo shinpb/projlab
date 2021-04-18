@@ -1,0 +1,13 @@
+init
+asteroid 1
+astronaut 1
+link
+astronaut 0 asteroid 0
+state
+astronaut 0 inventory iron
+astronaut 0 inventory iron
+astronaut 0 inventory ice
+astronaut 0 inventory uranium
+run
+astronaut 0 build gate 1
+export all

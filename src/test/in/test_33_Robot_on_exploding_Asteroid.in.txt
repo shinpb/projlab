@@ -1,0 +1,9 @@
+init
+asteroid 2
+robot 1
+link
+asteroid 0 asteroid 1
+asteroid 0 robot 0
+run
+asteroid 0 explode
+export all

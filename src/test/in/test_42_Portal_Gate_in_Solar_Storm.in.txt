@@ -1,0 +1,10 @@
+init
+asteroid 1
+astronaut 1
+gate 1
+link
+astronaut 0 asteroid 0
+gate 0 asteroid 0
+run
+asteroid 0 solarStorm
+export all

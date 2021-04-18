@@ -1,0 +1,16 @@
+init
+asteroid 2
+astronaut 1
+gate 2
+link
+astronaut 0 asteroid 0
+gate 0 gate 1
+astronaut 0 gate 0
+astronaut 0 gate 1
+run
+astronaut 0 deploy gate 0
+astronaut 0 move asteroid 1
+astronaut 0 deploy gate 1
+asteroid 0 explode
+astronaut 0 move gate 1
+export all

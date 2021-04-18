@@ -1,0 +1,8 @@
+init
+asteroid 1
+astronaut 1
+link
+asteroid 0 astronaut 0
+run
+asteroid 0 explode
+export all
