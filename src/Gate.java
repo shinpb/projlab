@@ -15,10 +15,6 @@ import java.util.Random;
 
 public class Gate extends Place {
 	/**
-	 * A kapu allapotat tarolo valtozo
-	 */
-	private boolean isActive;
-	/**
 	 * A kapu megkergultseget tarolo valtozo
 	 */
 	private boolean isBolond;
@@ -154,14 +150,6 @@ public class Gate extends Place {
 	 */
 	public void setBolond(boolean b) {
 		isBolond = b;
-	}
-	
-	/**
-	 * Aktivitas getter
-	 * @return Aktivitas
-	 */
-	public boolean getIsActive() {
-		return isActive;
 	}
 	
 	/**
