@@ -25,6 +25,11 @@ public class Game {
 	private ArrayList<Robot> robots = new ArrayList<>();
 	private ArrayList<Astronaut> astronauts = new ArrayList<>();
 	private ArrayList<Ufo> ufos = new ArrayList<>();
+	//0: nem megy, 
+	//1: megy,
+	//2: nyert,
+	//3: vesztett
+	private int gamestate = 0;
 
 	//aszteroidaovhoz aszteroida hozzadasa
 	public void addAsteroid(Asteroid a) {
@@ -45,6 +50,7 @@ public class Game {
 	//aszteroida levetel az aszteroidaovbol
 	public void removeAsteroid(Asteroid a) {
 		asteroidField.remove(asteroidField.indexOf(a));
+		if(asteroidField.size() == 0) gamestate = 3;
 	}
 	//robotot levesz a palyarol
 	public void removeRobot(Robot r) {
@@ -57,6 +63,7 @@ public class Game {
 	//levesz egy asztronautat
 	public void removeAstronaut(Astronaut a) {
 		astronauts.remove(astronauts.indexOf(a));
+		if(astronauts.size() == 0) gamestate = 3;
 	}
 	//aszteroidaov lekerese
 	public ArrayList<Asteroid> getAsteroids() {
@@ -74,7 +81,6 @@ public class Game {
 	public ArrayList<Astronaut> getAstronauts() {
 		return astronauts;
 	}
-
 //	getAllEntities from AsteroidField (balint)
 	public ArrayList<Entity> getEntities() {
 		ArrayList<Entity> es=new ArrayList<>();
@@ -84,6 +90,7 @@ public class Game {
 					es.add(e);
 		return es;
 	}
+	
 	//TODO javitásra szorul
 	public void start() throws Exception {
 		Logger.call("Game.start", "");
@@ -117,13 +124,10 @@ public class Game {
 			else if(randomNum == 3) asteroidField.add(new Asteroid(new Carbon()));
 			else if(randomNum == 4) asteroidField.add(new Asteroid(new Uranium()));
 			else {System.out.println("Hiba a random szammal");}
-
 		}
-		System.out.println("Az aszteroidak elkeszultek");
 
 		//szomszedossagok letrohazosa
 		//TODO algoritmus javitasa
-
 		for (Asteroid a : asteroidField) {
 			//ha keves szomszedja van 3-nal kevesebb
 			if(a.getNeighbours().size() < 3) {
@@ -148,8 +152,6 @@ public class Game {
 				}
 			}
 		}
-		System.out.println("Az aszteroidak egymas szomszedai.");
-		System.out.println("Az aszteroidov elkeszult.");
 
 		//asztronautak keszitese
 		//asztronautak lerakasa random aszteroidakra
@@ -157,10 +159,17 @@ public class Game {
 			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size() + 1);
 			astronauts.add(new Astronaut(asteroidField.get(randomNum)));
 	      }
-		System.out.println("Az asztronautak megerkeztek az aszteroidaovbe");
 		Logger.ret("");
 	}
-
+	
+	//ha az aszteroid nem aktiv eltavolitjuk a listabol
+	public void RemoveInactiveAsteroid() {
+		for(int i = asteroidField.size()-1; i >= 0; i-- ) {
+			if(!asteroidField.get(i).getIsActive()) {
+				asteroidField.remove(i);
+			}
+		}
+	}
 
 	public void step() throws Exception {
 		Logger.call("Game.step", "");
@@ -174,22 +183,19 @@ public class Game {
 			}
 		}
 
-
-		System.out.println("Leptek a telepesek.");
-
 		//Minden robotra meghivjuk a step()
 		for(Robot r : robots) {
 			r.step();
 		}
-		System.out.println("Leptek a robotok.");
 
 		//Minden ufora meghivjuk a step()
 		for(Ufo u : ufos) {
 			//u.step(); //TODO
 			u.move();
 		}
-		System.out.println("Leptek az ufok.");
-
+		
+		RemoveInactiveAsteroid();
+	
 		//ha entitasoknak egy aszteroidan megvan a raktarukba az osszes nyersanyag vege
 		if(checkGameState() == false) end();
 
@@ -206,31 +212,32 @@ public class Game {
 		astronauts.clear();
 		robots.clear();
 
-		System.out.println("A jatek vegetert");
 		Logger.ret("");
 	}
+	
+	//ha megnyertek a jatekot true, ha meg nem false
+	public boolean GameWon() {
+		if(!checkGameState()) {
+			gamestate = 2;
+			return true;
+		}
+		return false;
+	}
 
-	//true ha megy a jatek, false ha nem
+	//true ha megy a jatek, false ha nem,
 	private boolean checkGameState() {
 		Logger.call("Game.checkGameState", "");
-
-		//bill keszitese
 		BillOfMaterial bill = new BillCreator().createGameWinningBill();
-		//osszes aszeroidara
 		for (Asteroid a : asteroidField) {
 			ArrayList<Material> onAsteroid = new ArrayList<>();
-
-			//onAsteroid = a.allMaterial
-
-			//TODO osszes entitas az aszteroidan
-
-		//	bill.checkInventory(inv);
+			onAsteroid = a.allMaterial();
+			if(bill.checkInventory(onAsteroid) != null) {	
+				Logger.ret("");
+				return false;
+			}
 		}
-		//return false;
 		Logger.ret("");
-
 		return true;
-
 	}
 
 	public void solarStorm() {
