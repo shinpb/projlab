@@ -35,15 +35,17 @@ public class Asteroid extends Place {
 	 * Konstruktor
 	 */
 	public Asteroid() {
-		layers = rand.nextInt(4) + 1;  //4+1?
+		layers = rand.nextInt(4) + 1;
+		isActive = true;
 	}
 
 	/**
 	 * Konstruktor with setCore
 	 */
 	public Asteroid(Material m) {
-		layers = rand.nextInt(4) + 1;  //4+1?
+		layers = rand.nextInt(4) + 1;  
 		setCore(m);
+		isActive = true;
 	}
 	/**
 	 * Furas eseten lefuto figgveny
