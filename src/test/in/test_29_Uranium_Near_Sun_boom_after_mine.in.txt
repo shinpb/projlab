@@ -5,11 +5,10 @@ link
 asteroid 0 astronaut 0
 state
 asteroid 0 layer 0
-asteroid 0 core uranium
+asteroid 0 core uranium 2
 run
-asteroid 0 setNearSun 1
-asteroid 0 setNearSun 1
-astronaut 0 drill
-astronaut 0 putMaterialInAsteroid
+asteroid 0 setNearSun 0
+astronaut 0 mine
+astronaut 0 putMaterialInAsteroid 0
 asteroid 0 setNearSun 1
 export all
