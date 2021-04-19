@@ -175,7 +175,7 @@ public class Asteroid extends Place {
 	 */
 	public void solarStorm() {
 		Logger.call("Asteroid.solarStorm", "");
-		if(core != null && layers != 0) {
+		if(core != null || layers != 0) {
 			for(int i = 0; i < entities.size(); i++) {
 				entities.elementAt(i).solarStormEffect();
 			}
