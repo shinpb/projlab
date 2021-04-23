@@ -30,7 +30,7 @@ public class FinalFinal extends JFrame {
         Thread.sleep(1000);
         g.test();
         instance.repaint(); // TRIGGER, IMPORTANT
-        System.err.println("asfdsafd");
+        System.err.println("move "+i);
       }
     } catch(Exception e) {e.printStackTrace();};
 

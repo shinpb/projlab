@@ -39,13 +39,15 @@ public class Game implements IDraw{
 //balint, something
 //TODO change, test remove
 	@Override
+	public void setDrawPos(int x, int y) {}
+	@Override
+	public void setDrawScale(float f) {}
+	@Override
 	public void paint(Graphics gr) {
 		try{
 			BufferedImage image = ImageIO.read(new File("img", "space.jpg"));
 			gr.drawImage(image, 0, 0, null);
 		} catch(Exception e){ System.err.println("ERR: IO: img/space.jpg");}
-		gr.setColor(Color.RED);
-    gr.drawOval(150, 150, 100, 100);
 		for(Asteroid aster: asteroidField)
 			aster.paint(gr);
 	}

@@ -1,5 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collection;
+import java.awt.*;
+import java.awt.image.*;
+import javax.imageio.*;
+import java.io.File;
 
 //
 //
@@ -15,7 +19,7 @@ import java.util.Collection;
 
 
 
-public abstract class Entity {
+public abstract class Entity implements IDraw {
 
 	/**
 	 *  az aszteroida amin az entitas all
@@ -35,6 +39,17 @@ public abstract class Entity {
 		position = a;
 	}
 
+	protected int posx=0, posy=0;
+	protected float scale=1.0f;
+	@Override
+	public void setDrawPos(int x, int y) {posx=x; posy=y;}
+	@Override
+	public void setDrawScale(float f) {scale=f;}
+	@Override
+	public void paint(Graphics gr) {
+			gr.setColor(Color.YELLOW);
+			gr.drawRect(posx, posy, (int)(10*scale),(int)(10*scale));
+	}
 
 	/**
 	 * meghal

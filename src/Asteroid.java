@@ -2,6 +2,9 @@ import java.util.Collection;
 import java.util.Random;
 import java.util.ArrayList;
 import java.awt.*;
+import java.awt.image.*;
+import javax.imageio.*;
+import java.io.File;
 
 //
 //
@@ -49,14 +52,30 @@ public class Asteroid extends Place implements IDraw {
 		isActive = true;
 	}
 
-private int saaa=0;
+	//TODO
+	private int posx=0, posy=0;
+	private float scale=1.0f;
+	@Override
+	public void setDrawPos(int x, int y) {posx=x; posy=y;}
+	@Override
+	public void setDrawScale(float f) {scale=f;}
+	@Override
 	public void paint(Graphics gr) {
-			gr.setColor(Color.BLUE);
-			Graphics2D g2d = (Graphics2D) gr;
-        g2d.drawOval(200+saaa, 200+saaa, 50, 50);
+		try{
+			BufferedImage image = ImageIO.read(new File("img", "asteroid.png"));
+			gr.drawImage(image, posx, posy, (int)(32*scale), (int)(32*scale), null);
+		} catch(Exception e){ System.err.println("ERR: IO: img/asteroid.png");}
+		int shift=15;
+		for(Entity e: entities) {
+			e.setDrawPos(posx + shift, posy - 5);
+			e.paint(gr);
+			shift += 15;
+		}
 	}
 	public void test(){
-		saaa+=100;
+		posx+=20;
+		posy+=15;
+		scale *= 1.1;
 	}
 
 	/**
