@@ -3,6 +3,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
+import java.awt.*;
+import java.awt.image.*;
+import javax.imageio.*;
+import java.io.File;
 
 //
 //
@@ -18,18 +22,38 @@ import java.util.concurrent.ThreadLocalRandom;
 
 
 
-public class Game {
+public class Game implements IDraw{
 	private ArrayList<Asteroid> asteroidField = new ArrayList<>();
 	//TODO majd kesobb
 	//private WindowHandler windowHandler;
 	private ArrayList<Robot> robots = new ArrayList<>();
 	private ArrayList<Astronaut> astronauts = new ArrayList<>();
 	private ArrayList<Ufo> ufos = new ArrayList<>();
-	//0: nem megy, 
+	//0: nem megy,
 	//1: megy,
 	//2: nyert,
 	//3: vesztett
 	private int gamestate = 0;
+
+
+//balint, something
+//TODO change, test remove
+	@Override
+	public void paint(Graphics gr) {
+		try{
+			BufferedImage image = ImageIO.read(new File("img", "space.jpg"));
+			gr.drawImage(image, 0, 0, null);
+		} catch(Exception e){ System.err.println("ERR: IO: img/space.jpg");}
+		gr.setColor(Color.RED);
+    gr.drawOval(150, 150, 100, 100);
+		for(Asteroid aster: asteroidField)
+			aster.paint(gr);
+	}
+	public void test(){
+		for(Asteroid aster: asteroidField)
+		aster.test();
+	}
+
 
 	//aszteroidaovhoz aszteroida hozzadasa
 	public void addAsteroid(Asteroid a) {
@@ -90,7 +114,7 @@ public class Game {
 					es.add(e);
 		return es;
 	}
-	
+
 	//TODO javitásra szorul
 	public void start() throws Exception {
 		Logger.call("Game.start", "");
@@ -135,7 +159,7 @@ public class Game {
 				//3 szomszedsag hozzaadasa
 				for(int y = 0; y < 3; y++) {
 					//Random szam generalasa
-					randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size() + 1);
+					randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size());
 					boolean same = false;
 					//megnezni van e mar ilyen szomszedja
 					for(Place p : a.getNeighbours()) {
@@ -161,7 +185,7 @@ public class Game {
 	      }
 		Logger.ret("");
 	}
-	
+
 	//ha az aszteroid nem aktiv eltavolitjuk a listabol
 	public void RemoveInactiveAsteroid() {
 		for(int i = asteroidField.size()-1; i >= 0; i-- ) {
@@ -193,9 +217,9 @@ public class Game {
 			//u.step(); //TODO
 			u.move();
 		}
-		
+
 		RemoveInactiveAsteroid();
-	
+
 		//ha entitasoknak egy aszteroidan megvan a raktarukba az osszes nyersanyag vege
 		if(checkGameState() == false) end();
 
@@ -214,7 +238,7 @@ public class Game {
 
 		Logger.ret("");
 	}
-	
+
 	//ha megnyertek a jatekot true, ha meg nem false
 	public boolean GameWon() {
 		if(!checkGameState()) {
@@ -231,7 +255,7 @@ public class Game {
 		for (Asteroid a : asteroidField) {
 			ArrayList<Material> onAsteroid = new ArrayList<>();
 			onAsteroid = a.allMaterial();
-			if(bill.checkInventory(onAsteroid) != null) {	
+			if(bill.checkInventory(onAsteroid) != null) {
 				Logger.ret("");
 				return false;
 			}

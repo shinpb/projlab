@@ -1,6 +1,7 @@
 import java.util.Collection;
 import java.util.Random;
 import java.util.ArrayList;
+import java.awt.*;
 
 //
 //
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 
 
-public class Asteroid extends Place {
+public class Asteroid extends Place implements IDraw {
 	/**
 	 * Az aszteroida kulso retegeinek szama
 	 */
@@ -47,6 +48,17 @@ public class Asteroid extends Place {
 		setCore(m);
 		isActive = true;
 	}
+
+private int saaa=0;
+	public void paint(Graphics gr) {
+			gr.setColor(Color.BLUE);
+			Graphics2D g2d = (Graphics2D) gr;
+        g2d.drawOval(200+saaa, 200+saaa, 50, 50);
+	}
+	public void test(){
+		saaa+=100;
+	}
+
 	/**
 	 * Furas eseten lefuto figgveny
 	 * @throws Exception
