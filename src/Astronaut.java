@@ -1,11 +1,6 @@
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
-import java.awt.*;
-import java.awt.image.*;
-import javax.imageio.*;
-import java.io.File;
-
 
 
 //
@@ -45,17 +40,10 @@ public class Astronaut extends Entity implements IDrill, IMine {
 		collectedMaterials = new ArrayList<Material>();
 	}
 
-	public Astronaut() {	///edit: Bálint
+	public Astronaut() {
 		super();
 		gates = new ArrayList<Gate>();
 		collectedMaterials = new ArrayList<Material>();
-	}
-
-
-	@Override
-	public void paint(Graphics gr) {
-			gr.setColor(Color.CYAN);
-			gr.drawRect(posx, posy, (int)(10*scale),(int)(10*scale));
 	}
 
 	/**

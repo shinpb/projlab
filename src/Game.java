@@ -3,10 +3,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
-import java.awt.*;
-import java.awt.image.*;
-import javax.imageio.*;
-import java.io.File;
 
 //
 //
@@ -22,7 +18,7 @@ import java.io.File;
 
 
 
-public class Game implements IDraw{
+public class Game{
 	private ArrayList<Asteroid> asteroidField = new ArrayList<>();
 	//TODO majd kesobb
 	//private WindowHandler windowHandler;
@@ -34,28 +30,6 @@ public class Game implements IDraw{
 	//2: nyert,
 	//3: vesztett
 	private int gamestate = 0;
-
-
-//balint, something
-//TODO change, test remove
-	@Override
-	public void setDrawPos(int x, int y) {}
-	@Override
-	public void setDrawScale(float f) {}
-	@Override
-	public void paint(Graphics gr) {
-		try{
-			BufferedImage image = ImageIO.read(new File("img", "space.jpg"));
-			gr.drawImage(image, 0, 0, null);
-		} catch(Exception e){ System.err.println("ERR: IO: img/space.jpg");}
-		for(Asteroid aster: asteroidField)
-			aster.paint(gr);
-	}
-	public void test(){
-		for(Asteroid aster: asteroidField)
-		aster.test();
-	}
-
 
 	//aszteroidaovhoz aszteroida hozzadasa
 	public void addAsteroid(Asteroid a) {

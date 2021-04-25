@@ -1,8 +1,4 @@
 import java.util.Random;
-import java.awt.*;
-import java.awt.image.*;
-import javax.imageio.*;
-import java.io.File;
 
 //
 //
@@ -27,13 +23,6 @@ public class Ufo extends Entity implements IMine {
 	public Ufo() {
 		super();
 	}
-
-
-		@Override
-		public void paint(Graphics gr) {
-				gr.setColor(Color.GRAY);
-				gr.drawRect(posx, posy, (int)(10*scale),(int)(10*scale));
-		}
 
 	@Override
 	public void move() throws Exception {

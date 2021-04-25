@@ -1,10 +1,6 @@
 import java.util.Collection;
 import java.util.Random;
 import java.util.ArrayList;
-import java.awt.*;
-import java.awt.image.*;
-import javax.imageio.*;
-import java.io.File;
 
 //
 //
@@ -20,7 +16,7 @@ import java.io.File;
 
 
 
-public class Asteroid extends Place implements IDraw {
+public class Asteroid extends Place {
 	/**
 	 * Az aszteroida kulso retegeinek szama
 	 */
@@ -50,32 +46,6 @@ public class Asteroid extends Place implements IDraw {
 		layers = rand.nextInt(4) + 1;
 		setCore(m);
 		isActive = true;
-	}
-
-	//TODO
-	private int posx=0, posy=0;
-	private float scale=1.0f;
-	@Override
-	public void setDrawPos(int x, int y) {posx=x; posy=y;}
-	@Override
-	public void setDrawScale(float f) {scale=f;}
-	@Override
-	public void paint(Graphics gr) {
-		try{
-			BufferedImage image = ImageIO.read(new File("img", "asteroid.png"));
-			gr.drawImage(image, posx, posy, (int)(32*scale), (int)(32*scale), null);
-		} catch(Exception e){ System.err.println("ERR: IO: img/asteroid.png");}
-		int shift=15;
-		for(Entity e: entities) {
-			e.setDrawPos(posx + shift, posy - 5);
-			e.paint(gr);
-			shift += 15;
-		}
-	}
-	public void test(){
-		posx+=20;
-		posy+=15;
-		scale *= 1.1;
 	}
 
 	/**

@@ -1,8 +1,4 @@
 import java.util.Random;
-import java.awt.*;
-import java.awt.image.*;
-import javax.imageio.*;
-import java.io.File;
 
 //
 //
@@ -29,16 +25,9 @@ public class Robot extends Entity implements IDrill {
 			throw new Exception("Argument passed to Robot.ctor is null!");
 	}
 
-	public Robot() { //edit: Bálint
+	public Robot() { 
 		super();
 	}
-
-
-		@Override
-		public void paint(Graphics gr) {
-				gr.setColor(Color.RED);
-				gr.drawRect(posx, posy, (int)(10*scale),(int)(10*scale));
-		}
 
 	/**
 	 * napvihar hatasara a robot elromlik
