@@ -90,8 +90,8 @@ public class Game{
 					es.add(e);
 		return es;
 	}
-
-	//TODO javitásra szorul
+	
+	//elinditja a jatekot, kisorsolja a szomszerdokat
 	public void start() throws Exception {
 		Logger.call("Game.start", "");
 		//seged valtozok
@@ -127,13 +127,12 @@ public class Game{
 		}
 
 		//szomszedossagok letrohazosa
-		//TODO algoritmus javitasa
 		for (Asteroid a : asteroidField) {
-			//ha keves szomszedja van 3-nal kevesebb
+			//ha keves szomszedja van 3-nal kevesebb max 4 szomszed
 			if(a.getNeighbours().size() < 3) {
 
-				//3 szomszedsag hozzaadasa
-				for(int y = 0; y < 3; y++) {
+				//2 szomszedsag hozzaadasa
+				for(int y = 0; y < 2; y++) {
 					//Random szam generalasa
 					randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size());
 					boolean same = false;
@@ -144,7 +143,7 @@ public class Game{
 						}
 					}
 					//ha nincs ilyen szomszedja
-					if(same == false){
+					if(same == false && asteroidField.get(randomNum).getNeighbours().size() < 4){
 						//szomszedsag  beallitasa
 						a.addNeighbour(asteroidField.get(randomNum));
 						asteroidField.get(randomNum).addNeighbour(a);
@@ -159,6 +158,7 @@ public class Game{
 			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size() + 1);
 			astronauts.add(new Astronaut(asteroidField.get(randomNum)));
 	      }
+		
 		Logger.ret("");
 	}
 
