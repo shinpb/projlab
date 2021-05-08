@@ -10,7 +10,7 @@ public class ControlPanel extends JPanel{
     private JPanel propertyPanel = new JPanel();
     private JPanel operationPanel = new JPanel();
     private JLabel lblAsterID;
-
+    private JPanel[] invarr=new JPanel[10];
 
     public ControlPanel(){
         setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -36,14 +36,14 @@ public class ControlPanel extends JPanel{
     public void initSelectPanel(){
       selectPanel.setLayout(null);
       JLabel jatekos = new JLabel("Játékos", JLabel.CENTER);
-      jatekos.setBounds(32, 12, 45, 19);
+      jatekos.setBounds(32, 12, 65, 19);
       jatekos.setBackground(Color.MAGENTA);
       selectPanel.add(jatekos);
       selectPanel.setBackground(new Color(0, 0, 255));
       selectPanel.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
       JMenuBar menuBar = new JMenuBar();
-      menuBar.setBounds(178, 5, 73, 23);
+      menuBar.setBounds(108, 5, 73, 23);
       selectPanel.add(menuBar);
 
       JMenu mnAstronaut = new JMenu("Astronaut");
@@ -69,6 +69,16 @@ public class ControlPanel extends JPanel{
       JLabel lblInventory = new JLabel("Inventory");
       lblInventory.setBounds(32, 52, 114, 15);
       propertyPanel.add(lblInventory);
+
+      for(int i=0; i<10; i++) {
+          invarr[i]=new JPanel();
+          invarr[i].setBounds(32+((i%5)*30), 72+(i/5)*30, 20, 20);
+          invarr[i].setMinimumSize(new Dimension(20, 20));
+          invarr[i].setPreferredSize(new Dimension(20, 20));
+          invarr[i].setBackground(Color.WHITE);
+          propertyPanel.add(invarr[i]);
+      }
+
     }
 
     public void initOperationPanel(){
