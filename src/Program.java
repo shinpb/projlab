@@ -428,7 +428,7 @@ Főbb funkciói:
 
 
 	public static void main(String args[]) {
-		try {
+		/*try {
 			System.setIn(new UnClosableDecorator(System.in));
 			
 			Scanner input = new Scanner(System.in);
@@ -455,6 +455,9 @@ Főbb funkciói:
 			
 		} catch(Exception e) { 
 			e.printStackTrace();
-		}
+		}*/
+		
+		MainPanel mp = new MainPanel();
+		mp.setVisible(true);
 	}
 }
