@@ -68,6 +68,8 @@ public class PlayersPanel extends JFrame{
 					pack();
 				} else {
 					//Játék indítása
+					
+					//Itt kell létrehozni a ControlPanelt és a FieldPanelt
 				}
 			}
 		}
