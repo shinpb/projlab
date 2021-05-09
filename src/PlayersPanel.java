@@ -17,7 +17,7 @@ public class PlayersPanel extends JFrame{
 	private JLabel errormsg;
 	
 	public PlayersPanel(int cnt) {
-		super("Aszteroidab·ny·szat");
+		super("Aszteroidab√°ny√°szat");
 		playercnt = cnt;
 		labels = new JLabel[cnt];
 		tfs = new JTextField[cnt];
@@ -25,19 +25,19 @@ public class PlayersPanel extends JFrame{
 	}
 	
 	private void create() {
-		//Labelek Ès TextFieldek lÈtrehoz·sa Ès felvÈtele
+		//Labelek √©s TextFieldek l√©trehoz√°sa √©s felv√©tele
 		JPanel jp = new JPanel();
 		errormsg = new JLabel();
 		jp.setLayout(new BoxLayout(jp,BoxLayout.Y_AXIS));
 		jp.add(errormsg);
 		for(int i = 0; i < playercnt; i++) {
-			labels[i] = new JLabel(String.valueOf(i+1) + ". j·tÈkos: ");
+			labels[i] = new JLabel(String.valueOf(i+1) + ". j√°t√©kos: ");
 			tfs[i] = new JTextField(30);
 			jp.add(labels[i]);
 			jp.add(tfs[i]);
 		}
 		
-		//Gomb felvÈtele
+		//Gomb felv√©tele
 		JPanel jp_bot = new JPanel();
 		JButton bt_ok = new JButton("OK");
 		bt_ok.setActionCommand("ok");
@@ -52,7 +52,7 @@ public class PlayersPanel extends JFrame{
 	
 	/**
 	 * 
-	 * A frame-ben lÈvı gombot figyelı ActionListener
+	 * A frame-ben l√©v√µ gombot figyel√µ ActionListener
 	 *
 	 */
 	class ButtonActionListener implements ActionListener{
@@ -64,10 +64,10 @@ public class PlayersPanel extends JFrame{
 						isUres = true;
 				}
 				if(isUres) {
-					errormsg.setText("<html><p style=\"color:red;\">Adjon nevet az ˆsszes j·tÈkosnak!</p></html>");
+					errormsg.setText("<html><p style=\"color:red;\">Adjon nevet az √∂sszes j√°t√©kosnak!</p></html>");
 					pack();
 				} else {
-					//J·tÈk indÌt·sa
+					//J√°t√©k ind√≠t√°sa
 				}
 			}
 		}

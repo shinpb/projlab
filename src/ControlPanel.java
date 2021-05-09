@@ -14,8 +14,17 @@ public class ControlPanel extends JPanel{
     private JLabel lblAsterID;
     private JMenu mnAstronaut;
     private JPanel[] invarr=new JPanel[10];
+    private JPanel kivalasztottCore;
     private Astronaut theKivalasztott;
     private ArrayList<Astronaut> aKorbenLepettMar = new ArrayList<Astronaut>();
+    private JMenu mnCrft;
+    private JMenuItem mnItemRobo;
+    private JMenuItem mnItemGate;
+    private enum epitmod { nemtom, robot, gate}
+    private epitmod activeEpitmod=epitmod.nemtom;
+    private JMenu mnAster;
+    private ArrayList<Place> ideLephetHelyek;
+    private Place ideLepj;
 
     private void initControlPanel(){
       setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -59,42 +68,67 @@ public class ControlPanel extends JPanel{
         }
     }
 
+    private Color mat2col(Material m) {
+      Color c=new Color(255, 255, 255, 80);
+      switch((""+m).split("@")[0].toLowerCase()) {
+        case "ice":
+          c=new Color(185,232,234);
+          break;
+        case "carbon":
+          c=new Color(	54, 69, 79);
+          break;
+        case "uran":
+          c=new Color(93, 202, 49);
+          break;
+        case "iron":
+          c=new Color(161,157,148);
+          break;
+      }
+      return c;
+    }
+
     private void selectAstronaut(Astronaut a){
       //a can be null
       int i=0;
-      Color c=new Color(255, 255, 255, 80);
+      Color c=mat2col(null);
+      mnAster.removeAll();
+      mnAster.setText("Place");
       if(a==null) {
         lblAsterID.setText("");
+        mnCrft.setText("Mit epits");
+        activeEpitmod=epitmod.nemtom;
+        kivalasztottCore.setBackground(new Color(255,255,255,0));
+        ideLepj=null;
+        ideLephetHelyek=null;
       }
       else
       {
         lblAsterID.setText((""+a.getPosition()).replace("@", " #"));
         for(Material m: a.getInventory()){
-          switch((""+m).split("@")[0].toLowerCase()) {
-            case "ice":
-              c=new Color(185,232,234);
-              break;
-            case "carbon":
-              c=new Color(	54, 69, 79);
-              break;
-            case "uran":
-              c=new Color(93, 202, 49);
-              break;
-            case "iron":
-              c=new Color(161,157,148);
-              break;
-          }
-          invarr[i].setBackground(c);
+          invarr[i].setBackground(mat2col(m));
           i++;
+        }
+        //kivalasztottCore.setBackground(mat2col(a.getPosition().getCore()));
+        //System.out.println(a.getPosition().getLayer());
+        ideLephetHelyek=new ArrayList<Place>(a.getPosition().getNeighbours());
+        for(int j=0; j<ideLephetHelyek.size(); j++) {
+          Place p = ideLephetHelyek.get(j);
+          JMenuItem item = new JMenuItem((""+p).replace("@", " #"));
+          item.setName(String.valueOf(j));
+          item.addActionListener(new java.awt.event.ActionListener() {
+             public void actionPerformed(java.awt.event.ActionEvent evt)
+             {
+                int id= Integer.parseInt(item.getName());
+                mnAster.setText(item.getText());
+                ideLepj=ideLephetHelyek.get(id);
+             }
+          });
+          mnAster.add(item);
         }
       }
       for(; i<10; i++) {
         invarr[i].setBackground(c);
       }
-
- //   invarr[10];
-
-
     }
 
     private void votma(Astronaut a) {
@@ -156,6 +190,13 @@ public class ControlPanel extends JPanel{
       lblAsterID.setBounds(70, 32, 150, 15);
       propertyPanel.add(lblAsterID);
 
+      kivalasztottCore=new JPanel();
+      kivalasztottCore.setBounds(230, 32, 20, 20);
+      kivalasztottCore.setMinimumSize(new Dimension(20, 20));
+      kivalasztottCore.setPreferredSize(new Dimension(20, 20));
+      kivalasztottCore.setBackground(new Color(255,255,255,0));
+      propertyPanel.add(kivalasztottCore);
+
       JLabel lblInventory = new JLabel("Inventory");
       lblInventory.setBounds(32, 52, 114, 15);
       propertyPanel.add(lblInventory);
@@ -165,7 +206,7 @@ public class ControlPanel extends JPanel{
           invarr[i].setBounds(32+((i%5)*30), 72+(i/5)*30, 20, 20);
           invarr[i].setMinimumSize(new Dimension(20, 20));
           invarr[i].setPreferredSize(new Dimension(20, 20));
-          invarr[i].setBackground(Color.WHITE);
+          invarr[i].setBackground(mat2col(null));
           propertyPanel.add(invarr[i]);
       }
 
@@ -185,12 +226,8 @@ public class ControlPanel extends JPanel{
 
       JMenuBar astermenubar = new JMenuBar();
 
-      JMenu mnAster = new JMenu("Asteroid");
+      mnAster = new JMenu("Asteroid");
       astermenubar.add(mnAster);
-
-      mnAster.add(new JMenuItem("A1"));
-      mnAster.add(new JMenuItem("A2"));
-      mnAster.add(new JMenuItem("A3"));
 
       astermenubar.setBounds(120, 32, 70, 15);
       operationPanel.add(astermenubar);
@@ -205,11 +242,27 @@ public class ControlPanel extends JPanel{
 
       JMenuBar craftMenuBar = new JMenuBar();
 
-      JMenu mnCrft = new JMenu("Mit");
+      mnCrft = new JMenu("Mit épits");
       craftMenuBar.add(mnCrft);
 
-      mnCrft.add(new JMenuItem("robot"));
-      mnCrft.add(new JMenuItem("gate"));
+      mnItemRobo=new JMenuItem("robot");
+      mnItemGate=new JMenuItem("gate");
+      mnItemRobo.addActionListener(new java.awt.event.ActionListener() {
+     public void actionPerformed(java.awt.event.ActionEvent evt)
+       {
+          mnCrft.setText(mnItemRobo.getText());
+          activeEpitmod=epitmod.robot;
+        }
+      });
+      mnItemGate.addActionListener(new java.awt.event.ActionListener() {
+     public void actionPerformed(java.awt.event.ActionEvent evt)
+       {
+          mnCrft.setText(mnItemGate.getText());
+          activeEpitmod=epitmod.gate;
+        }
+      });
+      mnCrft.add(mnItemRobo);
+      mnCrft.add(mnItemGate);
 
       craftMenuBar.setBounds(120, 72, 70, 15);
       operationPanel.add(craftMenuBar);
@@ -265,13 +318,14 @@ public class ControlPanel extends JPanel{
          {
            if(theKivalasztott==null) return;
            try {
-             //TODO if (
-             //TODO list state var
-
-             }
-             theKivalasztott.mine();
+             if(activeEpitmod==epitmod.robot) {
+               theKivalasztott.craftRobot();
+               votma(theKivalasztott);
+             } else if(activeEpitmod==epitmod.gate) {
+               theKivalasztott.craftGate();
+               votma(theKivalasztott);
+             } else {}
            } catch(Exception e) {e.printStackTrace();}
-           votma(theKivalasztott);
          }
       });
 
@@ -279,12 +333,11 @@ public class ControlPanel extends JPanel{
        public void actionPerformed(java.awt.event.ActionEvent evt)
          {
          if(theKivalasztott==null) return;
+         if(ideLepj==null) return;
            try {
-               theKivalasztott.mine();
-               //TODO list change on select player
-               //TODO THIS
+               theKivalasztott.moveTo(ideLepj);
+               votma(theKivalasztott);
            } catch(Exception e) {e.printStackTrace();}
-             votma(theKivalasztott);
          }
       });
 

@@ -17,14 +17,14 @@ public class MainPanel extends JFrame {
 	JLabel text;
 	
 	public MainPanel() {
-		super("Aszteriodabányászat");
+		super("AszteriodabÃ¡nyÃ¡szat");
 		create();
 	}
 	
 	private void create() {
 		//Felso panel
 		jp_top = new JPanel();
-		text = new JLabel("<html><center><h1>Üdvözöljük!</h1></center><br/>Kérem adja meg, hogy hány játékossal szeretne játékot létrehozni:</html>");
+		text = new JLabel("<html><center><h1>ÃœdvÃ¶zÃ¶ljÃ¼k!</h1></center><br/>KÃ©rem adja meg, hogy hÃ¡ny jÃ¡tÃ©kossal szeretne jÃ¡tÃ©kot lÃ©trehozni:</html>");
 		jp_top.add(text);
 		
 		//Kozepso panel
@@ -34,13 +34,13 @@ public class MainPanel extends JFrame {
 		
 		//Also panel
 		jp_bot = new JPanel();
-		JButton bt_start = new JButton("Indítás");
+		JButton bt_start = new JButton("IndÃ­tÃ¡s");
 		bt_start.setActionCommand("start");
 		ButtonActionListener bal = new  ButtonActionListener();
 		bt_start.addActionListener(bal);
 		jp_bot.add(bt_start);
 		
-		//Panelek felvétele
+		//Panelek felvÃ©tele
 		add(jp_top,BorderLayout.NORTH);
 		add(jp_mid,BorderLayout.CENTER);
 		add(jp_bot,BorderLayout.SOUTH);
@@ -49,7 +49,7 @@ public class MainPanel extends JFrame {
 	
 	/**
 	 * 
-	 * A frame-ben lévõ gombot figyelõ ActionListener
+	 * A frame-ben lÃ©vÃµ gombot figyelÃµ ActionListener
 	 *
 	 */
 	class ButtonActionListener implements ActionListener{
@@ -57,9 +57,9 @@ public class MainPanel extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if(e.getActionCommand() == "start") {
 				if(Integer.parseInt(tf.getText()) > 5 || Integer.parseInt(tf.getText()) < 1) {
-					text.setText("<html><center><h1>Üdvözöljük!</h1></center>"
-							+ "<br/>Kérem adja meg, hogy hány játékossal szeretne játékot létrehozni:"
-							+ "<br/><p style=\"color:red;\">A játékosok számának egy 1 és 5 közötti egész számnak kell lennie!</p></html>");
+					text.setText("<html><center><h1>ÃœdvÃ¶zÃ¶ljÃ¼k!</h1></center>"
+							+ "<br/>KÃ©rem adja meg, hogy hÃ¡ny jÃ¡tÃ©kossal szeretne jÃ¡tÃ©kot lÃ©trehozni:"
+							+ "<br/><p style=\"color:red;\">A jÃ¡tÃ©kosok szÃ¡mÃ¡nak egy 1 Ã©s 5 kÃ¶zÃ¶tti egÃ©sz szÃ¡mnak kell lennie!</p></html>");
 					pack();
 				} else {
 					PlayersPanel pp = new PlayersPanel(Integer.parseInt(tf.getText()));

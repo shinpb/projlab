@@ -90,7 +90,7 @@ public class Game{
 					es.add(e);
 		return es;
 	}
-	
+
 	//elinditja a jatekot, kisorsolja a szomszerdokat
 	public void start() throws Exception {
 		Logger.call("Game.start", "");
@@ -155,10 +155,10 @@ public class Game{
 		//asztronautak keszitese
 		//asztronautak lerakasa random aszteroidakra
 		for (int i = 0; i < astronautcount; i++) {
-			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size() + 1);
+			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size());
 			astronauts.add(new Astronaut(asteroidField.get(randomNum)));
 	      }
-		
+
 		Logger.ret("");
 	}
 
