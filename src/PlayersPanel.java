@@ -103,6 +103,7 @@ public class PlayersPanel extends JFrame{
 					mainFrame.add(mainPanel);
 					mainFrame.pack();
 					mainFrame.setVisible(true);
+					setVisible(false);
 				}
 			}
 		}
