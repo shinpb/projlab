@@ -24,18 +24,18 @@ public class AsteroidPanel extends JPanel {
 	Asteroid asteroid;
 	JPanel headerPanel, picturePanel;
 	JPanel mainPanel;
-	
+
 	public AsteroidPanel(Asteroid a, JPanel _mainPanel) {
 		asteroid = a;
 		mainPanel = _mainPanel;
 		init();
 	}
-	
-	private void init() {	
+
+	private void init() {
 		headerPanel = new JPanel();
 		JLabel label = new JLabel(asteroid.toString());
 		JButton button = new JButton("Back");
-		
+
 		button.addActionListener(
 				new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -44,23 +44,23 @@ public class AsteroidPanel extends JPanel {
 					}
 				}
 		);
-		
+
 		headerPanel.setPreferredSize(new Dimension(200, 40));
 		headerPanel.setLayout(new FlowLayout());
 		headerPanel.add(label);
 		headerPanel.add(button);
-		
+
 
 		picturePanel = new JPanel();
 		picturePanel.setPreferredSize(new Dimension(200, 200));
 		picturePanel.setBackground(new Color(0, 51, 102));
-		
-		
-		ArrayList<Entity> entities = new ArrayList(asteroid.getEntities());
+
+
+		ArrayList<Entity> entities = new ArrayList<Entity>(asteroid.getEntities());
 		picturePanel.setLayout(new FlowLayout());
-		
+
 		try {
-			
+
 			for(Entity e : entities) {
 				String imageFileName = e.getImageFileName();
 				BufferedImage image = ImageIO.read(new File("src/pictures", imageFileName));
@@ -69,13 +69,13 @@ public class AsteroidPanel extends JPanel {
 				entityButton.setIcon(icon);
 				entityButton.setPreferredSize(new Dimension(50, 50));
 				picturePanel.add(entityButton);
-				
+
 			}
 		} catch (IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		
+
 		this.setLayout(new BorderLayout());
 		this.add(headerPanel, BorderLayout.NORTH);
 		this.add(picturePanel, BorderLayout.CENTER);
