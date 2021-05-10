@@ -66,7 +66,7 @@ public class AsteroidPanel extends JPanel {
 				BufferedImage image;
 				try{
 					image = ImageIO.read(new File("src/pictures", imageFileName));
-				} catch (IOException e) {
+				} catch (IOException eeee) {
 					image = ImageIO.read(new File("pictures", imageFileName));
 				}
 				ImageIcon icon = new ImageIcon(image);
