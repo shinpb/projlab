@@ -15,6 +15,7 @@ public class ControlPanel extends JPanel{
     private JMenu mnAstronaut;
     private JPanel[] invarr=new JPanel[10];
     private JPanel kivalasztottCore;
+    private JLabel kivalasztottLayer;
     private Astronaut theKivalasztott;
     private ArrayList<Astronaut> aKorbenLepettMar = new ArrayList<Astronaut>();
     private JMenu mnCrft;
@@ -109,6 +110,7 @@ public class ControlPanel extends JPanel{
         mnCrft.setText("Mit epits");
         activeEpitmod=epitmod.nemtom;
         kivalasztottCore.setBackground(new Color(255,255,255,0));
+        kivalasztottLayer.setText("");
         ideLepj=null;
         ideLephetHelyek=null;
       }
@@ -120,7 +122,7 @@ public class ControlPanel extends JPanel{
           i++;
         }
         kivalasztottCore.setBackground(mat2col(a.getPosition().getCore()));
-        //System.out.println(a.getPosition().getLayer());
+        kivalasztottLayer.setText(""+a.getPosition().getLayer());
         ideLephetHelyek=new ArrayList<Place>(a.getPosition().getNeighbours());
         for(int j=0; j<ideLephetHelyek.size(); j++) {
           Place p = ideLephetHelyek.get(j);
@@ -207,11 +209,15 @@ public class ControlPanel extends JPanel{
       propertyPanel.add(lblAsterID);
 
       kivalasztottCore=new JPanel();
-      kivalasztottCore.setBounds(230, 32, 20, 20);
+      kivalasztottCore.setBounds(240, 32, 20, 20);
       kivalasztottCore.setMinimumSize(new Dimension(20, 20));
       kivalasztottCore.setPreferredSize(new Dimension(20, 20));
       kivalasztottCore.setBackground(new Color(255,255,255,0));
       propertyPanel.add(kivalasztottCore);
+
+      kivalasztottLayer=new JLabel();
+      kivalasztottLayer.setBounds(225, 32, 15, 15);
+      propertyPanel.add(kivalasztottLayer);
 
       JLabel lblInventory = new JLabel("Inventory");
       lblInventory.setBounds(32, 52, 114, 15);
