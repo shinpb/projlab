@@ -157,7 +157,7 @@ public class Game{
 		for (int i = 0; i < astronautcount; i++) {
 			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size());
 			Astronaut astronaut = new Astronaut(asteroidField.get(randomNum));
-			astronaut.setName(names[i]);
+			astronaut.setName(names.get(i));
 			astronauts.add(astronaut);
 	      }
 
