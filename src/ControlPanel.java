@@ -172,15 +172,7 @@ public class ControlPanel extends JPanel{
       this(g0);
       setAsteroidField(af0);
     }
-    public ControlPanel(Game g0, ArrayList<String> s0){
-      this(g0);
-      astroNevek=s0;
-    }
     public ControlPanel(Game g0, ArrayList<Asteroid> af0, ArrayList<String> s0){
-      this(g0,af0);
-      astroNevek=s0;
-    }
-    public ControlPanel(Game g0, ArrayList<String> s0, ArrayList<Asteroid> af0){
       this(g0,af0);
       astroNevek=s0;
     }
