@@ -2,6 +2,7 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -81,7 +82,13 @@ public class PlayersPanel extends JFrame{
 					JFrame mainFrame = new JFrame();
 					JPanel mainPanel = new JPanel();
 					JPanel gamePanel = new JPanel();
-					JPanel controlPanel = new ControlPanel(game);
+					ArrayList<String> nevek = new ArrayList<String>();
+					for(int i = 0; i < tfs.length;i++) {
+						String nev = tfs[i].getText();
+						nevek.add(nev);
+					}
+					
+					JPanel controlPanel = new ControlPanel(game,nevek);
 					
 					mainPanel.setLayout(new CardLayout());
 					
