@@ -95,7 +95,7 @@ public class ControlPanel extends JPanel{
       return (""+ast).replace("@", " #");
     }
     private String nameOfAstronaut(Astronaut astro) {
-      astro.getName();
+      return astro.getName();
     }
 
     private void selectAstronaut(Astronaut a){
