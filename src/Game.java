@@ -177,6 +177,7 @@ public class Game{
 		Logger.call("Game.step", "");
 
 		//Minden astronautara meghivjuk a step()
+		/*
 		for(Astronaut a : astronauts) {
 			try{
 				a.step();
@@ -184,6 +185,7 @@ public class Game{
 				ex.printStackTrace();
 			}
 		}
+		*/
 
 		//Minden robotra meghivjuk a step()
 		for(Robot r : robots) {
@@ -200,6 +202,20 @@ public class Game{
 
 		//ha entitasoknak egy aszteroidan megvan a raktarukba az osszes nyersanyag vege
 		if(checkGameState() == false) end();
+		
+		int randomNum;
+		randomNum = ThreadLocalRandom.current().nextInt(0, 2);
+		if(randomNum == 0) {
+			solarStorm();
+		}
+		if(randomNum == 1) {
+			nearSun();
+		}
+		if(randomNum == 2) {
+			int random = ThreadLocalRandom.current().nextInt(0, asteroidField.size());
+			
+			ufos.add(new Ufo(asteroidField.get(random)));
+		}
 
 		Logger.ret("");
 	}
