@@ -261,9 +261,16 @@ public class Game{
 	public void solarStorm() {
 		Logger.call("Game.solarStorm", "");
 		//osszes aszteroidara solarStorm()
+		int random = ThreadLocalRandom.current().nextInt(0, 3);
+		for(int i = 0; i < random;i++) {
+			asteroidField.get(ThreadLocalRandom.current().nextInt(0, asteroidField.size())).solarStorm();
+		}
+	
+		/*
 		for (Asteroid a : asteroidField) {
 	          a.solarStorm();
 	      }
+	    */
 		Logger.ret("");
 	}
 
