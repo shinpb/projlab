@@ -96,6 +96,10 @@ public class ControlPanel extends JPanel{
       return (""+ast).replace("@", " #");
     }
     private String nameOfAstronaut(Astronaut astro) {
+      if(astroNevek!=null) {
+        int id=astroNevek.indexOf(astro);
+        if(id>=0) return astroNevek.get(id);
+      }
       return (""+astro).replace("@", " #");
     }
 
@@ -125,7 +129,7 @@ public class ControlPanel extends JPanel{
         ideLephetHelyek=new ArrayList<Place>(a.getPosition().getNeighbours());
         for(int j=0; j<ideLephetHelyek.size(); j++) {
           Place p = ideLephetHelyek.get(j);
-          JMenuItem item = new JMenuItem((""+p).replace("@", " #"));
+          JMenuItem item = new JMenuItem(nameOfAsteroid(p));
           item.setName(String.valueOf(j));
           item.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt)
