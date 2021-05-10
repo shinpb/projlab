@@ -53,7 +53,9 @@ public class ControlPanel extends JPanel{
         if(newround) {
           //minden asztronauta lépett már
           aKorbenLepettMar.clear();
-          game.step();
+          try {
+            game.step();
+          } catch(Exception e) {e.printStackTrace();}
         }
         for(int i=0; i<astronauts.size(); i++) {
           Astronaut a = astronauts.get(i);
