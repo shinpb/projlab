@@ -26,6 +26,7 @@ public class ControlPanel extends JPanel{
     private ArrayList<Place> ideLephetHelyek;
     private Place ideLepj;
     private ArrayList<Asteroid> asteroidField=null;
+    private ArrayList<String> astroNevek=null;
 
     private void initControlPanel(){
       setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -152,26 +153,38 @@ public class ControlPanel extends JPanel{
         astronauts = new ArrayList<Astronaut>();
         try {
           game=new Game();
-          game.start();
-          astronauts.add(new Astronaut(new Asteroid()));
-          astronauts.add(new Astronaut(new Asteroid()));
-          astronauts.add(new Astronaut(new Asteroid()));
-          astronauts.add(new Astronaut(new Asteroid()));
+          ArrayList<String> asd=new ArrayList<String>();
+          asd.add("Joe");
+          asd.add("Mari");
+          asd.add("Hai");
+          asd.add("Mao");
+          game.start(asd);
         } catch(Exception e) {e.printStackTrace();}
 
         initControlPanel();
     }
-
     public ControlPanel(Game g0){
       game=g0;
       initControlPanel();
       astronauts = game.getAstronauts();
     }
-
     public ControlPanel(Game g0, ArrayList<Asteroid> af0){
       this(g0);
       setAsteroidField(af0);
     }
+    public ControlPanel(Game g0, ArrayList<String> s0){
+      this(g0);
+      astroNevek=s0;
+    }
+    public ControlPanel(Game g0, ArrayList<Asteroid> af0, ArrayList<String> s0){
+      this(g0,af0);
+      astroNevek=s0;
+    }
+    public ControlPanel(Game g0, ArrayList<String> s0, ArrayList<Asteroid> af0){
+      this(g0,af0);
+      astroNevek=s0;
+    }
+
 
     public void initSelectPanel(){
       selectPanel.setLayout(null);
