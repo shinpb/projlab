@@ -72,8 +72,14 @@ public class PlayersPanel extends JFrame{
 					//Játék indítása
 					
 					Game game =  new Game();
+					ArrayList<String> nevek = new ArrayList<String>();
+					for(int i = 0; i < tfs.length;i++) {
+						String nev = tfs[i].getText();
+						nevek.add(nev);
+					}
+					
 					try {
-						game.start();
+						game.start(nevek);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -82,13 +88,9 @@ public class PlayersPanel extends JFrame{
 					JFrame mainFrame = new JFrame();
 					JPanel mainPanel = new JPanel();
 					JPanel gamePanel = new JPanel();
-					ArrayList<String> nevek = new ArrayList<String>();
-					for(int i = 0; i < tfs.length;i++) {
-						String nev = tfs[i].getText();
-						nevek.add(nev);
-					}
+			
 					
-					JPanel controlPanel = new ControlPanel(game,nevek);
+					JPanel controlPanel = new ControlPanel(game);
 					
 					mainPanel.setLayout(new CardLayout());
 					
