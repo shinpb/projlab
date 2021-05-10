@@ -50,7 +50,11 @@ public class ControlPanel extends JPanel{
         boolean newround=true;
         for(Astronaut a: astronauts)
           newround = newround && aKorbenLepettMar.contains(a);
-        if(newround) aKorbenLepettMar.clear();
+        if(newround) {
+          //minden asztronauta lépett már
+          aKorbenLepettMar.clear();
+          game.step();
+        }
         for(int i=0; i<astronauts.size(); i++) {
           Astronaut a = astronauts.get(i);
           if(aKorbenLepettMar.contains(a)) continue;
