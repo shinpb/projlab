@@ -156,7 +156,9 @@ public class Game{
 		//asztronautak lerakasa random aszteroidakra
 		for (int i = 0; i < astronautcount; i++) {
 			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size());
-			astronauts.add(new Astronaut(asteroidField.get(randomNum),names[i]));
+			Astronaut astronaut = new Astronaut(asteroidField.get(randomNum));
+			astronaut.setName(names[i]);
+			astronauts.add(astronaut);
 	      }
 
 		Logger.ret("");
