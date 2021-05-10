@@ -63,7 +63,11 @@ public class AsteroidPanel extends JPanel {
 
 			for(Entity e : entities) {
 				String imageFileName = e.getImageFileName();
-				BufferedImage image = ImageIO.read(new File("src/pictures", imageFileName));
+				try{
+					BufferedImage image = ImageIO.read(new File("src/pictures", imageFileName));
+				} catch (IOException e) {
+						BufferedImage image = ImageIO.read(new File("pictures", imageFileName));
+				}
 				ImageIcon icon = new ImageIcon(image);
 				JButton entityButton = new JButton();
 				entityButton.setIcon(icon);
