@@ -53,7 +53,7 @@ public class ControlPanel extends JPanel{
         for(int i=0; i<astronauts.size(); i++) {
           Astronaut a = astronauts.get(i);
           if(aKorbenLepettMar.contains(a)) continue;
-          JMenuItem item = new JMenuItem(nameOfAsteroid(a));
+          JMenuItem item = new JMenuItem(nameOfAstronaut(a));
           item.setName(String.valueOf(i));
           item.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -95,7 +95,7 @@ public class ControlPanel extends JPanel{
       return (""+ast).replace("@", " #");
     }
     private String nameOfAstronaut(Astronaut astro) {
-      return (""+a).replace("@", " #");
+      return (""+astro).replace("@", " #");
     }
 
     private void selectAstronaut(Astronaut a){
