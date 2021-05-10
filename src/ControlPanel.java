@@ -114,7 +114,7 @@ public class ControlPanel extends JPanel{
       }
       else
       {
-        lblAsterID.setText(nameOfAsteroid(a.getPosition());
+        lblAsterID.setText(nameOfAsteroid(a.getPosition()));
         for(Material m: a.getInventory()){
           invarr[i].setBackground(mat2col(m));
           i++;
