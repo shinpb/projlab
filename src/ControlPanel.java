@@ -369,6 +369,7 @@ public class ControlPanel extends JPanel{
     public void setAsteroidField(ArrayList<Asteroid> af){
       asteroidField=af;
     }
+    public void setAstronautNames(ArrayList<String> n0) {astroNevek=s0;}
 
     public static void main(String[] args){
         ControlPanel cp = new ControlPanel();
