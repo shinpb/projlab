@@ -91,7 +91,7 @@ public class ControlPanel extends JPanel{
     private String nameOfAsteroid(Place ast) {
       if(asteroidField!=null) {
         int id=asteroidField.indexOf((Asteroid)ast);
-        if(id>=0)return "Asteroid "+id;
+        if(id>=0)return "Asteroid "+(id+1);
       }
       return (""+ast).replace("@", " #");
     }

@@ -15,23 +15,24 @@ public class MainPanel extends JFrame {
 	JPanel jp_bot;
 	JTextField tf;
 	JLabel text;
-	
+
 	public MainPanel() {
 		super("Aszteriodabányászat");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		create();
 	}
-	
+
 	private void create() {
 		//Felso panel
 		jp_top = new JPanel();
 		text = new JLabel("<html><center><h1>Üdvözöljük!</h1></center><br/>Kérem adja meg, hogy hány játékossal szeretne játékot létrehozni:</html>");
 		jp_top.add(text);
-		
+
 		//Kozepso panel
 		jp_mid = new JPanel();
 		tf = new JTextField(2);
 		jp_mid.add(tf);
-		
+
 		//Also panel
 		jp_bot = new JPanel();
 		JButton bt_start = new JButton("Indítás");
@@ -39,16 +40,16 @@ public class MainPanel extends JFrame {
 		ButtonActionListener bal = new  ButtonActionListener();
 		bt_start.addActionListener(bal);
 		jp_bot.add(bt_start);
-		
+
 		//Panelek felvétele
 		add(jp_top,BorderLayout.NORTH);
 		add(jp_mid,BorderLayout.CENTER);
 		add(jp_bot,BorderLayout.SOUTH);
 		pack();
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * A frame-ben lévõ gombot figyelõ ActionListener
 	 *
 	 */
@@ -68,7 +69,7 @@ public class MainPanel extends JFrame {
 				}
 			}
 		}
-		
+
 	}
-	
+
 }
