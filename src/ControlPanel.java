@@ -25,6 +25,7 @@ public class ControlPanel extends JPanel{
     private JMenu mnAster;
     private ArrayList<Place> ideLephetHelyek;
     private Place ideLepj;
+    private ArrayList<Asteroid> asteroidField=null;
 
     private void initControlPanel(){
       setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -52,7 +53,7 @@ public class ControlPanel extends JPanel{
         for(int i=0; i<astronauts.size(); i++) {
           Astronaut a = astronauts.get(i);
           if(aKorbenLepettMar.contains(a)) continue;
-          JMenuItem item = new JMenuItem((""+a).replace("@", " #"));
+          JMenuItem item = new JMenuItem(nameOfAsteroid(a));
           item.setName(String.valueOf(i));
           item.addActionListener(new java.awt.event.ActionListener() {
              public void actionPerformed(java.awt.event.ActionEvent evt)
@@ -86,6 +87,16 @@ public class ControlPanel extends JPanel{
       }
       return c;
     }
+    private String nameOfAsteroid(Place ast) {
+      if(asteroidField!=null) {
+        int id=asteroidField.indexOf((Asteroid)ast);
+        if(id>=0)return "Asteroid "+id;
+      }
+      return (""+ast).replace("@", " #");
+    }
+    private String nameOfAstronaut(Astronaut astro) {
+      return (""+a).replace("@", " #");
+    }
 
     private void selectAstronaut(Astronaut a){
       //a can be null
@@ -103,7 +114,7 @@ public class ControlPanel extends JPanel{
       }
       else
       {
-        lblAsterID.setText((""+a.getPosition()).replace("@", " #"));
+        lblAsterID.setText(nameOfAsteroid(a.getPosition());
         for(Material m: a.getInventory()){
           invarr[i].setBackground(mat2col(m));
           i++;
@@ -155,6 +166,11 @@ public class ControlPanel extends JPanel{
       game=g0;
       initControlPanel();
       astronauts = game.getAstronauts();
+    }
+
+    public ControlPanel(Game g0, ArrayList<Asteroid> af0){
+      this(g0);
+      setAsteroidField(af0);
     }
 
     public void initSelectPanel(){
@@ -343,6 +359,10 @@ public class ControlPanel extends JPanel{
 
 
 
+    }
+
+    public setAsteroidField(ArrayList<Asteroid> af){
+      asteroidField=af;
     }
 
     public static void main(String[] args){
