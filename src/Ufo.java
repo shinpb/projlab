@@ -68,4 +68,8 @@ public class Ufo extends Entity implements IMine {
 	public void step() throws Exception {
 		this.mine();
 	}
+	
+	public String getImageFileName() {
+		return "ufo.png";
+	}
 }

@@ -101,6 +101,9 @@ public class Robot extends Entity implements IDrill {
 
 		Logger.ret("");
 	}
-
+	
+	public String getImageFileName() {
+		return "robot.png";
+	}
 
 }

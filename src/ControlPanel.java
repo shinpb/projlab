@@ -119,7 +119,7 @@ public class ControlPanel extends JPanel{
           invarr[i].setBackground(mat2col(m));
           i++;
         }
-        //kivalasztottCore.setBackground(mat2col(a.getPosition().getCore()));
+        kivalasztottCore.setBackground(mat2col(a.getPosition().getCore()));
         //System.out.println(a.getPosition().getLayer());
         ideLephetHelyek=new ArrayList<Place>(a.getPosition().getNeighbours());
         for(int j=0; j<ideLephetHelyek.size(); j++) {
