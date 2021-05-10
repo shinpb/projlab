@@ -56,6 +56,8 @@ public class ControlPanel extends JPanel{
           try {
             game.step();
           } catch(Exception e) {e.printStackTrace();}
+          //ronda, de ez van ...
+          setAsteroidField(game.getAsteroids());
         }
         for(int i=0; i<astronauts.size(); i++) {
           Astronaut a = astronauts.get(i);
