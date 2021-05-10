@@ -26,7 +26,6 @@ public class ControlPanel extends JPanel{
     private ArrayList<Place> ideLephetHelyek;
     private Place ideLepj;
     private ArrayList<Asteroid> asteroidField=null;
-    private ArrayList<String> astroNevek=null;
 
     private void initControlPanel(){
       setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
@@ -96,11 +95,7 @@ public class ControlPanel extends JPanel{
       return (""+ast).replace("@", " #");
     }
     private String nameOfAstronaut(Astronaut astro) {
-      if(astroNevek!=null) {
-        int id=astroNevek.indexOf(astro);
-        if(id>=0) return astroNevek.get(id);
-      }
-      return (""+astro).replace("@", " #");
+      astro.getName();
     }
 
     private void selectAstronaut(Astronaut a){
@@ -175,10 +170,6 @@ public class ControlPanel extends JPanel{
     public ControlPanel(Game g0, ArrayList<Asteroid> af0){
       this(g0);
       setAsteroidField(af0);
-    }
-    public ControlPanel(Game g0, ArrayList<Asteroid> af0, ArrayList<String> s0){
-      this(g0,af0);
-      astroNevek=s0;
     }
 
 
@@ -373,7 +364,6 @@ public class ControlPanel extends JPanel{
     public void setAsteroidField(ArrayList<Asteroid> af){
       asteroidField=af;
     }
-    public void setAstronautNames(ArrayList<String> s0) {astroNevek=s0;}
 
     public static void main(String[] args){
         ControlPanel cp = new ControlPanel();
