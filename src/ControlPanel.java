@@ -361,7 +361,7 @@ public class ControlPanel extends JPanel{
 
     }
 
-    public setAsteroidField(ArrayList<Asteroid> af){
+    public void setAsteroidField(ArrayList<Asteroid> af){
       asteroidField=af;
     }
 
