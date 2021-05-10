@@ -92,13 +92,13 @@ public class Game{
 	}
 
 	//elinditja a jatekot, kisorsolja a szomszerdokat
-	public void start() throws Exception {
+	public void start(ArrayList<String> names) throws Exception {
 		Logger.call("Game.start", "");
 		//seged valtozok
 		//aszteroidaov merete
-		int asteroidfieldsize = 12;
+		int asteroidfieldsize = 15;
 		//asztronauta szama
-		int astronautcount = 5;
+		int astronautcount = names.size();
 		//randomhoz
 		int randomNum;
 		//osszes materialbol mennyi kell a gyozelemhez
@@ -136,9 +136,9 @@ public class Game{
 					//Random szam generalasa
 					randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size());
 					boolean same = false;
-					//megnezni van e mar ilyen szomszedja
+					//megnezni van e mar ilyen szomszedja, vagy ha sajat magat kapta
 					for(Place p : a.getNeighbours()) {
-						if(p.equals(asteroidField.get(randomNum))) {
+						if(p.equals(asteroidField.get(randomNum)) || a.equals(asteroidField.get(randomNum))) {
 							same = true;
 						}
 					}
@@ -156,10 +156,8 @@ public class Game{
 		//asztronautak lerakasa random aszteroidakra
 		for (int i = 0; i < astronautcount; i++) {
 			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size());
-			//astronauts.add(new Astronaut(asteroidField.get(randomNum)));
-			
+			astronauts.add(new Astronaut(asteroidField.get(randomNum),names[i]));
 	      }
-		astronauts.add(new Astronaut(asteroidField.get(0)));
 
 		Logger.ret("");
 	}
