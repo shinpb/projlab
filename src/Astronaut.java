@@ -18,6 +18,8 @@ import java.util.Scanner;
 
 
 public class Astronaut extends Entity implements IDrill, IMine {
+	private String name;
+	private static int numOfAstronauts = 0;
 	/**
 	 * az asztronauta eszkoztaraban levo teleport kapuk
 	 */
@@ -38,12 +40,16 @@ public class Astronaut extends Entity implements IDrill, IMine {
 			throw new Exception("Argument passed to Astronaut.ctor is null!");
 		gates = new ArrayList<Gate>();
 		collectedMaterials = new ArrayList<Material>();
+		numOfAstronauts++;
+		name = "Astronaut " + numOfAstronauts;
 	}
 
 	public Astronaut() {
 		super();
 		gates = new ArrayList<Gate>();
 		collectedMaterials = new ArrayList<Material>();
+		numOfAstronauts++;
+		name = "Astronaut " + numOfAstronauts;
 	}
 
 	/**
@@ -379,5 +385,12 @@ public class Astronaut extends Entity implements IDrill, IMine {
 	public String getImageFileName() {
 		return "astronaut.png";
 	}
-
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String _name) {
+		name = _name;
+	}
 }
