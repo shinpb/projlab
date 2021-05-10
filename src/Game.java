@@ -96,7 +96,7 @@ public class Game{
 		Logger.call("Game.start", "");
 		//seged valtozok
 		//aszteroidaov merete
-		int asteroidfieldsize = 50;
+		int asteroidfieldsize = 12;
 		//asztronauta szama
 		int astronautcount = 5;
 		//randomhoz
@@ -156,8 +156,10 @@ public class Game{
 		//asztronautak lerakasa random aszteroidakra
 		for (int i = 0; i < astronautcount; i++) {
 			randomNum = ThreadLocalRandom.current().nextInt(0, asteroidField.size());
-			astronauts.add(new Astronaut(asteroidField.get(randomNum)));
+			//astronauts.add(new Astronaut(asteroidField.get(randomNum)));
+			
 	      }
+		astronauts.add(new Astronaut(asteroidField.get(0)));
 
 		Logger.ret("");
 	}

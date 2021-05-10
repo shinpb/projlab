@@ -375,6 +375,9 @@ public class Astronaut extends Entity implements IDrill, IMine {
 		collectedMaterials.add(m);
 		Logger.ret("");
 	}
-
+	
+	public String getImageFileName() {
+		return "astronaut.png";
+	}
 
 }
