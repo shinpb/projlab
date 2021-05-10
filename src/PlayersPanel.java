@@ -17,7 +17,7 @@ public class PlayersPanel extends JFrame{
 	private JLabel[] labels;
 	private JTextField[] tfs;
 	private JLabel errormsg;
-	
+
 	public PlayersPanel(int cnt) {
 		super("Aszteroidabányászat");
 		playercnt = cnt;
@@ -25,7 +25,7 @@ public class PlayersPanel extends JFrame{
 		tfs = new JTextField[cnt];
 		create();
 	}
-	
+
 	private void create() {
 		//Labelek és TextFieldek létrehozása és felvétele
 		JPanel jp = new JPanel();
@@ -38,7 +38,7 @@ public class PlayersPanel extends JFrame{
 			jp.add(labels[i]);
 			jp.add(tfs[i]);
 		}
-		
+
 		//Gomb felvétele
 		JPanel jp_bot = new JPanel();
 		JButton bt_ok = new JButton("OK");
@@ -46,14 +46,14 @@ public class PlayersPanel extends JFrame{
 		ButtonActionListener bal = new ButtonActionListener();
 		bt_ok.addActionListener(bal);
 		jp_bot.add(bt_ok);
-		
+
 		add(jp,BorderLayout.NORTH);
 		add(jp_bot,BorderLayout.SOUTH);
 		pack();
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * A frame-ben lévõ gombot figyelõ ActionListener
 	 *
 	 */
@@ -70,35 +70,35 @@ public class PlayersPanel extends JFrame{
 					pack();
 				} else {
 					//Játék indítása
-					
+
 					Game game =  new Game();
 					ArrayList<String> nevek = new ArrayList<String>();
 					for(int i = 0; i < tfs.length;i++) {
 						String nev = tfs[i].getText();
 						nevek.add(nev);
 					}
-					
+
 					try {
 						game.start(nevek);
 					} catch (Exception e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
+
 					JFrame mainFrame = new JFrame();
 					JPanel mainPanel = new JPanel();
 					JPanel gamePanel = new JPanel();
-			
-					
-					JPanel controlPanel = new ControlPanel(game);
-					
+
+
+					JPanel controlPanel = new ControlPanel(game, game.getAsteroids());
+
 					mainPanel.setLayout(new CardLayout());
-					
+
 					gamePanel.setLayout(new BorderLayout());
 					gamePanel.add(controlPanel, BorderLayout.EAST);
 					gamePanel.add(new AsteroidFieldPanel(mainPanel, game), BorderLayout.WEST);
-					
-					
+
+
 					mainPanel.add(gamePanel, "GAMEPANEL");
 					mainFrame.add(mainPanel);
 					mainFrame.pack();
@@ -107,6 +107,6 @@ public class PlayersPanel extends JFrame{
 				}
 			}
 		}
-		
+
 	}
 }
