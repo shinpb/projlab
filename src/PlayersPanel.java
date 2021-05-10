@@ -1,4 +1,5 @@
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,28 +17,35 @@ public class PlayersPanel extends JFrame{
 	private JTextField[] tfs;
 	private JLabel errormsg;
 	
+	/**
+	 * Konstruktor
+	 * @param cnt J·tÈkosok sz·ma
+	 */
 	public PlayersPanel(int cnt) {
-		super("Aszteroidab√°ny√°szat");
+		super("Aszteroidab·ny·szat");
 		playercnt = cnt;
 		labels = new JLabel[cnt];
 		tfs = new JTextField[cnt];
 		create();
 	}
 	
+	/**
+	 * A frame felÈpÌtÈse
+	 */
 	private void create() {
-		//Labelek √©s TextFieldek l√©trehoz√°sa √©s felv√©tele
+		//Labelek Ès TextFieldek lÈtrehoz·sa Ès felvÈtele
 		JPanel jp = new JPanel();
 		errormsg = new JLabel();
 		jp.setLayout(new BoxLayout(jp,BoxLayout.Y_AXIS));
 		jp.add(errormsg);
 		for(int i = 0; i < playercnt; i++) {
-			labels[i] = new JLabel(String.valueOf(i+1) + ". j√°t√©kos: ");
+			labels[i] = new JLabel(String.valueOf(i+1) + ". j·tÈkos: ");
 			tfs[i] = new JTextField(30);
 			jp.add(labels[i]);
 			jp.add(tfs[i]);
 		}
 		
-		//Gomb felv√©tele
+		//Gomb felvÈtele
 		JPanel jp_bot = new JPanel();
 		JButton bt_ok = new JButton("OK");
 		bt_ok.setActionCommand("ok");
@@ -52,7 +60,7 @@ public class PlayersPanel extends JFrame{
 	
 	/**
 	 * 
-	 * A frame-ben l√©v√µ gombot figyel√µ ActionListener
+	 * A frame-ben lÈvı gombot figyelı ActionListener
 	 *
 	 */
 	class ButtonActionListener implements ActionListener{
@@ -64,12 +72,28 @@ public class PlayersPanel extends JFrame{
 						isUres = true;
 				}
 				if(isUres) {
-					errormsg.setText("<html><p style=\"color:red;\">Adjon nevet az √∂sszes j√°t√©kosnak!</p></html>");
+					errormsg.setText("<html><p style=\"color:red;\">Adjon nevet az ˆsszes j·tÈkosnak!</p></html>");
 					pack();
 				} else {
-					//J√°t√©k ind√≠t√°sa
+					//J·tek indÌtasa
 					
-					//Itt kell l√©trehozni a ControlPanelt √©s a FieldPanelt
+					JFrame mainFrame = new JFrame();
+					JPanel mainPanel = new JPanel();
+					JPanel gamePanel = new JPanel();
+					JPanel controlPanel = new ControlPanel();
+					JPanel testPanel =  new JPanel();
+					
+					mainPanel.setLayout(new CardLayout());
+					
+					gamePanel.setLayout(new BorderLayout());
+					gamePanel.add(controlPanel, BorderLayout.EAST);
+					gamePanel.add(new AsteroidFieldPanel(mainPanel), BorderLayout.WEST);
+					
+					
+					mainPanel.add(gamePanel, "GAMEPANEL");
+					mainFrame.add(mainPanel);
+					mainFrame.pack();
+					mainFrame.setVisible(true);
 				}
 			}
 		}
